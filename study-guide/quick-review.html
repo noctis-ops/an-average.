@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>دليل مذاكرة الهندسة الاجتماعية — يوم واحد</title>
+<style>
+:root{
+  --bg:#07111f;--panel:#0d1b2f;--panel2:#10233d;--ink:#edf6ff;--muted:#b8c7dc;
+  --blue:#54b6ff;--cyan:#62f2e7;--green:#75f0a4;--yellow:#ffd166;--orange:#ff9f4a;
+  --red:#ff6b6b;--purple:#c99cff;--border:rgba(255,255,255,.13);--shadow:0 18px 50px rgba(0,0,0,.32);
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at top left,#183a66 0,#07111f 38%,#030914 100%);color:var(--ink);font-family:Tahoma,"Noto Kufi Arabic","Noto Sans Arabic",Arial,sans-serif;line-height:1.85}.progress{position:fixed;top:0;right:0;height:5px;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--purple));width:0;z-index:20}.wrap{width:min(1180px,94vw);margin:auto}.hero{padding:68px 0 30px}.hero h1{font-size:clamp(28px,5vw,56px);line-height:1.25;margin:0 0 10px}.subtitle{font-size:clamp(16px,2.2vw,23px);color:var(--muted);max-width:950px}.badge{display:inline-block;border:1px solid var(--border);background:rgba(255,255,255,.07);border-radius:999px;padding:6px 12px;margin:6px 4px;color:#eaf6ff}.nav{position:sticky;top:5px;z-index:10;backdrop-filter:blur(12px);background:rgba(7,17,31,.76);border:1px solid var(--border);border-radius:18px;padding:10px;margin:10px 0 30px;box-shadow:var(--shadow)}.nav a{display:inline-block;text-decoration:none;color:var(--ink);padding:7px 10px;margin:3px;border-radius:999px;background:rgba(255,255,255,.05);font-size:14px}.nav a:hover{background:rgba(84,182,255,.22)}section,.sec{scroll-margin-top:82px}.sec{margin:48px 0 16px;padding:18px 20px;background:linear-gradient(135deg,rgba(84,182,255,.18),rgba(201,156,255,.12));border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow)}h2{font-size:clamp(24px,3vw,36px);margin:0}h2 small{display:block;color:var(--muted);font-size:15px;margin-top:3px}h3{color:var(--cyan);font-size:24px;margin:28px 0 12px}h4{margin:0 0 8px;color:var(--yellow)}p{margin:7px 0}.card,.mini{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.035));border:1px solid var(--border);border-radius:20px;padding:17px 18px;box-shadow:0 10px 30px rgba(0,0,0,.18)}.mini{border-radius:16px;padding:13px 14px}.grid{display:grid;gap:14px}.c2{grid-template-columns:repeat(2,minmax(0,1fr))}.c3{grid-template-columns:repeat(3,minmax(0,1fr))}.c4{grid-template-columns:repeat(4,minmax(0,1fr))}@media(max-width:820px){.c2,.c3,.c4{grid-template-columns:1fr}.nav{position:relative;top:0}.flow{overflow-x:auto}.step{min-width:210px}}.tip{border-right:5px solid var(--green)}.warn{border-right:5px solid var(--red)}.story{border-right:5px solid var(--yellow)}.mem{border-right:5px solid var(--purple)}.quote{font-size:19px;background:rgba(255,209,102,.12);border:1px dashed rgba(255,209,102,.45);padding:14px 18px;border-radius:18px;color:#fff3ce}.en{direction:ltr;unicode-bidi:embed;font-family:Consolas,Monaco,monospace}.pill{display:inline-block;background:rgba(98,242,231,.13);border:1px solid rgba(98,242,231,.25);border-radius:999px;padding:5px 10px;margin:3px;color:#dffffc}table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:16px;overflow:hidden}th,td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}th{background:rgba(84,182,255,.17);color:#eaf7ff}.flow{display:flex;gap:10px;align-items:stretch;margin:14px 0}.step{flex:1;background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:18px;padding:13px}.num{width:34px;height:34px;border-radius:50%;display:inline-grid;place-items:center;background:var(--blue);color:#03111f;font-weight:900;margin-left:6px}.arrow{align-self:center;color:var(--cyan);font-size:28px}.mindmap{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;align-items:center}.center{grid-column:2;background:linear-gradient(135deg,var(--blue),var(--purple));color:#05101d;border-radius:24px;padding:22px;text-align:center;font-weight:900;font-size:22px}.branch{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:18px;padding:13px}.funnel{max-width:760px;margin:14px auto}.funnel div{margin:6px auto;padding:10px;text-align:center;border-radius:12px;color:#06101e;font-weight:800}.f1{width:100%;background:#62f2e7}.f2{width:82%;background:#75f0a4}.f3{width:62%;background:#ffd166}.f4{width:43%;background:#ff9f4a}.pyr{max-width:760px;margin:15px auto;display:flex;flex-direction:column-reverse;gap:6px}.pyr div{text-align:center;border-radius:14px;padding:10px;font-weight:800;color:#07111f}.lvl1{background:#75f0a4}.lvl2{background:#62f2e7}.lvl3{background:#54b6ff}.lvl4{background:#ffd166}.lvl5{background:#ff9f4a}.timeline{border-right:3px solid var(--blue);margin-right:18px;padding-right:18px}.event{position:relative;margin:13px 0}.event:before{content:"";position:absolute;right:-29px;top:9px;width:16px;height:16px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 5px rgba(98,242,231,.16)}.flashgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}@media(max-width:900px){.flashgrid{grid-template-columns:1fr}}.fc{height:170px;perspective:1000px;cursor:pointer}.flip{position:relative;width:100%;height:100%;transition:.55s;transform-style:preserve-3d}.fc.on .flip{transform:rotateY(180deg)}.front,.back{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;border-radius:20px;border:1px solid var(--border);backface-visibility:hidden;box-shadow:var(--shadow)}.front{background:linear-gradient(135deg,rgba(84,182,255,.28),rgba(98,242,231,.09))}.back{background:linear-gradient(135deg,rgba(117,240,164,.22),rgba(201,156,255,.13));transform:rotateY(180deg)}.q{background:rgba(255,255,255,.055);border:1px solid var(--border);border-radius:18px;padding:15px;margin:14px 0}.opt{display:block;margin:8px 0;padding:10px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.04);cursor:pointer}.opt:hover{background:rgba(84,182,255,.15)}.opt.good{background:rgba(117,240,164,.22);border-color:var(--green)}.opt.bad{background:rgba(255,107,107,.21);border-color:var(--red)}.exp{display:none;color:var(--muted);margin-top:8px}.score{font-size:22px;font-weight:900;color:var(--green)}.footer{color:var(--muted);text-align:center;padding:35px 0 60px}.kbd{background:#01070d;border:1px solid var(--border);border-radius:8px;padding:2px 6px;color:#fff}.two-col{columns:2;column-gap:30px}@media(max-width:800px){.two-col{columns:1}.mindmap{grid-template-columns:1fr}.center{grid-column:auto}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="wrap">
+<header class="hero">
+  <span class="badge">📘 الفصل 9: الهندسة الاجتماعية</span>
+  <span class="badge">⏱️ خطة يوم واحد</span>
+  <span class="badge">✅ المحتوى من ملف المادة فقط</span>
+  <h1>دليل مذاكرة ذكي وسريع: الهندسة الاجتماعية <span class="en">Social Engineering</span></h1>
+  <p class="subtitle">هذا الملف يحوّل الفصل الطويل إلى خريطة فهم + قصص + جداول حفظ + بطاقات + اختبار. اقرأه بالترتيب اليوم، ثم استخدم البطاقات والاختبار في آخر ساعة.</p>
+</header>
+
+<nav class="nav">
+  <a href="#plan">خطة اليوم</a><a href="#map">الخريطة</a><a href="#sec1">1 المفاهيم</a><a href="#sec2">2 جمع المعلومات</a><a href="#sec3">3 التقنيات</a><a href="#sec4">4 علم النفس</a><a href="#sec5">5 التأثير</a><a href="#sec6">6 الهجمات</a><a href="#sec7">7 الأدوات</a><a href="#sec8">8 الشبكات/الهوية</a><a href="#sec9">9 الدفاع</a><a href="#flash">بطاقات</a><a href="#quiz">اختبار</a>
+</nav>
+
+<section id="plan">
+<h2 class="sec">🗓️ خطة مذاكرة يوم واحد <small>8 ساعات مركّزة + مراجعة نشطة</small></h2>
+<table>
+<tr><th>الوقت</th><th>ماذا تذاكر؟</th><th>الهدف</th></tr>
+<tr><td>45 دقيقة</td><td>اقرأ الخريطة الكبرى + المفاهيم والتعريفات</td><td>تبني الهيكل العام قبل التفاصيل</td></tr>
+<tr><td>60 دقيقة</td><td>جمع المعلومات + تقنيات التواصل</td><td>تفهم كيف يبدأ الهجوم ولماذا تنجح المحادثة</td></tr>
+<tr><td>75 دقيقة</td><td>Elicitation + Pretexting + القصص</td><td>هذه أكثر أجزاء الفصل سؤالاً لأنها تطبيقية</td></tr>
+<tr><td>70 دقيقة</td><td>علم النفس + التأثير والإقناع</td><td>تحفظ المبادئ وتربطها بسيناريوهات</td></tr>
+<tr><td>80 دقيقة</td><td>أنواع الهجمات والأدوات</td><td>تميّز بين Human/Computer/Mobile وبين Phishing/Spear/Trawling</td></tr>
+<tr><td>60 دقيقة</td><td>الشبكات الاجتماعية + سرقة الهوية + الدفاع</td><td>أسئلة التعاريف والإحصائيات والتدابير المضادة</td></tr>
+<tr><td>45 دقيقة</td><td>البطاقات القلّابة</td><td>استرجاع سريع من الذاكرة</td></tr>
+<tr><td>45 دقيقة</td><td>الاختبار التفاعلي + مراجعة أخطاءك</td><td>تثبيت نهائي قبل الامتحان</td></tr>
+</table>
+<div class="card mem">قاعدة اليوم الواحد: <b>لا تقرأ قراءة صامتة فقط.</b> بعد كل قسم أغلق عينيك وقل بصوتك: التعريف، المراحل، مثال واحد، وطريقة الدفاع.</div>
+</section>
+
+<section id="map">
+<h2 class="sec">🧭 الخريطة الذهنية الكبرى <small>الفصل كله في لوحة واحدة</small></h2>
+<div class="mindmap">
+  <div class="branch">9.1 المفاهيم: تعريف SE، الأخلاقيات، المشاهير، الفئات، دوافع الهجوم، مراحل الهجوم، الأهداف والتأثير</div>
+  <div class="center">الهندسة الاجتماعية = اختراق الإنسان لا الجهاز</div>
+  <div class="branch">9.2 التقنيات: Communication Model، Elicitation، Pretexting</div>
+  <div class="branch">جمع المعلومات: مراقبة، قمامة، مواقع، BasKet، Dradis، تفكير مثل المهاجم</div>
+  <div class="branch">علم النفس: أنماط التفكير، التعبيرات الدقيقة، لغة الجسد، Buffer Overflow البشري</div>
+  <div class="branch">التأثير: المعاملة بالمثل، الالتزام، السلطة، الندرة، الإطار، الإعجاب...</div>
+  <div class="branch">الهجمات: بشرية، حاسوبية، هاتف/جوال، Phishing، Tailgating، Reverse SE</div>
+  <div class="branch">الأدوات: RF Bugs، Maltego، SET، الهاتف</div>
+  <div class="branch">الدفاع: وعي، سياسات، 2FA، كشف التصيد، Change Management</div>
+</div>
+</section>
+
+<section id="sec1">
+<h2 class="sec">1️⃣ المفاهيم الأساسية <small>إذا فهمت هذا القسم ستفهم بقية الفصل بسرعة</small></h2>
+
+<div class="grid c2">
+<div class="card"><h4>التعريف المختصر</h4><p><b>الهندسة الاجتماعية</b> هي فن التأثير على الناس بحيث يكشفون معلومات أو يقومون بتصرف يخدم المهاجم. هي ليست مجرد اختراق تقني؛ إنها استخدام علم النفس والثقة والعادات البشرية.</p></div>
+<div class="card"><h4>تعريف أمني</h4><p>هي "فن الخداع" أو "اختراق الإنسان" للوصول إلى معلومات حساسة: كلمات مرور، بنية الشبكة، إجراءات داخلية، أو فتح باب مادي/رقمي.</p></div>
+<div class="card"><h4>الفرق الأخلاقي</h4><p>نفس الأساليب قد يستخدمها مهاجم ضار أو مختبر اختراق بتصريح. <b>السلاح واحد، والنية والتصريح هما الفرق.</b></p></div>
+<div class="card"><h4>لماذا مهمة؟</h4><p>لأن أقوى جدار ناري لا يمنع موظفاً من تسليم كلمة المرور إذا اقتنع أن المتصل من الدعم الفني.</p></div>
+</div>
+
+<h3>⚖️ أنواع المهندسين حسب الأخلاق</h3>
+<div class="grid c3">
+<div class="mini"><b>قبعة سوداء</b><br>يستخدم الخداع للسرقة، التجسس، التخريب، وسرقة الهوية.</div>
+<div class="mini"><b>قبعة بيضاء</b><br>مختبر اختراق/مستشار أمني يستخدم الأساليب بتصريح لحماية المؤسسة.</div>
+<div class="mini"><b>قبعة رمادية</b><br>منطقة وسطى؛ قد لا تكون النية تخريبية لكن التصريح غير واضح.</div>
+</div>
+
+<h3>⭐ أشهر الأسماء المذكورة في الفصل</h3>
+<div class="grid c2">
+<div class="mini"><b>كيفن ميتنك <span class="en">Kevin Mitnick</span></b><br>اشتهر بقدرته على الخداع أكثر من الأدوات التقنية. هرب سنتين ونصف وقُبض عليه في كارولينا الشمالية ومعه هواتف مستنسخة وهويات مزوّرة. ألّف "فن الخداع" و"فن التسلل" و"الشبح في الأسلاك"، ثم عمل مستشاراً أمنياً.</div>
+<div class="mini"><b>فرانك أباغنيل <span class="en">Frank Abagnale</span></b><br>في الستينات سافر إلى 26 دولة قبل سن 19 بشيكات مزورة، وانتحل صفة طيار وأستاذ ومحامٍ وطبيب. قصته ألهمت فيلم <b>Catch Me If You Can</b>، ثم عمل لاحقاً في مكافحة الغش.</div>
+<div class="mini"><b>الإخوة بدير <span class="en">Badir Brothers</span></b><br>ثلاثة إخوة مكفوفون وُجهت لهم اتهامات باحتيال اتصالات وسرقة بيانات وانتحال صفة شرطي. اعتمدوا على السمع، البرمجة، وانتحال الشخصيات هاتفياً.</div>
+<div class="mini"><b>كريس هادناجي ونيكرسون</b><br>هادناجي مؤلف ومؤسس social-engineer.org ويستخدم SE للحماية. ونيكرسون من فريق Tiger Team لاختبار اختراق الشركات.</div>
+</div>
+
+<h3>👥 فئات المهندسين الاجتماعيين (11)</h3>
+<div class="card mem">جملة حفظ: <b>هاكر، مختبر، جاسوس، لص هوية، موظف ساخط، سمسار معلومات، محتال، موظِّف، بائع، حكومة، شخص عادي.</b></div>
+<table>
+<tr><th>#</th><th>الفئة</th><th>الفكرة الامتحانية</th></tr>
+<tr><td>1</td><td>القراصنة</td><td>العامل البشري أسهل من كسر التقنية أحياناً.</td></tr>
+<tr><td>2</td><td>مختبرو الاختراق</td><td>يستخدمون الأساليب نفسها بتصريح لاختبار الضعف.</td></tr>
+<tr><td>3</td><td>الجواسيس</td><td>يبنون مصداقية ويجمعون معلومات حساسة.</td></tr>
+<tr><td>4</td><td>لصوص الهوية</td><td>أسماء، حسابات، تواريخ ميلاد، وثائق.</td></tr>
+<tr><td>5</td><td>موظفون ساخطون</td><td>الغضب من العمل/الراتب/الترقية يجعلهم هدفاً أو مصدراً.</td></tr>
+<tr><td>6</td><td>سماسرة المعلومات</td><td>يجمعون البيانات ويبيعونها.</td></tr>
+<tr><td>7</td><td>محتالون</td><td>الخداع قديم وفعّال لأنه يستغل البشر.</td></tr>
+<tr><td>8</td><td>جهات التوظيف</td><td>يبنون علاقة وثقة للحصول على معلومات أو جذبك.</td></tr>
+<tr><td>9</td><td>مندوبو المبيعات</td><td>مهاراتهم في الإقناع وجمع المعلومات تشبه أدوات SE.</td></tr>
+<tr><td>10</td><td>الحكومات</td><td>تستخدم التأثير والحرب النفسية.</td></tr>
+<tr><td>11</td><td>الناس العاديون</td><td>قد يمارسون تأثيراً اجتماعياً دون قصد.</td></tr>
+</table>
+
+<h3>❓ لماذا تنجح الهندسة الاجتماعية؟</h3>
+<div class="grid c3">
+<div class="mini">🧍 <b>الإنسان أضعف حلقة</b><br>لا يوجد تحديث أمني مباشر للطبيعة البشرية.</div>
+<div class="mini">⏱️ <b>أسرع من الهجوم التقني</b><br>مكالمة ذكية قد تعطي كلمة مرور أسرع من كسرها.</div>
+<div class="mini">🤝 <b>الثقة عادة بشرية</b><br>الناس يميلون للمساعدة واللطف وتجنب المشاكل.</div>
+</div>
+
+<h3>🧠 الدوافع والأخلاق وهرم ماسلو</h3>
+<div class="card">
+<p><b>الأخلاق</b> هي معايير المجتمع لما هو جيد وسيئ، وهي الفاصل بين استخدام المهارة للحماية أو للجريمة.</p>
+<p><b>الدوافع الستة حسب Max Kilger:</b> <span class="pill">المال</span><span class="pill">الترفيه</span><span class="pill">الأنا/الغرور</span><span class="pill">قضية/سبب</span><span class="pill">الانتماء لمجموعة</span><span class="pill">المكانة داخل المجتمع</span></p>
+<p>ويشير الفصل أيضاً إلى دوافع مثل المعرفة، الانتقام، والفضول. وبربط ذلك بهرم ماسلو: من احتياجات البقاء في القاعدة حتى الاحترام وتحقيق الذات في القمة، يمكن للمهاجم استغلال الحاجة البشرية. <b>الهدف النهائي غالباً: المعلومات.</b></p>
+</div>
+<div class="pyr">
+<div class="lvl1">احتياجات فسيولوجية: طعام، شراب، تنفس</div>
+<div class="lvl2">أمان</div>
+<div class="lvl3">انتماء وعلاقات</div>
+<div class="lvl4">احترام ومكانة</div>
+<div class="lvl5">تحقيق الذات</div>
+</div>
+
+<h3>⚠️ سلوكيات بشرية يستغلها المهاجم</h3>
+<div class="grid c3">
+<div class="mini">الثقة</div><div class="mini">الخوف والتهديد</div><div class="mini">الوعود والمكافآت</div><div class="mini">الالتزامات الاجتماعية</div><div class="mini">الجهل بالهجوم</div><div class="mini">الخوف من الوقوع في مشكلة</div>
+</div>
+
+<h3>🏢 لماذا تكون الشركات عرضة؟</h3>
+<div class="flow">
+<div class="step"><div class="num">1</div><b>تدريب أمني غير كافٍ</b><span>الموظف لا يعرف شكل الهجوم.</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">2</div><b>غياب السياسات</b><span>لا توجد قواعد واضحة للتحقق والتصعيد.</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">3</div><b>سهولة الوصول للمعلومات</b><span>قواعد بيانات ووثائق متاحة أكثر من اللازم.</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">4</div><b>تعدد الوحدات</b><span>كثرة الأقسام تنشر معلومات عامة مفيدة للمهاجم.</span></div>
+</div>
+
+<h3>⚔️ مراحل هجوم الهندسة الاجتماعية</h3>
+<div class="flow">
+<div class="step"><div class="num">1</div><b>البحث</b><span>عن الشركة والموظفين والإجراءات</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">2</div><b>اختيار الضحية</b><span>موظف مناسب، ساخط، أو صاحب صلاحية</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">3</div><b>تطوير العلاقة</b><span>ثقة، ألفة، قصة مقنعة</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">4</div><b>استغلال العلاقة</b><span>الحصول على كلمة مرور/معلومة/دخول</span></div>
+</div>
+<div class="card mem">احفظها: <b>ابحث → اختر → اقترب → استغل.</b></div>
+
+<h3>💥 التأثيرات والأهداف</h3>
+<div class="grid c2">
+<div class="card"><h4>التأثير على المنظمة</h4><p>خسائر اقتصادية، ضرر سمعة، فقدان خصوصية، مخاطر إرهاب، دعاوى قضائية، وقد يصل الأمر لإغلاق مؤقت أو دائم.</p></div>
+<div class="card"><h4>الأهداف الشائعة</h4><p>الاستقبال، مكتب المساعدة، الدعم الفني، مسؤولو النظام، المستخدمون والعملاء، الباعة، وعامل المكتب؛ لأنهم يملكون أو يمررون معلومات مهمة.</p></div>
+</div>
+</section>
+
+<section id="sec2">
+<h2 class="sec">2️⃣ جمع المعلومات <small>أساس نجاح الهندسة الاجتماعية</small></h2>
+<div class="quote">"تسعون في المئة من مجموع الحروب هي عبارة عن جمع المعلومات" — نابليون بونابرت. وفي الفصل: لا توجد معلومة بلا قيمة؛ التفصيلة الصغيرة قد تكون مفتاح الاختراق.</div>
+
+<div class="card story">
+<h4>📮 قصة ماتي أهاروني وطوابع البريد</h4>
+<p>في اختبار اختراق لشركة لا تملك حضوراً واضحاً على الويب، وُجد أن مسؤولاً رفيعاً استخدم بريد الشركة في منتدى لجمع الطوابع، وذكر اهتمامه بطوابع عام 1950. بُني موقع وهمي لجمع الطوابع، وأُرسل له بريد مع قصة مقنعة عن حفيد ورث طوابع ويريد بيعها. الموقع احتوى إطاراً خبيثاً يستغل ثغرة في المتصفح. النتيجة: من معلومة "هواية" بسيطة أمكن فتح باب للشركة.</p>
+<p><b>الدرس:</b> الهوايات، المنتديات، الصور، التعليقات، الأسماء، والبريد الإلكتروني ليست تفاصيل جانبية؛ كلها مواد خام لبناء ذريعة مقنعة.</p>
+</div>
+
+<h3>🛠️ تنظيم المعلومات</h3>
+<div class="grid c2">
+<div class="mini"><b>BasKet</b><br>أداة لتنظيم الملاحظات واللقطات والصور والروابط في "سلال" حسب نوع المعلومة: Whois، مواقع، خرائط، موظفون...</div>
+<div class="mini"><b>Dradis</b><br>إطار لتنظيم نتائج الاختبار، مفيد عند وجود فريق وعدد كبير من البيانات، ويُستخدم عبر المتصفح محلياً.</div>
+</div>
+
+<h3>🧑‍🍳 تشبيه الطاهي</h3>
+<div class="card">
+<p>امتلاك بيانات كثيرة لا يكفي. مثل الطاهي: معرفة الملح لا تصنع وجبة؛ المهم معرفة مقدار الملح ومتى وكيف يُخلط مع بقية المكونات. كذلك المهندس الاجتماعي يجمع التفاصيل ثم يركّبها في قصة قابلة للتصديق.</p>
+</div>
+
+<div class="grid c2">
+<div class="card tip"><h4>👁️ الملاحظة</h4><p>راقب المداخل، البطاقات، منطقة التدخين، كاميرات المراقبة، شركات الصيانة، الزي الرسمي، أوقات الازدحام. كل هذا يبني صورة عن بيئة الهدف.</p></div>
+<div class="card warn"><h4>🗑️ البحث في القمامة</h4><p>قد تحتوي القمامة على فواتير، مذكرات، أقراص، وحدات USB، وثائق ممزقة، أو أجهزة قديمة. حتى الورق الممزق يمكن إعادة تجميعه.</p></div>
+</div>
+
+<div class="card"><h4>💼 تعلّم من مندوبي المبيعات</h4><p>مندوب المبيعات يجمع معلومات مسبقة ليصنع "مدخلاً دافئاً" إلى العميل. المهندس الاجتماعي يفعل الشيء نفسه: يعرف اسمك، مشكلتك، قسمك، أو هوايتك، ثم يستخدمها لبناء ثقة سريعة.</p></div>
+</section>
+
+<section id="sec3">
+<h2 class="sec">3️⃣ تقنيات الهندسة الاجتماعية <small>الاتصال، الاستنباط، والذريعة</small></h2>
+
+<h3>📡 نموذج الاتصال</h3>
+<div class="card">
+<p>التواصل عملية ذات اتجاهين بين مرسل ومستقبل. في التواصل العادي قد يكون الهدف مشتركاً مسبقاً، أما في الهندسة الاجتماعية فالمهاجم يستخدم التواصل <b>لخلق هدف مشترك مزيف</b>.</p>
+<p>يذكر الفصل نموذج <b>Shannon–Weaver</b> عام 1947، ويُسمّى أم النماذج.</p>
+</div>
+<div class="flow">
+<div class="step"><div class="num">1</div><b>المصدر</b><span>المهاجم/المتحدث</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">2</div><b>الرسالة</b><span>قصة مختصرة ومقنعة</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">3</div><b>القناة</b><span>هاتف، بريد، وجهاً لوجه</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">4</div><b>المستقبِل</b><span>يفسّر حسب واقعه وخبرته</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">5</div><b>التغذية الراجعة</b><span>التصرف المطلوب</span></div>
+</div>
+<div class="card mem">قاعدة مهمة: لا تفترض أن المستقبل يفهم رسالتك كما تقصدها. لكل شخص "واقع" مختلف وخلفية مختلفة.</div>
+
+<div class="card story">
+<h4>💾 سيناريو USB</h4>
+<p>قصة متدرب يريد طباعة سيرته من USB لأن مشروباً انسكب على أوراقه، مع حقيبة وأوراق ملطخة لتدعيم القصة. الهدف الحقيقي: جعل موظف الاستقبال يشغّل USB يحتوي برنامجاً يجمع كلمات مرور أو يفتح اتصالاً عكسياً. الامتحان يحب هذا المثال لأنه يجمع: رسالة، قناة، شفقة، ذريعة، وسلوك مطلوب.</p>
+</div>
+
+<h3>🔱 الأنواع الثلاثة العامة</h3>
+<div class="grid c3">
+<div class="mini"><b>Human-based</b><br>وجهاً لوجه أو هاتفياً: انتحال شخصية، ذريعة، Tailgating، دعم فني...</div>
+<div class="mini"><b>Computer-based</b><br>بريد، مواقع، رسائل، مرفقات، Phishing، Hoax، Chain Letters...</div>
+<div class="mini"><b>Mobile/Telephone-based</b><br>الهاتف والجوال وسيلة قديمة وفعالة لاختبار شركة كاملة بسرعة.</div>
+</div>
+
+<h3>🎣 الاستنباط <span class="en">Elicitation</span></h3>
+<div class="card">
+<p>تعريف NSA المذكور في الفصل: <b>استخراج خفي للمعلومات أثناء محادثة تبدو بريئة.</b> الهدف لا يشعر أنه "يُستجوَب"؛ يظن أنه يتكلم طبيعياً.</p>
+</div>
+<div class="flow">
+<div class="step"><div class="num">1</div><b>كن طبيعياً</b><span>لا تبدُ كمحقق.</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">2</div><b>ثقّف نفسك</b><span>اعرف المجال والمصطلحات.</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">3</div><b>لا تكن جشعاً</b><span>اسأل القليل ولا تطمع فتُكشف.</span></div>
+</div>
+
+<h4>تقنيات Elicitation</h4>
+<div class="grid c3">
+<div class="mini"><b>مناشدة الغرور</b><br>"واضح أنك خبير في هذا النظام..."</div>
+<div class="mini"><b>اهتمام مشترك</b><br>هواية/فريق/مدينة مشتركة تفتح الكلام.</div>
+<div class="mini"><b>ادعاء كاذب متعمد</b><br>تقول معلومة خاطئة فيصححها الهدف.</div>
+<div class="mini"><b>Volunteering Info</b><br>تعطي معلومة أولاً فيبادلك بمعلومة.</div>
+<div class="mini"><b>Assuming Knowledge</b><br>تتحدث كأنك تعرف بالفعل فيكمل هو التفاصيل.</div>
+<div class="mini"><b>الكحول/خفض الحذر</b><br>بيئة اجتماعية تجعل الكلام أسهل.</div>
+</div>
+
+<h4>أنواع الأسئلة</h4>
+<table>
+<tr><th>النوع</th><th>مثال</th><th>متى يُستخدم؟</th></tr>
+<tr><td>مفتوحة</td><td>كيف؟ لماذا؟ حدثني عن...</td><td>لبداية واسعة وجمع قصة</td></tr>
+<tr><td>مغلقة</td><td>هل تستخدمون نظام X؟</td><td>لتأكيد معلومة محددة</td></tr>
+<tr><td>إيحائية/موجهة</td><td>أليس صحيحاً أن...</td><td>تدفع الهدف لاتجاه معين</td></tr>
+<tr><td>افتراضية</td><td>لو حصل عطل، ماذا تفعلون؟</td><td>لاستخراج إجراءات داخلية</td></tr>
+</table>
+<div class="funnel"><div class="f1">كسر الجليد وبناء الألفة</div><div class="f2">أسئلة مفتوحة</div><div class="f3">أسئلة مغلقة</div><div class="f4">أسئلة موجهة/محددة</div></div>
+<div class="card mem">نموذج القمع: تبدأ واسعاً ومريحاً، ثم تضيق تدريجياً حتى تصل للمعلومة المطلوبة.</div>
+
+<h3>🎭 الذريعة <span class="en">Pretexting</span></h3>
+<div class="card">
+<p>الذريعة هي اختراع سيناريو أو شخصية لتبرير طلبك. القاعدة الذهبية من الفصل: <b>عِش الشخصية</b>؛ كلما كان البحث أعمق، زادت واقعية القصة.</p>
+</div>
+<div class="grid c2">
+<div class="mini"><b>مبادئ الذريعة</b><br>بحث أكثر، تفاصيل شخصية، لهجة مناسبة، بساطة، عفوية، وقصة لا تنهار عند سؤال بسيط.</div>
+<div class="mini"><b>الهاتف</b><br>أدوات مثل خدمات المكاتب الافتراضية وSpoofCard تجعل الذريعة الهاتفية أكثر إقناعاً، لذلك يجب التحقق لا الثقة بالصوت أو الرقم.</div>
+</div>
+<div class="card story">
+<h4>🏦 قصة ستانلي ريفكين 1978</h4>
+<p>حفظ كود التحويل اليومي في بنك Security Pacific، ثم استخدمه لتحويل <b>10.2 مليون دولار</b>. القصة تلخّص قوة SE: لم يكسر تشفيراً؛ استغل إجراءً بشرياً ومعلومة يومية.</p>
+</div>
+</section>
+
+<section id="sec4">
+<h2 class="sec">4️⃣ المبادئ النفسية <small>لماذا يضغط الكلام على الإنسان؟</small></h2>
+
+<h3>🧠 أنماط التفكير: بصري، سمعي، حركي</h3>
+<div class="grid c3">
+<div class="mini"><b>بصري</b><br>يركّز على الصور، الشكل، الألوان، "أرى ما تقصد".</div>
+<div class="mini"><b>سمعي</b><br>يركّز على الصوت والكلمات، "أسمعك"، النبرة والإيقاع.</div>
+<div class="mini"><b>حركي/شعوري</b><br>يركّز على الإحساس والتجربة، "أشعر أن الأمر صحيح".</div>
+</div>
+<div class="card tip"><p>المهندس الاجتماعي يطابق أسلوبه مع نمط الضحية: يشرح بالصور للبصري، بالنبرة للسمعي، وبالشعور/التجربة للحركي.</p></div>
+
+<h3>😶 التعبيرات الدقيقة <span class="en">Microexpressions</span></h3>
+<div class="card">
+<p>الفصل يذكر بول إيكمان ونظام <b>FACS</b> ووحدات الحركة <b>AU</b>. الفكرة: الوجه قد يُظهر ومضة انفعال قصيرة جداً قبل أن يسيطر الشخص على تعبيره. قراءة هذه الإشارات تساعد المهاجم/المختبر على معرفة: خوف، ارتباك، قبول، مقاومة.</p>
+</div>
+<div class="grid c2">
+<div class="mini"><b>FACS/AU</b><br>نظام لترميز حركات الوجه إلى وحدات قابلة للملاحظة.</div>
+<div class="mini"><b>RE3</b><br>يستخدم في الفصل ضمن أدوات قراءة التعبيرات الدقيقة وتدريب الملاحظة.</div>
+</div>
+
+<h3>👁️ NLP وEye Cues</h3>
+<div class="card">
+<p>يربط الفصل بين أنماط التفكير، لغة الجسد، وإشارات العين. الفكرة العملية في الاختبار: لا تحفظها كسحر، بل كـ <b>أدوات ملاحظة</b> تساعد في تعديل طريقة السؤال. إذا لاحظت حيرة أو مقاومة، غيّر الأسلوب أو عُد لبناء الألفة.</p>
+</div>
+
+<h3>💥 Buffer Overflow البشري</h3>
+<div class="card warn">
+<p>كما ينهار برنامج عند إدخال بيانات أكثر مما يحتمل، قد "يفيض" الإنسان عاطفياً أو معرفياً تحت ضغط: استعجال، سلطة، خوف، كثرة معلومات، أو طلب مفاجئ. عندها يتخذ قراراً سريعاً لتخفيف الضغط، وهذا ما يستغله المهاجم.</p>
+</div>
+</section>
+
+<section id="sec5">
+<h2 class="sec">5️⃣ التأثير والإقناع <small>مبادئ تجعل الهدف يقول نعم</small></h2>
+<div class="quote">الهندسة الاجتماعية ليست فقط ماذا تقول، بل كيف تجعل الشخص يريد أن يساعدك.</div>
+
+<div class="grid c4">
+<div class="mini"><b>1. المعاملة بالمثل</b><br>إذا قدمت شيئاً، يشعر الطرف الآخر برغبة في رد الجميل.</div>
+<div class="mini"><b>2. الالتزام</b><br>إذا التزم الشخص علناً/خطوة صغيرة، يميل للاستمرار.</div>
+<div class="mini"><b>3. التنازل</b><br>طلب كبير ثم طلب أصغر يبدو معقولاً.</div>
+<div class="mini"><b>4. الندرة</b><br>"فرصة محدودة" أو "وقت قليل" تضغط على القرار.</div>
+<div class="mini"><b>5. السلطة</b><br>الناس يطيعون المدير، المسؤول، الخبير، أو من يبدو كذلك.</div>
+<div class="mini"><b>6. الاتساق</b><br>نحب أن تبدو تصرفاتنا متسقة مع وعودنا وصورتنا.</div>
+<div class="mini"><b>7. الإعجاب</b><br>نساعد من نحب أو يشبهنا أو يمدحنا.</div>
+<div class="mini"><b>8. التأطير</b><br>صياغة السؤال تغيّر القرار حتى لو بقيت الحقائق نفسها.</div>
+</div>
+
+<h3>👑 السلطة عند ماكس فيبر</h3>
+<table>
+<tr><th>نوع السلطة</th><th>معناها في سيناريو SE</th></tr>
+<tr><td>قانونية/رسمية</td><td>شخص يدّعي أنه من الإدارة أو قسم تقنية المعلومات.</td></tr>
+<tr><td>تقليدية</td><td>طاعة مبنية على العرف أو المنصب المألوف.</td></tr>
+<tr><td>كاريزمية</td><td>شخصية جذابة وواثقة تقنعك بالاتباع.</td></tr>
+</table>
+
+<div class="grid c2">
+<div class="card story"><h4>📻 تجربة الراديو على الشاطئ</h4><p>عندما يلتزم شخص بحراسة شيء بسيط، تزيد احتمالية أن يتصرف للدفاع عنه لاحقاً. هذا يشرح قوة الالتزام والاتساق.</p></div>
+<div class="card"><h4>🖼️ Framing</h4><p>"هل تستطيع مساعدتي حتى لا أتأخر عن المدير؟" أقوى من "أعطني كلمة المرور". نفس الهدف، إطار مختلف: مساعدة، استعجال، تعاطف.</p></div>
+</div>
+
+<h3>🧨 Manipulation وSeek & Destroy</h3>
+<div class="card">
+<p>التأثير قد يكون مشروعاً في الحماية أو خبيثاً في الهجوم. في الفصل تُذكر فكرة التخطيط المسبق لكل اعتراض أو موقف سلبي محتمل <b>Seek and Destroy</b>: توقّع سؤال موظفة الاستقبال، وقت التدخين، مزاج الموظف، واصنع جواباً قبل أن يبدأ اللقاء.</p>
+<p>وتُستخدم أيضاً تقنيات لغوية مثل نقل الفعل للماضي: بدلاً من ترك الاعتراض حياً، تقول: "عندما كنت تقول إنك غير متأكد..." كأن الاعتراض انتهى.</p>
+</div>
+</section>
+
+<section id="sec6">
+<h2 class="sec">6️⃣ الهجمات والأساليب <small>كيف تظهر SE في الواقع؟</small></h2>
+
+<h3>🧍 هجمات بشرية</h3>
+<div class="grid c2">
+<div class="mini"><b>Impersonation</b><br>انتحال موظف، مدير، دعم فني، عميل، أو بائع.</div>
+<div class="mini"><b>Third-party Authorization</b><br>يدّعي المهاجم أن شخصاً مسؤولاً فوّضه، مستغلاً غياب المسؤول.</div>
+<div class="mini"><b>Tailgating</b><br>يتبع شخصاً مصرحاً عبر باب آمن. قد يحمل صندوقاً أو يتحدث بالهاتف أو يستخدم عكازين ليطلب التعاطف.</div>
+<div class="mini"><b>Reverse Social Engineering</b><br>يجعل الضحية تطلب منه المساعدة، فيصبح هو "المنقذ" الموثوق.</div>
+</div>
+
+<h3>💻 هجمات حاسوبية</h3>
+<table>
+<tr><th>الهجوم</th><th>الفكرة</th><th>علامة تمييز</th></tr>
+<tr><td>Spam Emails</td><td>رسائل جماعية قد تحمل مرفقاً ضاراً باسم طويل أو مخادع.</td><td>كمية كبيرة، جودة ضعيفة غالباً.</td></tr>
+<tr><td>Instant Chat Messenger</td><td>محادثة فورية + صورة/هوية جذابة + بناء ثقة.</td><td>علاقة سريعة عبر الدردشة.</td></tr>
+<tr><td>Hoax Letters</td><td>تحذيرات كاذبة عن فيروسات أو مخاطر.</td><td>تسبب خسارة إنتاجية وخوفاً.</td></tr>
+<tr><td>Chain Letters</td><td>وعود بهدايا أو فوائد إذا أعدت الإرسال.</td><td>"أرسلها لعشرة أشخاص".</td></tr>
+<tr><td>Phishing</td><td>رسالة إلى عدد كبير لحصاد بيانات.</td><td>صفحة أو رابط يطلب بيانات.</td></tr>
+</table>
+
+<h3>🎣 Phishing vs Trawling vs Spear Phishing</h3>
+<div class="grid c3">
+<div class="mini"><b>Phishing</b><br>تصيد بيانات عبر رسائل وروابط وصفحات مزيفة.</div>
+<div class="mini"><b>Trawling</b><br>رسائل عامة جداً تُرسل لملايين غير مستهدفين.</div>
+<div class="mini"><b>Spear Phishing</b><br>رسالة مصممة لفرد/جهة محددة بعد بحث مسبق.</div>
+</div>
+<div class="card mem">طريقة حفظ: <b>Trawling = شبكة صيد واسعة</b>، <b>Spear = رمح يصيب هدفاً واحداً</b>.</div>
+
+<h3>📱 الهاتف والجوال</h3>
+<div class="card">
+<p>الهاتف من أقدم أدوات الهندسة الاجتماعية، لأنه يخفي الوجه ويعطي سرعة. يمكن للمختبر عبر الهاتف أن يختبر الشركة كاملة في وقت قصير: هل يتحقق الموظفون من الهوية؟ هل يلتزمون بالسياسات؟ هل يسلّمون معلومات بدافع المساعدة؟</p>
+</div>
+</section>
+
+<section id="sec7">
+<h2 class="sec">7️⃣ أدوات المهندس الاجتماعي <small>ليست كلها برمجية</small></h2>
+
+<div class="grid c2">
+<div class="card"><h4>📻 RF Bugs</h4><p>أجهزة تنصت صغيرة ترسل لاسلكياً لمسافات قد تتجاوز 300 متر/1000 قدم، وقد تستخدم ميكروفونات عالية الجودة أو منافذ مثل 3.5mm. الفكرة الامتحانية: الأداة مادية لكنها تخدم جمع معلومات.</p></div>
+<div class="card"><h4>🕸️ Maltego</h4><p>أداة لتحليل العلاقات والمعلومات المفتوحة بصرياً: أشخاص، نطاقات، بريد، روابط. فائدتها في ربط النقاط لا في "اختراق" مباشر.</p></div>
+<div class="card"><h4>🧰 SET</h4><p><span class="en">Social-Engineer Toolkit</span> من trustedsec.com، يذكره الفصل كأحد أشهر أدوات المهندس الاجتماعي، خصوصاً في سيناريوهات التصيد والهجمات التعليمية.</p></div>
+<div class="card"><h4>☎️ الهاتف</h4><p>أداة لا تحتاج تعقيداً؛ صوت وذريعة ومعلومات مسبقة قد تكون كافية لاختبار أو اختراق إجراء كامل.</p></div>
+</div>
+</section>
+
+<section id="sec8">
+<h2 class="sec">8️⃣ انتحال الشبكات الاجتماعية وسرقة الهوية <small>البيانات الشخصية تتحول إلى سلاح</small></h2>
+
+<h3>👤 انتحال شخصية في الشبكات الاجتماعية</h3>
+<div class="card">
+<p>الفصل يذكر أن المهاجم قد ينتحل موظفاً مهماً أو شخصية ذات سلطة. قوة الهجوم تأتي من مزج: <b>الترهيب</b>، <b>المعاملة بالمثل</b>، و<b>الخضوع للسلطة</b>. على الشبكات الاجتماعية يجمع معلومات تكفي لبناء شخصية مقنعة.</p>
+</div>
+<table>
+<tr><th>نوع المعلومات المسروقة/المجمّعة</th><th>أمثلة</th></tr>
+<tr><td>تفاصيل المنظمة</td><td>الأقسام، المشاريع، البنية، الشركاء</td></tr>
+<tr><td>تفاصيل مهنية</td><td>المسمى الوظيفي، الفريق، المسؤوليات</td></tr>
+<tr><td>بيانات الاتصال</td><td>بريد، هاتف، حسابات اجتماعية</td></tr>
+<tr><td>بيانات شخصية</td><td>هوايات، صور، عائلة، عادات، اهتمامات</td></tr>
+</table>
+
+<h3>🪪 سرقة الهوية <span class="en">Identity Theft</span></h3>
+<div class="card warn">
+<p>حسب قانون الردع 1998 المذكور في الفصل: هي الاستخدام غير المشروع لوسيلة تحديد هوية شخص آخر. قد تشمل الاسم، رقم الحساب، الوثائق، البطاقة، البريد، أو أي وسيلة تعريف.</p>
+</div>
+<div class="grid c3">
+<div class="mini"><b>وثائق حكومية</b><br>27%</div>
+<div class="mini"><b>بطاقات ائتمان</b><br>14%</div>
+<div class="mini"><b>هاتف</b><br>13%</div>
+<div class="mini"><b>مصرفي</b><br>9%</div>
+<div class="mini"><b>توظيف</b><br>8%</div>
+<div class="mini"><b>قروض</b><br>3%</div>
+</div>
+<div class="card mem">هذه نسب 2011 المذكورة في الفصل. احفظ الأكبر: <b>وثائق حكومية 27%</b> ثم <b>بطاقات ائتمان 14%</b> ثم <b>هاتف 13%</b>.</div>
+
+<h3>🔓 طرق سرقة الهوية الفيزيائية/العملية</h3>
+<div class="grid c2">
+<div class="mini">سرقة حواسيب، لابتوبات، ووسائط نسخ احتياطي</div>
+<div class="mini">الهندسة الاجتماعية والتصيد</div>
+<div class="mini">سرقة المحافظ والحقائب</div>
+<div class="mini">قرصنة/تنصت مثل sniffing</div>
+<div class="mini">سرقة البريد وتحويل مساره</div>
+<div class="mini">استخدام بيانات منشورة على الشبكات الاجتماعية</div>
+</div>
+</section>
+
+<section id="sec9">
+<h2 class="sec">9️⃣ الدفاع والتدابير المضادة <small>لا يوجد برنامج تثبته على الإنسان</small></h2>
+
+<div class="quote">الخلاصة الدفاعية للفصل: التقنية مهمة، لكن الدفاع الحقيقي يبدأ من وعي الإنسان وسياسة واضحة للتصرف.</div>
+
+<h3>🛡️ ست خطوات أساسية</h3>
+<div class="flow">
+<div class="step"><div class="num">1</div><b>تعلّم تحديد الهجمات</b><span>اعرف شكل التصيد والذريعة والضغط.</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">2</div><b>برنامج وعي شخصي</b><span>تدريب مستمر لا محاضرة واحدة.</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">3</div><b>قيمة المعلومات</b><span>كل موظف يعرف أن بياناته مهمة.</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">4</div><b>تحديثات البرامج</b><span>تقليل استغلال الثغرات.</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">5</div><b>سكربتات جاهزة</b><span>ماذا تقول عند طلب كلمة مرور؟</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">6</div><b>التعلم من التدقيق</b><span>حوّل الاختبارات إلى تحسينات.</span></div>
+</div>
+
+<div class="grid c2">
+<div class="card story"><h4>🎯 قصة DefCon 18</h4><p>في مسابقة CTF، رفض موظف دعم فني طلب فتح موقع مرتين، ثم استسلم عندما قال المهاجم عبارة عاطفية مثل: "سيجعلني أشعر أني أفضل". الدرس: حتى التعاطف يمكن أن يُستغل؛ لذلك يجب أن تحكم السياسة لا المشاعر.</p></div>
+<div class="card tip"><h4>🔐 2FA</h4><p>المصادقة الثنائية = شكلان من إثبات الهوية، مثل رمز مادي + PIN/كلمة مرور. حتى لو انكشفت كلمة المرور يبقى حاجز آخر.</p></div>
+</div>
+
+<h3>✅ أدوات دفاع عملية</h3>
+<table>
+<tr><th>الإجراء</th><th>لماذا مهم؟</th></tr>
+<tr><td>طبقات متعددة من مكافحة الفيروسات</td><td>على جهاز المستخدم وبوابات البريد لتقليل المرفقات والروابط الضارة.</td></tr>
+<tr><td>Change Management موثّق</td><td>أفضل من قرارات عشوائية؛ أي تغيير أو طلب غير معتاد يجب أن يمر بإجراء.</td></tr>
+<tr><td>سياسات تحقق من الهوية</td><td>لا تعتمد على الصوت، الرقم الظاهر، أو المنصب المدّعى.</td></tr>
+<tr><td>كشف رسائل التصيد</td><td>افحص العنوان أولاً: المرسل، الرابط، النطاق، الأخطاء، والاستعجال.</td></tr>
+<tr><td>تدريب سيناريوهات</td><td>درّب الموظف على ماذا يقول عندما يُطلب منه سر أو كلمة مرور.</td></tr>
+</table>
+
+<div class="card mem"><h4>🧪 سكربت دفاع جاهز للحفظ</h4><p>"لا أستطيع تنفيذ هذا الطلب مباشرة. سأتحقق من هويتك عبر القناة الرسمية/أفتح تذكرة/أتواصل مع مديرك حسب السياسة." هذه الجملة البسيطة تهزم معظم الذرائع.</p></div>
+</section>
+
+<section id="flash">
+<h2 class="sec">🃏 بطاقات مراجعة قلّابة <small>اضغط على البطاقة لتظهر الإجابة</small></h2>
+<div class="flashgrid">
+<div class="fc"><div class="flip"><div class="front">ما تعريف الهندسة الاجتماعية؟</div><div class="back">فن التأثير والخداع لجعل الإنسان يكشف معلومات أو ينفذ تصرفاً يخدم المهاجم.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">مراحل الهجوم الأربع؟</div><div class="back">ابحث → اختر الضحية → طوّر العلاقة → استغل العلاقة.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">لماذا الإنسان أضعف حلقة؟</div><div class="back">لأنه يتأثر بالثقة، الخوف، المساعدة، السلطة، الجهل، والضغط.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">Elicitation؟</div><div class="back">استخراج خفي للمعلومات أثناء محادثة تبدو بريئة.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">خطوات Elicitation الثلاث؟</div><div class="back">كن طبيعياً، ثقّف نفسك، لا تكن جشعاً.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">Pretexting؟</div><div class="back">اختراع شخصية/قصة/سيناريو لتبرير الطلب. القاعدة: عِش الشخصية.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">Trawling vs Spear Phishing؟</div><div class="back">Trawling صيد واسع لملايين، Spear Phishing رسالة موجهة لشخص/جهة محددة.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">Tailgating؟</div><div class="back">الدخول خلف شخص مصرح له عبر باب آمن باستخدام الثقة أو الإلهاء.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">Third-party Authorization؟</div><div class="back">ادعاء أن مسؤولاً أو طرفاً ثالثاً فوّض المهاجم لتنفيذ طلب.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">Reverse Social Engineering؟</div><div class="back">المهاجم يجعل الضحية تطلب منه المساعدة فيكسب ثقتها.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">أكبر نسبة سرقة هوية 2011؟</div><div class="back">وثائق حكومية 27%.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">أفضل دفاع بشري سريع؟</div><div class="back">تحقق عبر قناة رسمية + لا تعطِ أسراراً + اتبع السياسة لا المشاعر.</div></div></div>
+</div>
+</section>
+
+<section id="quiz">
+<h2 class="sec">🧪 اختبار ذاتي سريع <small>اختر الإجابة ثم اضغط التصحيح</small></h2>
+
+<div class="q" data-a="b"><b>1) جوهر الهندسة الاجتماعية هو:</b>
+<label class="opt"><input type="radio" name="q1" value="a"> كسر التشفير فقط</label>
+<label class="opt"><input type="radio" name="q1" value="b"> التأثير على الإنسان للحصول على معلومة أو تصرف</label>
+<label class="opt"><input type="radio" name="q1" value="c"> فحص الشبكات اللاسلكية فقط</label><div class="exp">الصحيح: التأثير على الإنسان.</div></div>
+
+<div class="q" data-a="c"><b>2) ترتيب مراحل الهجوم الصحيح:</b>
+<label class="opt"><input type="radio" name="q2" value="a"> استغلال، بحث، علاقة، اختيار</label>
+<label class="opt"><input type="radio" name="q2" value="b"> اختيار، بحث، استغلال، علاقة</label>
+<label class="opt"><input type="radio" name="q2" value="c"> بحث، اختيار، تطوير علاقة، استغلال</label><div class="exp">احفظها: ابحث → اختر → اقترب → استغل.</div></div>
+
+<div class="q" data-a="a"><b>3) Elicitation يعني:</b>
+<label class="opt"><input type="radio" name="q3" value="a"> استخراج معلومات خفية في محادثة تبدو بريئة</label>
+<label class="opt"><input type="radio" name="q3" value="b"> برنامج لفحص المنافذ</label>
+<label class="opt"><input type="radio" name="q3" value="c"> تشفير الرسائل</label><div class="exp">هو الاستنباط الخفي للمعلومات.</div></div>
+
+<div class="q" data-a="b"><b>4) أي مما يلي من خطوات Elicitation؟</b>
+<label class="opt"><input type="radio" name="q4" value="a"> كن سريعاً وجشعاً</label>
+<label class="opt"><input type="radio" name="q4" value="b"> كن طبيعياً وثقّف نفسك ولا تكن جشعاً</label>
+<label class="opt"><input type="radio" name="q4" value="c"> ابدأ بطلب كلمة المرور مباشرة</label><div class="exp">هذه الخطوات الثلاث مذكورة في الفصل.</div></div>
+
+<div class="q" data-a="c"><b>5) Pretexting هو:</b>
+<label class="opt"><input type="radio" name="q5" value="a"> نسخ احتياطي</label>
+<label class="opt"><input type="radio" name="q5" value="b"> فحص مضاد فيروسات</label>
+<label class="opt"><input type="radio" name="q5" value="c"> اختراع سيناريو/شخصية لتبرير الطلب</label><div class="exp">القاعدة: عِش الشخصية.</div></div>
+
+<div class="q" data-a="a"><b>6) Trawling هو:</b>
+<label class="opt"><input type="radio" name="q6" value="a"> إرسال عام واسع لملايين غير مستهدفين</label>
+<label class="opt"><input type="radio" name="q6" value="b"> رسالة مصممة لشخص محدد</label>
+<label class="opt"><input type="radio" name="q6" value="c"> الدخول خلف موظف من الباب</label><div class="exp">Spear Phishing هو المستهدف، أما Trawling فهو واسع.</div></div>
+
+<div class="q" data-a="b"><b>7) Tailgating يعني:</b>
+<label class="opt"><input type="radio" name="q7" value="a"> بريد كاذب متسلسل</label>
+<label class="opt"><input type="radio" name="q7" value="b"> الدخول خلف شخص مصرح له عبر باب آمن</label>
+<label class="opt"><input type="radio" name="q7" value="c"> تحليل علاقات بصرية</label><div class="exp">قد يستخدم المهاجم صندوقاً أو هاتفاً أو عكازين.</div></div>
+
+<div class="q" data-a="c"><b>8) SET يشير إلى:</b>
+<label class="opt"><input type="radio" name="q8" value="a"> نظام إدارة الوقت</label>
+<label class="opt"><input type="radio" name="q8" value="b"> جهاز تنصت لاسلكي</label>
+<label class="opt"><input type="radio" name="q8" value="c"> Social-Engineer Toolkit</label><div class="exp">أداة مشهورة للمهندس الاجتماعي من trustedsec.</div></div>
+
+<div class="q" data-a="a"><b>9) أكبر فئة في إحصائيات سرقة الهوية 2011 المذكورة:</b>
+<label class="opt"><input type="radio" name="q9" value="a"> وثائق حكومية 27%</label>
+<label class="opt"><input type="radio" name="q9" value="b"> قروض 3%</label>
+<label class="opt"><input type="radio" name="q9" value="c"> مصرفي 9%</label><div class="exp">الأكبر: وثائق حكومية 27%.</div></div>
+
+<div class="q" data-a="b"><b>10) أفضل رد عند طلب معلومة حساسة هاتفياً:</b>
+<label class="opt"><input type="radio" name="q10" value="a"> إعطاؤها بسرعة لأن المتصل يبدو واثقاً</label>
+<label class="opt"><input type="radio" name="q10" value="b"> التحقق عبر قناة رسمية واتباع السياسة</label>
+<label class="opt"><input type="radio" name="q10" value="c"> سؤال المتصل عن اسمه فقط ثم إعطاؤها</label><div class="exp">الدفاع يعتمد على التحقق والسياسة، لا الثقة بالصوت.</div></div>
+
+<button id="grade" class="badge" style="cursor:pointer;font-size:18px">صحّح الاختبار</button>
+<div id="score" class="score"></div>
+</section>
+
+<div class="footer">صُمم هذا الدليل للمذاكرة السريعة قبل الاختبار، وبُني محتواه من ملف فصل الهندسة الاجتماعية الموجود في المستودع فقط.</div>
+</div>
+
+<script>
+const progress=document.getElementById('progress');
+function upd(){const h=document.documentElement;const max=h.scrollHeight-h.clientHeight;progress.style.width=(max? h.scrollTop/max*100:0)+'%'}
+document.addEventListener('scroll',upd);upd();
+document.querySelectorAll('.fc').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('on')));
+document.querySelectorAll('.opt').forEach(o=>o.addEventListener('click',()=>{const input=o.querySelector('input'); if(input) input.checked=true;}));
+document.getElementById('grade').addEventListener('click',()=>{
+  let total=0, ok=0;
+  document.querySelectorAll('.q').forEach((q,i)=>{
+    total++; const ans=q.dataset.a; const chosen=q.querySelector('input:checked');
+    q.querySelectorAll('.opt').forEach(o=>o.classList.remove('good','bad'));
+    q.querySelectorAll('.opt').forEach(o=>{const v=o.querySelector('input').value; if(v===ans)o.classList.add('good');});
+    if(chosen){const lab=chosen.closest('.opt'); if(chosen.value===ans){ok++; lab.classList.add('good')} else {lab.classList.add('bad')}}
+    const exp=q.querySelector('.exp'); if(exp) exp.style.display='block';
+  });
+  const pct=Math.round(ok/total*100);
+  document.getElementById('score').textContent=`درجتك: ${ok}/${total} (${pct}%). ${pct>=80?'ممتاز — راجع البطاقات فقط.':'راجع الأقسام التي أخطأت فيها ثم أعد الاختبار.'}`;
+});
+</script>
+</body>
+</html>
