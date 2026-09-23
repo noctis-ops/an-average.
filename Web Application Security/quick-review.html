@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>مراجعة سريعة — Web Application Security</title>
+<style>
+:root{--bg:#07111f;--card:#10243d;--ink:#eef8ff;--muted:#b9c9de;--cyan:#69f2e8;--blue:#58b9ff;--yellow:#ffd166;--green:#7cf2a4;--red:#ff6b6b;--border:rgba(255,255,255,.14)}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#174b7a,#07111f 45%,#020710);color:var(--ink);font-family:Tahoma,"Noto Sans Arabic",Arial,sans-serif;line-height:1.85}.wrap{width:min(1150px,94vw);margin:auto;padding:34px 0 60px}h1{font-size:clamp(30px,5vw,54px);line-height:1.2}h2{margin-top:35px;padding:14px 18px;border-radius:18px;background:linear-gradient(135deg,rgba(88,185,255,.2),rgba(105,242,232,.1));border:1px solid var(--border)}h3{color:var(--cyan)}.card,.mini{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:18px;padding:15px;margin:12px 0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}@media(max-width:850px){.grid{grid-template-columns:1fr}}table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.045);border:1px solid var(--border);border-radius:15px;overflow:hidden}th,td{padding:10px;border-bottom:1px solid var(--border);vertical-align:top}th{background:rgba(88,185,255,.18)}.en{direction:ltr;unicode-bidi:embed;font-family:Consolas,monospace}.pill{display:inline-block;background:rgba(105,242,232,.12);border:1px solid rgba(105,242,232,.3);border-radius:999px;padding:5px 10px;margin:4px}.warn{border-right:5px solid var(--red)}.ok{border-right:5px solid var(--green)}.exam{border-right:5px solid var(--yellow)}a{color:var(--cyan)}
+</style>
+</head>
+<body><div class="wrap">
+<h1>مراجعة سريعة — أمن تطبيقات الويب</h1>
+<div class="card exam"><b>الجملة الذهبية:</b> تطبيق الويب يستقبل طلبات HTTP من عالم غير موثوق. الأمن يعني منع الطلبات والإدخالات من التحول إلى أوامر خطيرة أو وصول غير مصرح.</div>
+<p><a href="index.html">العودة للشرح العميق</a></p>
+
+<h2>1) أنواع اختبارات الأمان</h2>
+<table><tr><th>النوع</th><th>المعنى</th><th>متى؟</th></tr>
+<tr><td>DAST</td><td>اختبار ديناميكي لتطبيق يعمل</td><td>تطبيقات منخفضة/متوسطة المخاطر، مع اختبار يدوي عند الحاجة</td></tr>
+<tr><td>SAST</td><td>فحص الكود دون تشغيله في الإنتاج</td><td>اكتشاف عيوب مبكراً للمطورين</td></tr>
+<tr><td>Penetration Test</td><td>اختبار يدوي بأسلوب الخصم</td><td>تطبيقات حرجة أو تغييرات كبيرة</td></tr>
+<tr><td>RASP</td><td>حماية ذاتية وقت التشغيل</td><td>مراقبة ومنع هجمات أثناء التنفيذ</td></tr></table>
+
+<h2>2) ماذا نفحص في Web App Security Test؟</h2>
+<div class="grid"><div class="mini">Application & Server Configuration</div><div class="mini">Input Validation & Error Handling</div><div class="mini">Authentication & Session Management</div><div class="mini">Authorization</div><div class="mini">Business Logic</div><div class="mini">Client-side Logic</div></div>
+
+<h2>3) معمارية الويب</h2>
+<div class="card"><span class="pill">Browser/User Agent</span><span class="pill">DNS</span><span class="pill">Load Balancer</span><span class="pill">Web Server</span><span class="pill">Web Application</span><span class="pill">Database</span><span class="pill">Cache</span><span class="pill">CDN</span><span class="pill">External Storage</span><span class="pill">Web Services</span><span class="pill">Data Warehouse</span></div>
+<table><tr><th>3-tier</th><th>وظيفته</th></tr><tr><td>Presentation/Client</td><td>واجهة المستخدم: HTML/CSS/JS والمتصفح</td></tr><tr><td>Business/Application</td><td>منطق الأعمال ومعالجة الطلبات</td></tr><tr><td>Data Access</td><td>قواعد البيانات وDBMS</td></tr></table>
+
+<h2>4) API وREST</h2>
+<table><tr><th>Method</th><th>استخدام REST</th></tr><tr><td>GET</td><td>استرداد بيانات</td></tr><tr><td>POST</td><td>إنشاء مورد جديد</td></tr><tr><td>PUT</td><td>تحديث مورد</td></tr><tr><td>DELETE</td><td>حذف مورد</td></tr></table>
+<div class="card">أنواع API: REST، SOAP/XML، GraphQL.</div>
+
+<h2>5) HTTP سريعاً</h2>
+<table><tr><th>المفهوم</th><th>الخلاصة</th></tr><tr><td>HTTP</td><td>طلب/استجابة بين المتصفح والخادم</td></tr><tr><td>Non-persistent</td><td>اتصال لكل object تقريباً؛ أبطأ</td></tr><tr><td>Persistent</td><td>اتصال واحد لعدة objects؛ أفضل</td></tr><tr><td>GET</td><td>البيانات في URL غالباً</td></tr><tr><td>POST</td><td>البيانات في Body</td></tr></table>
+<h3>Status Codes</h3><div class="grid"><div class="mini">200 OK</div><div class="mini">301 Moved Permanently</div><div class="mini">400 Bad Request</div><div class="mini">404 Not Found</div><div class="mini">505 HTTP Version Not Supported</div></div>
+
+<h2>6) Cookies وHTTPS</h2>
+<div class="card">HTTP stateless؛ لذلك نستخدم Cookies/Sessions لمعرفة المستخدم بين الطلبات.</div>
+<table><tr><th>HTTP</th><th>HTTPS</th></tr><tr><td>غير مشفر غالباً</td><td>مشفر عبر TLS</td></tr><tr><td>Port 80</td><td>Port 443</td></tr><tr><td>Plaintext</td><td>Encrypted</td></tr><tr><td>لا يحتاج شهادة</td><td>يحتاج SSL/TLS certificate</td></tr></table>
+<div class="card warn">HTTPS لا يمنع SQLi أو XSS إذا التطبيق نفسه ضعيف.</div>
+
+<h2>7) خطوات الهجوم حسب الشرائح</h2>
+<ol><li>Gather intelligence: ports, errors, infrastructure leaks</li><li>Match information with known defects</li><li>Attack weak spots using input validation problems</li></ol>
+
+<h2>8) Threat Models</h2>
+<table><tr><th>النموذج</th><th>أمثلة</th></tr><tr><td>Malicious Client → Server</td><td>SQLi, File Traversal, Broken Access Control</td></tr><tr><td>Malicious Server → Client</td><td>Clickjacking, Phishing</td></tr><tr><td>Malicious User → Other Users</td><td>XSS, CSRF, Remote Script Inclusion</td></tr><tr><td>Malicious Server in Mashup</td><td>Clickjacking, Information Stealing</td></tr><tr><td>Malicious User in Multi-server App</td><td>SSO abuse, payment abuse</td></tr></table>
+
+<h2>9) Injection</h2>
+<div class="card exam">Injection = بيانات غير موثوقة تُرسل إلى Interpreter فيتعامل معها كتعليمات.</div>
+<table><tr><th>النوع</th><th>المفسر</th><th>الدفاع</th></tr><tr><td>Command Injection</td><td>Shell/OS</td><td>تجنب shell، allowlist، escaping، أقل صلاحيات</td></tr><tr><td>SQL Injection</td><td>Database SQL</td><td>Prepared statements، validation، least privilege</td></tr><tr><td>XSS</td><td>Browser HTML/JS</td><td>Output encoding، CSP، HttpOnly cookies</td></tr></table>
+
+<h2>10) SQL Injection</h2>
+<div class="card">يحدث عندما يركب التطبيق إدخال المستخدم داخل SQL فيغير معنى الاستعلام.</div>
+<div class="grid"><div class="mini">Tautologies: شرط صحيح دائماً</div><div class="mini">ORDER BY probing: معرفة عدد الأعمدة</div><div class="mini">UNION: دمج استعلام آخر</div><div class="mini">Error leakage: أخطاء تكشف الداخل</div><div class="mini">Blind SQLi: استنتاج من السلوك/التأخير</div><div class="mini">Second-order: يخزن الآن ويؤثر لاحقاً</div></div>
+
+<h2>11) XSS</h2>
+<table><tr><th>النوع</th><th>المعنى</th><th>الأخطر؟</th></tr><tr><td>Reflected XSS</td><td>رابط/طلب يحمل سكربت يعكسه الخادم</td><td>يحتاج غالباً نقر رابط</td></tr><tr><td>Stored XSS</td><td>سكربت يخزن في DB/الخادم ويعرض للزوار</td><td>غالباً أخطر لأنه يصيب الزوار تلقائياً</td></tr></table>
+<div class="card warn">XSS قد يؤدي إلى سرقة Session Cookie أو تنفيذ أفعال باسم المستخدم.</div>
+
+<h2>12) Sanitization</h2>
+<div class="card warn">Sanitizing Is Not Easy: حذف &lt;script&gt; فقط غير كافٍ بسبب الترميزات والسياقات المختلفة.</div>
+<table><tr><th>السياق</th><th>الدفاع</th></tr><tr><td>SQL</td><td>Parameterized queries</td></tr><tr><td>HTML</td><td>HTML output encoding</td></tr><tr><td>JavaScript</td><td>تجنب إدخال غير موثوق + encoding مناسب</td></tr><tr><td>URL</td><td>URL encoding + تحقق من الرابط</td></tr><tr><td>Shell</td><td>تجنب shell أو allowlist + escaping</td></tr></table>
+
+<h2>13) كيف تحل سؤال سيناريو؟</h2>
+<ol><li>حدد الطبقة: Browser/HTTP/App/DB/Cookie.</li><li>حدد الثقة الخاطئة: إدخال/جلسة/تفويض/إعداد.</li><li>حدد الهجوم: SQLi/XSS/Command Injection/Broken Access Control.</li><li>حدد التأثير: بيانات/جلسة/تنفيذ/سمعة.</li><li>اكتب الدفاع المناسب.</li></ol>
+
+<div class="card ok"><b>آخر مراجعة:</b> احفظ الفرق بين SAST/DAST/PenTest/RASP، طبقات 3-tier، Methods وStatus Codes، HTTP/HTTPS، Cookies، Injection، SQLi، XSS، Sanitization.</div>
+</div></body></html>

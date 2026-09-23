@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>أمن تطبيقات الويب من الصفر — دليل ذكي تفاعلي</title>
+<style>
+:root{
+  --bg:#06111f;--bg2:#0c2138;--card:#10243d;--card2:#142d4c;--ink:#eef8ff;--muted:#b9c9de;
+  --blue:#58b9ff;--cyan:#69f2e8;--green:#7cf2a4;--yellow:#ffd166;--orange:#ff9f4a;--red:#ff6b6b;--purple:#caa0ff;
+  --border:rgba(255,255,255,.14);--shadow:0 18px 55px rgba(0,0,0,.35)
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 18% 0,#174b7a 0,#06111f 38%,#020710 100%);color:var(--ink);font-family:Tahoma,"Noto Sans Arabic","Noto Kufi Arabic",Arial,sans-serif;line-height:1.9}.progress{position:fixed;top:0;right:0;height:5px;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--purple));width:0;z-index:99}.wrap{width:min(1240px,94vw);margin:auto}.hero{padding:58px 0 22px}.hero h1{font-size:clamp(31px,5.4vw,62px);line-height:1.22;margin:8px 0 12px}.lead{font-size:clamp(17px,2.25vw,24px);color:var(--muted);max-width:1080px}.badge,.pill{display:inline-block;border:1px solid var(--border);background:rgba(255,255,255,.07);border-radius:999px;padding:6px 12px;margin:4px;color:#eef8ff}.pill{background:rgba(105,242,232,.12);border-color:rgba(105,242,232,.3)}.nav{position:sticky;top:5px;z-index:20;background:rgba(6,17,31,.84);backdrop-filter:blur(13px);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:10px;margin:16px 0 32px}.nav a{text-decoration:none;color:var(--ink);display:inline-block;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.045);margin:3px;font-size:14px}.nav a:hover{background:rgba(88,185,255,.23)}section,.sec{scroll-margin-top:95px}.sec{margin:46px 0 16px;padding:20px;border:1px solid var(--border);border-radius:24px;background:linear-gradient(135deg,rgba(88,185,255,.19),rgba(202,160,255,.12));box-shadow:var(--shadow)}h2{font-size:clamp(25px,3.2vw,39px);margin:0}h2 small{display:block;color:var(--muted);font-size:15px;margin-top:4px}h3{font-size:25px;color:var(--cyan);margin:30px 0 12px}h4{font-size:18px;color:var(--yellow);margin:0 0 8px}p{margin:8px 0}.grid{display:grid;gap:14px}.c2{grid-template-columns:repeat(2,minmax(0,1fr))}.c3{grid-template-columns:repeat(3,minmax(0,1fr))}.c4{grid-template-columns:repeat(4,minmax(0,1fr))}@media(max-width:920px){.c2,.c3,.c4{grid-template-columns:1fr}.nav{position:relative;top:0}.flow{overflow:auto}.step{min-width:220px}}.card,.mini,.lesson{background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.035));border:1px solid var(--border);border-radius:20px;padding:17px 18px;box-shadow:0 10px 34px rgba(0,0,0,.19)}.mini{border-radius:16px;padding:13px 14px}.lesson{border-right:5px solid var(--blue)}.exam{border-right:5px solid var(--yellow)}.life{border-right:5px solid var(--green)}.danger{border-right:5px solid var(--red)}.story{border-right:5px solid var(--purple)}.term{border-right:5px solid var(--cyan)}.quote{font-size:19px;background:rgba(255,209,102,.12);border:1px dashed rgba(255,209,102,.5);border-radius:18px;padding:14px 18px;color:#fff3ce}.en,.mono{direction:ltr;unicode-bidi:embed;font-family:Consolas,Monaco,monospace}.mono{background:#030912;border:1px solid var(--border);padding:1px 6px;border-radius:7px;color:#dffffc}table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:16px;overflow:hidden}th,td{border-bottom:1px solid var(--border);padding:11px 12px;vertical-align:top}th{background:rgba(88,185,255,.18)}ul,ol{padding-right:24px}.flow{display:flex;gap:10px;align-items:stretch;margin:14px 0}.step{flex:1;background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:18px;padding:13px}.num{width:34px;height:34px;border-radius:50%;display:inline-grid;place-items:center;background:var(--blue);color:#06111f;font-weight:900;margin-left:6px}.arrow{align-self:center;color:var(--cyan);font-size:28px}.mind{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:12px;align-items:stretch}.center{display:grid;place-items:center;text-align:center;padding:24px;border-radius:24px;background:linear-gradient(135deg,var(--blue),var(--purple));color:#04101b;font-weight:900;font-size:24px}.node{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:18px;padding:13px}@media(max-width:850px){.mind{grid-template-columns:1fr}.center{order:-1}}.ladder{counter-reset:x}.ladder div{position:relative;margin:8px 0;padding:12px 16px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid var(--border)}.ladder div:before{counter-increment:x;content:counter(x);display:inline-grid;place-items:center;width:30px;height:30px;background:var(--green);color:#06111f;border-radius:50%;font-weight:900;margin-left:8px}.tag{font-size:12px;color:#06111f;background:var(--yellow);font-weight:900;border-radius:999px;padding:3px 8px;margin-left:4px}.compare td:first-child{font-weight:900;color:#dffffc}.flashgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}@media(max-width:900px){.flashgrid{grid-template-columns:1fr}}.fc{height:185px;perspective:1000px;cursor:pointer}.flip{position:relative;width:100%;height:100%;transition:.55s;transform-style:preserve-3d}.fc.on .flip{transform:rotateY(180deg)}.front,.back{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;border-radius:20px;border:1px solid var(--border);backface-visibility:hidden;box-shadow:var(--shadow)}.front{background:linear-gradient(135deg,rgba(88,185,255,.28),rgba(105,242,232,.1))}.back{background:linear-gradient(135deg,rgba(124,242,164,.23),rgba(202,160,255,.13));transform:rotateY(180deg)}details{background:rgba(255,255,255,.055);border:1px solid var(--border);border-radius:16px;padding:12px 15px;margin:10px 0}summary{cursor:pointer;color:#fff;font-weight:900}.q{background:rgba(255,255,255,.055);border:1px solid var(--border);border-radius:18px;padding:15px;margin:14px 0}.opt{display:block;margin:8px 0;padding:10px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.04);cursor:pointer}.opt:hover{background:rgba(88,185,255,.15)}.opt.good{background:rgba(124,242,164,.22);border-color:var(--green)}.opt.bad{background:rgba(255,107,107,.22);border-color:var(--red)}.exp{display:none;color:var(--muted);margin-top:8px}.btn{cursor:pointer;font-size:18px}.score{font-size:22px;font-weight:900;color:var(--green)}.footer{text-align:center;color:var(--muted);padding:35px 0 60px}.diagram{font-size:15px;background:#020812;border:1px solid var(--border);border-radius:18px;padding:14px;overflow:auto;direction:ltr;text-align:left;line-height:1.6;color:#eafaff}.two{columns:2;column-gap:30px}@media(max-width:800px){.two{columns:1}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="wrap">
+<header class="hero">
+  <span class="badge">🌐 Web Application Security</span>
+  <span class="badge">📚 مبني على الملفات الأربعة</span>
+  <span class="badge">🧠 فهم من الصفر لا حفظ أعمى</span>
+  <span class="badge">🛡️ منظور دفاعي وأخلاقي</span>
+  <h1>أمن تطبيقات الويب من الصفر: افهم الويب، ثم افهم كيف يُهاجَم، ثم كيف تحميه</h1>
+  <p class="lead">هذا الدليل ليس تلخيص شرائح فقط. هو “مدرس خصوصي” يربط ملفات المادة الأربعة في قصة واحدة: المتصفح يرسل طلب HTTP، الخادم يعالج الطلب، قاعدة البيانات تحفظ البيانات، والضعف يظهر عندما نثق بإدخال غير موثوق أو ننسى طبقة تحقق.</p>
+</header>
+
+<nav class="nav">
+<a href="#how">طريقة الدراسة</a><a href="#big">الفكرة الكبرى</a><a href="#vocab">قاموس المادة</a><a href="#intro">1 المقدمة</a><a href="#arch">2 المعمارية</a><a href="#api">API</a><a href="#http">3 HTTP</a><a href="#cookies">Cookies/HTTPS</a><a href="#security">4 أمن الويب</a><a href="#injection">Injection</a><a href="#sqli">SQLi</a><a href="#xss">XSS</a><a href="#sanitize">Sanitization</a><a href="#defense">الدفاع</a><a href="#exam">طريقة حل الاختبار</a><a href="#flash">بطاقات</a><a href="#quiz">اختبار</a>
+</nav>
+
+<section id="how">
+<h2 class="sec">0️⃣ كيف تدرس هذه المادة؟ <small>الويب مادة عملية؛ لا تذاكرها كتعريفات منفصلة</small></h2>
+<div class="grid c2">
+  <div class="card lesson"><h4>الطريقة الذكية</h4><p>كل موضوع اسأله بثلاثة أسئلة: <b>أين يقع في الرحلة؟ ما الذي يثق به؟ ماذا يحدث لو دخلت بيانات غير موثوقة؟</b> بهذه الطريقة ستفهم HTTP، المعمارية، SQL Injection، XSS، والـ Cookies كقصة واحدة.</p></div>
+  <div class="card exam"><h4>ضمان مصطلحات الدكتور</h4><p>سأستخدم مصطلحات الشرائح كما هي: <span class="en">DAST, SAST, Penetration Test, RASP, 3-tier Architecture, REST API, SOAP, HTTP, Cookies, SQL Injection, XSS, Reflected, Stored, Blind SQL Injection, Sanitization</span>.</p></div>
+</div>
+<div class="card danger"><h4>حدود الاستخدام</h4><p>المادة فيها أمثلة هجوم. سنشرحها لفهم المخاطر والدفاع والاختبار الأكاديمي فقط، وليس لتطبيقها على أنظمة حقيقية. أي تجربة عملية يجب أن تكون في مختبر مصرح ومعزول.</p></div>
+<table>
+<tr><th>المرحلة</th><th>ماذا تذاكر؟</th><th>الناتج</th></tr>
+<tr><td>ساعتان</td><td>الفكرة الكبرى + القاموس + المقدمة</td><td>تعرف ماذا يعني أمن تطبيقات الويب ولماذا يهم</td></tr>
+<tr><td>ساعتان</td><td>المعمارية + API</td><td>تعرف أين يعيش كل مكوّن وما علاقته بالأمن</td></tr>
+<tr><td>ساعتان</td><td>HTTP + Cookies + HTTPS</td><td>تفهم قناة الاتصال وحالة الجلسة</td></tr>
+<tr><td>3 ساعات</td><td>Injection + SQLi + XSS</td><td>تفهم قلب الهجمات في الملفات</td></tr>
+<tr><td>ساعة</td><td>الدفاع + طريقة حل الأسئلة + البطاقات</td><td>تستعد للامتحان</td></tr>
+</table>
+</section>
+
+<section id="big">
+<h2 class="sec">1️⃣ الفكرة الكبرى: تطبيق الويب مثل مطعم</h2>
+<div class="quote">تطبيق الويب = متصفح يطلب، خادم يقرر، تطبيق ينفذ المنطق، قاعدة بيانات تحفظ، وHTTP ينقل الكلام بينهم. الأمن يعني ألا نسمح لطلب غير موثوق أن يتحول إلى أمر خطير.</div>
+<div class="mind">
+  <div class="node"><b>Browser / Client</b><br>المستخدم يرى الواجهة: HTML/CSS/JavaScript، ويرسل GET/POST.</div>
+  <div class="center">Web App Security = حماية الرحلة من الطلب إلى البيانات</div>
+  <div class="node"><b>Web Server / App</b><br>يعالج الطلب، ينفذ منطق الأعمال، ويتواصل مع DB/API.</div>
+  <div class="node"><b>Database</b><br>تخزن المستخدمين، الجلسات، الطلبات، التعليقات.</div>
+  <div class="node"><b>HTTP/HTTPS</b><br>لغة الطلب/الرد. HTTPS يضيف تشفيراً وحماية أثناء النقل.</div>
+  <div class="node"><b>Security</b><br>مصادقة، تفويض، جلسات، تحقق إدخال، معالجة أخطاء، تحديثات.</div>
+</div>
+<h3>تشبيه المطعم</h3>
+<div class="grid c3">
+<div class="mini"><h4>العميل = Browser</h4><p>يطلب وجبة عبر قائمة. لا يدخل المطبخ.</p></div>
+<div class="mini"><h4>النادل = Web Server</h4><p>يستقبل الطلب ويرسله للمطبخ.</p></div>
+<div class="mini"><h4>المطبخ = Application Layer</h4><p>ينفذ منطق العمل: هل الطلب صحيح؟ هل المستخدم مصرح؟</p></div>
+<div class="mini"><h4>المخزن = Database</h4><p>يحفظ البيانات. الوصول إليه يجب أن يمر عبر قواعد.</p></div>
+<div class="mini"><h4>الفاتورة/الهوية = Session/Cookie</h4><p>تُستخدم لمعرفة من أنت بين الطلبات.</p></div>
+<div class="mini"><h4>الأمن = Validation/AuthZ</h4><p>لا تقبل طلباً غريباً ولا تسلم المخزن لأي شخص.</p></div>
+</div>
+<div class="card exam"><h4>قاعدة ذهبية للامتحان</h4><p>معظم الثغرات في الملفات تعود إلى جذر واحد: <b>خلط البيانات بالكود أو الثقة في إدخال المستخدم</b>. SQLi يخلط إدخال المستخدم مع SQL، وXSS يخلط إدخال المستخدم مع JavaScript/HTML، وCommand Injection يخلط الإدخال مع أوامر النظام.</p></div>
+</section>
+
+<section id="vocab">
+<h2 class="sec">2️⃣ قاموس المادة السريع <small>إذا فهمت هذه الكلمات ستفهم الشرائح</small></h2>
+<table class="compare">
+<tr><th>المصطلح</th><th>معناه البسيط</th><th>لا تخلطه مع</th></tr>
+<tr><td>Web Application Security</td><td>حماية المواقع والتطبيقات وواجهات API من الهجمات</td><td>ليس حماية الشبكة فقط؛ هو حماية المنطق والطلبات والبيانات</td></tr>
+<tr><td>DAST</td><td>اختبار ديناميكي لتطبيق يعمل، غالباً آلي</td><td>SAST الذي يقرأ الكود دون تشغيل التطبيق</td></tr>
+<tr><td>SAST</td><td>فحص الكود المصدري لاكتشاف عيوب قبل التشغيل</td><td>DAST الذي يختبر التطبيق من الخارج أثناء التشغيل</td></tr>
+<tr><td>Penetration Test</td><td>اختبار يدوي/هجومي مصرح، مهم للتطبيقات الحرجة والتغييرات الكبيرة</td><td>الفحص الآلي وحده</td></tr>
+<tr><td>RASP</td><td>حماية ذاتية وقت التشغيل تراقب وتحاول منع الهجوم لحظياً</td><td>اختبار فقط؛ هو حماية أثناء التنفيذ</td></tr>
+<tr><td>3-tier Architecture</td><td>Presentation + Business/Application + Data Access</td><td>ليست “ثلاث سيرفرات” بالضرورة؛ هي فصل مسؤوليات</td></tr>
+<tr><td>API</td><td>قواعد تسمح لتطبيقين بتبادل البيانات</td><td>واجهة المستخدم؛ API للبرامج لا للبشر مباشرة</td></tr>
+<tr><td>HTTP</td><td>بروتوكول طلب/استجابة بين المتصفح والخادم</td><td>HTML لغة عرض، HTTP لغة نقل</td></tr>
+<tr><td>Cookie</td><td>ملف صغير يحفظه المتصفح لتذكر حالة/جلسة</td><td>كلمة المرور نفسها؛ لكنها قد تحتوي Session ID حساس</td></tr>
+<tr><td>HTTPS</td><td>HTTP مع طبقة أمان/تشفير</td><td>لا يصلح كل عيوب التطبيق؛ يحمي النقل أساساً</td></tr>
+<tr><td>Injection</td><td>إرسال بيانات غير موثوقة إلى مفسر فيتعامل معها كتعليمات</td><td>خطأ إدخال عادي؛ الحقن يغيّر معنى الأمر</td></tr>
+<tr><td>SQL Injection</td><td>إدخال يغيّر استعلام قاعدة البيانات</td><td>XSS الذي يعمل في متصفح المستخدم</td></tr>
+<tr><td>XSS</td><td>جعل الموقع يعرض JavaScript/HTML ضاراً للمستخدم</td><td>SQLi الذي يستهدف قاعدة البيانات</td></tr>
+<tr><td>Sanitization</td><td>تنظيف/ترميز/تحقق من البيانات حسب السياق</td><td>حذف كلمة script فقط؛ هذا غير كافٍ</td></tr>
+</table>
+</section>
+
+<section id="intro">
+<h2 class="sec">3️⃣ ملف 1: Introduction — لماذا ندرس أمن تطبيقات الويب؟</h2>
+<div class="card lesson"><p>الملف الأول يقول إن كثيراً من الأعمال الحساسة أصبحت عبر الويب: بنوك، تسوق، خدمات، APIs. لذلك أي ضعف في تطبيق الويب قد يتحول مباشرة إلى سرقة حسابات، تسريب معلومات، خسارة ثقة، أو ضرر سمعة.</p></div>
+
+<h3>الأهداف العامة للمقرر</h3>
+<div class="grid c3">
+<div class="mini">فهم معمارية تطبيقات الويب الأساسية</div>
+<div class="mini">فهم بروتوكولات HTTP/HTTPS</div>
+<div class="mini">التعرف على الهجمات الشائعة مثل SQL Injection وXSS</div>
+<div class="mini">فهم الاختبارات الأمنية للتطبيقات</div>
+<div class="mini">تعلم كيف تقلل الاختبارات المخاطر</div>
+<div class="mini">ربط الثغرة بتأثيرها التجاري والتقني</div>
+</div>
+
+<h3>أنواع اختبارات الأمان في الملف</h3>
+<table>
+<tr><th>الاختبار</th><th>كيف يعمل؟</th><th>متى يناسب؟</th><th>الفكرة الذكية</th></tr>
+<tr><td>DAST<br><span class="en">Dynamic Application Security Test</span></td><td>يفحص التطبيق وهو يعمل من الخارج</td><td>تطبيقات داخلية منخفضة المخاطر، أو مع اختبار يدوي للتطبيقات المتوسطة/الحرجة ذات التغييرات البسيطة</td><td>مثل شخص يجرب الأبواب والنوافذ بعد بناء البيت</td></tr>
+<tr><td>SAST<br><span class="en">Static Application Security Test</span></td><td>يفحص الكود المصدري دون الحاجة لتشغيله في الإنتاج</td><td>مفيد للمطورين لاكتشاف عيوب مبكراً</td><td>مثل مهندس يقرأ مخطط البيت قبل البناء</td></tr>
+<tr><td>Penetration Test</td><td>اختبار يدوي بأسلوب الخصم/المهاجم</td><td>أفضل للتطبيقات الحرجة أو التي فيها تغييرات كبيرة</td><td>يكشف سيناريوهات معقدة ومنطق أعمال لا تفهمها الأداة وحدها</td></tr>
+<tr><td>RASP<br><span class="en">Runtime Application Self Protection</span></td><td>تجهيز التطبيق لمراقبة الهجمات أثناء التنفيذ ومحاولة حظرها فوراً</td><td>نهج حماية أثناء التشغيل</td><td>مثل حارس داخل التطبيق يراقب السلوك في اللحظة نفسها</td></tr>
+</table>
+
+<h3>كيف يقلل الاختبار الأمني الخطر؟</h3>
+<div class="ladder">
+<div><b>يعرفك بالهجمات الشائعة</b>: SQL Injection، XSS، CSRF، Information Leakage، Session Hijacking، Path Traversal.</div>
+<div><b>يربط الثغرة بالنتيجة</b>: وصول لمحتوى مقيد، اختراق حسابات، كود ضار، خسارة مبيعات، فقدان ثقة، ضرر سمعة.</div>
+<div><b>يكشف السبب الجذري</b>: هل المشكلة إدخال؟ جلسة؟ تفويض؟ إعداد خادم؟</div>
+<div><b>يساعدك في ترتيب الأولويات</b>: ابدأ بالحرج ثم الأقل تأثيراً.</div>
+</div>
+
+<h3>ماذا نراجع في اختبار أمان تطبيق ويب؟</h3>
+<table>
+<tr><th>الميزة/المنطقة</th><th>ما الذي نفحصه؟</th><th>مثال ثغرة</th></tr>
+<tr><td>Application and server configuration</td><td>إعدادات التطبيق والخادم والتشفير</td><td>إعداد SSL/TLS ضعيف، واجهة إدارة مكشوفة</td></tr>
+<tr><td>Input validation and error handling</td><td>هل يقبل التطبيق إدخالاً خطيراً؟ هل يكشف أخطاء داخلية؟</td><td>SQL Injection، XSS، رسائل خطأ تكشف أسماء جداول</td></tr>
+<tr><td>Authentication and session management</td><td>تسجيل الدخول، قوة الاعتمادات، حماية الجلسة</td><td>انتحال مستخدم، سرقة Session Cookie</td></tr>
+<tr><td>Authorization</td><td>هل يمنع التصعيد العمودي والأفقي؟</td><td>مستخدم عادي يصل لصلاحيات مدير أو بيانات مستخدم آخر</td></tr>
+<tr><td>Business logic</td><td>هل منطق العمل قابل للالتفاف؟</td><td>شراء مجاني، تجاوز خطوة دفع، استخدام كوبون غير صحيح</td></tr>
+<tr><td>Client-side logic</td><td>JavaScript والواجهات الحديثة</td><td>الاعتماد على تحقق في المتصفح فقط</td></tr>
+</table>
+<div class="card exam"><h4>سؤال متوقع</h4><p>فرّق بين SAST وDAST: SAST ينظر إلى الكود قبل/دون تشغيل التطبيق، DAST يختبر التطبيق وهو يعمل. Pen Test يدوي وأكثر مناسبة للتطبيقات الحرجة والمنطق المعقد.</p></div>
+</section>
+
+<section id="arch">
+<h2 class="sec">4️⃣ ملف 2: Web Application Architecture — خريطة المدينة</h2>
+<div class="quote">المعمارية هي معرفة أين يوجد كل مكوّن وكيف يتحدث مع الآخر. بدون هذه الخريطة لن تفهم أين تقع الثغرة.</div>
+
+<h3>مكونات معمارية تطبيق الويب</h3>
+<div class="grid c3">
+<div class="mini"><h4>User Agent</h4><p>غالباً المتصفح. أداة المستخدم للتفاعل مع الخادم.</p></div>
+<div class="mini"><h4>DNS</h4><p>دفتر عناوين الإنترنت: يحول اسم الموقع إلى عنوان IP.</p></div>
+<div class="mini"><h4>Load Balancer</h4><p>يوزع الطلبات على أكثر من خادم لتحقيق التوسع الأفقي.</p></div>
+<div class="mini"><h4>Virtual Machine</h4><p>محاكاة/افتراضية لنظام حاسوب لتشغيل تطبيقات وخدمات.</p></div>
+<div class="mini"><h4>Web Server</h4><p>يستقبل طلب المستخدم ويرسل استجابة: صفحة، ملف، أو نتيجة معالجة.</p></div>
+<div class="mini"><h4>Database</h4><p>تنظيم وإضافة وبحث وتحديث وحذف وحساب البيانات.</p></div>
+<div class="mini"><h4>Caching Service</h4><p>تخزين مؤقت لتحسين السرعة وتقليل الضغط.</p></div>
+<div class="mini"><h4>CDN</h4><p>شبكة خوادم موزعة جغرافياً لتقديم المحتوى قريباً من المستخدم.</p></div>
+<div class="mini"><h4>External Storage</h4><p>تخزين صور، فيديو، مستندات، وملفات كبيرة، غالباً سحابياً.</p></div>
+<div class="mini"><h4>Web Services</h4><p>منصة تواصل بين تطبيقات بلغات مختلفة.</p></div>
+<div class="mini"><h4>Data Warehouse</h4><p>مستودع مركزي للتقارير والتحليل وذكاء الأعمال.</p></div>
+</div>
+
+<h3>رسم ذهني مبسط</h3>
+<pre class="diagram">User/Browser
+   │  HTTP/HTTPS Request
+   ▼
+DNS ──► Load Balancer ──► Web Server ──► Web Application ──► Database
+                         │                 │                  │
+                         │                 ├──► Cache          ├──► Data Warehouse
+                         │                 ├──► External Storage
+                         │                 └──► APIs / Web Services
+                         └──► CDN for static content</pre>
+
+<h3>3-tier Architecture — الثلاث طبقات</h3>
+<div class="flow">
+<div class="step"><div class="num">1</div><b>Presentation / Client Layer</b><span>ما يراه المستخدم: HTML, CSS, JavaScript، متصفح، واجهة.</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">2</div><b>Business / Application Layer</b><span>منطق العمل: معالجة الطلبات، القواعد، العمليات.</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">3</div><b>Data Access Layer</b><span>التعامل مع قواعد البيانات وأنظمة التخزين.</span></div>
+</div>
+<div class="card lesson"><p>قوة 3-tier أنها تفصل المسؤوليات. يمكنك تحديث الواجهة دون تغيير قاعدة البيانات، أو تغيير DBMS دون تغيير كل الواجهة. أمنياً: لا ينبغي أن يتحدث العميل مباشرة مع قاعدة البيانات؛ يمر عبر طبقة تطبيق تتحقق من الصلاحيات والمنطق.</p></div>
+
+<h3>كيف يعمل Web Server؟</h3>
+<div class="ladder">
+<div>العميل يحدد مستنداً أو مورداً بعنوان URL.</div>
+<div>الخادم يستقبل الطلب عبر HTTP/HTTPS.</div>
+<div>إذا كان الملف ثابتاً يرسله، وإذا كان سكربتاً ينفذه على الخادم.</div>
+<div>الخادم يرسل الناتج فقط للعميل.</div>
+</div>
+<div class="card danger"><h4>فكرة أمنية مهمة من الشرائح</h4><p>العميل لا يرى كود الخادم Server-side code. إذا رأى المستخدم أسراراً أو مسارات داخلية أو رسائل خطأ مفصلة، فهناك مشكلة تصميم/إعداد.</p></div>
+</section>
+
+<section id="api">
+<h2 class="sec">5️⃣ API — كيف تتكلم التطبيقات مع بعضها؟</h2>
+<div class="card term"><p><b>API</b> هي مجموعة قواعد ومعايير تسمح للبرامج بالتفاعل وتبادل البيانات. هي وسيط بين تطبيقين، وليست بالضرورة واجهة يراها المستخدم.</p></div>
+
+<h3>فوائد API في الشرائح</h3>
+<div class="grid c3">
+<div class="mini"><b>سهولة الاستخدام</b><br>تسهل وصول المطورين إلى بيانات ووظائف تطبيق آخر.</div>
+<div class="mini"><b>مشاركة البيانات</b><br>تسمح لتطبيقات مختلفة أن تتبادل المعلومات.</div>
+<div class="mini"><b>زيادة الأمان</b><br>بدلاً من فتح كل البيانات، تمنح وصولاً محدوداً لأجزاء محددة.</div>
+</div>
+
+<h3>HTTP Methods for REST APIs</h3>
+<table>
+<tr><th>Method</th><th>الاستخدام في REST</th><th>مثال ذهني</th></tr>
+<tr><td>GET</td><td>استرداد معلومات عن مورد</td><td>اعرض بيانات منتج</td></tr>
+<tr><td>POST</td><td>إنشاء مورد جديد</td><td>أنشئ طلب شراء</td></tr>
+<tr><td>PUT</td><td>تحديث مورد موجود</td><td>عدّل بيانات حساب</td></tr>
+<tr><td>DELETE</td><td>حذف مورد</td><td>احذف تعليقاً</td></tr>
+</table>
+
+<h3>أنواع APIs</h3>
+<table>
+<tr><th>النوع</th><th>الفكرة</th><th>ملاحظة</th></tr>
+<tr><td>REST APIs</td><td>تستخدم طلبات HTTP للحصول/نشر/تحديث/حذف البيانات</td><td>شائعة ومرنة ورسائلها غالباً أخف</td></tr>
+<tr><td>SOAP APIs</td><td>مبنية على Simple Object Access Protocol وتستخدم XML</td><td>رسائلها أكبر وقد تكون أبطأ وأصعب توسعاً</td></tr>
+<tr><td>GraphQL</td><td>بديل أحدث يسمح للعميل بطلب البيانات المطلوبة بدقة</td><td>مذكور كنوع أحدث من API</td></tr>
+</table>
+<div class="card exam"><h4>مهم للاختبار</h4><p>إذا جاء سؤال عن REST API: اربطه مباشرة بطرق HTTP الأربع في الشرائح: GET للاسترداد، POST للإنشاء، PUT للتحديث، DELETE للحذف.</p></div>
+</section>
+
+<section id="http">
+<h2 class="sec">6️⃣ ملف 3: HTTP — لغة الكلام بين المتصفح والخادم</h2>
+<div class="quote">HTTP هو بروتوكول طلب/استجابة. المتصفح يطلب، والخادم يرد. إذا فهمت الرسالة، ستفهم أين تدخل الثغرات.</div>
+
+<h3>مصطلحات الويب الأساسية</h3>
+<div class="grid c3">
+<div class="mini"><b>Web site</b><br>حاسوب/خادم له Domain name.</div>
+<div class="mini"><b>Web page</b><br>تتكون من Objects مثل HTML، صور، CSS، JS.</div>
+<div class="mini"><b>URL</b><br>عنوان يحدد البروتوكول والموقع والمسار والمعلمات.</div>
+<div class="mini"><b>Object</b><br>ملف أو مورد داخل الصفحة.</div>
+<div class="mini"><b>Browser</b><br>عميل HTTP يرسل طلبات ويعرض الردود.</div>
+<div class="mini"><b>Server</b><br>يخزن/ينتج المحتوى ويرد على الطلبات.</div>
+</div>
+
+<h3>Non-persistent vs Persistent HTTP</h3>
+<table>
+<tr><th>النوع</th><th>كيف يعمل؟</th><th>المشكلة/الفائدة</th></tr>
+<tr><td>Non-persistent HTTP</td><td>كل Object يستخدم اتصال TCP مستقل تقريباً</td><td>يتطلب 2 RTT لكل Object؛ أبطأ مع صفحات كثيرة الموارد</td></tr>
+<tr><td>Persistent HTTP</td><td>يبقي الاتصال مفتوحاً لإرسال عدة Objects</td><td>أقل تكلفة زمنية وأفضل أداءً</td></tr>
+</table>
+<div class="card lesson"><p><b>RTT</b> هو زمن ذهاب حزمة صغيرة من العميل إلى الخادم ورجوعها. كلما زاد عدد الاتصالات والموارد، زاد الوقت.</p></div>
+
+<h3>شكل HTTP Request</h3>
+<pre class="diagram">GET /somedir/page.html HTTP/1.1
+Host: www.someschool.edu
+User-Agent: Mozilla/4.0
+Connection: close
+Accept-Language: en
+
+[optional body for some methods]</pre>
+<table>
+<tr><th>الجزء</th><th>معناه</th></tr>
+<tr><td>Method</td><td>العملية المطلوبة: GET, POST, PUT, DELETE...</td></tr>
+<tr><td>URL</td><td>المورد المطلوب</td></tr>
+<tr><td>Version</td><td>إصدار HTTP المستخدم</td></tr>
+<tr><td>Headers</td><td>معلومات إضافية عن الطلب أو الجسم</td></tr>
+<tr><td>Body</td><td>بيانات تُرسل غالباً مع POST/PUT</td></tr>
+</table>
+
+<h3>GET vs POST في النماذج</h3>
+<table>
+<tr><th>GET</th><th>POST</th></tr>
+<tr><td>يرسل البيانات في URL/Query string</td><td>يرسل البيانات في Entity Body</td></tr>
+<tr><td>مناسب للقراءة والاستعلام</td><td>مناسب للنماذج وتسجيل الدخول والإرسال</td></tr>
+<tr><td>قد تظهر المعلمات في العنوان والسجلات</td><td>أقل ظهوراً في URL لكنه ليس تشفيراً بحد ذاته</td></tr>
+</table>
+<div class="card danger"><h4>فهم أمني</h4><p>POST لا يعني أن البيانات آمنة تلقائياً. الأمان أثناء النقل يحتاج HTTPS، والأمان داخل التطبيق يحتاج تحققاً وصلاحيات ومعالجة صحيحة.</p></div>
+
+<h3>HTTP Methods المذكورة</h3>
+<div class="grid c3">
+<div class="mini"><b>GET</b><br>الحصول على مورد.</div>
+<div class="mini"><b>POST</b><br>إرسال بيانات/نموذج.</div>
+<div class="mini"><b>HEAD</b><br>طلب الرؤوس دون جسم الرد.</div>
+<div class="mini"><b>PUT</b><br>رفع/تحديث مورد في مسار محدد.</div>
+<div class="mini"><b>DELETE</b><br>حذف مورد محدد في URL.</div>
+</div>
+
+<h3>HTTP Response</h3>
+<pre class="diagram">HTTP/1.1 200 OK
+Date: Mon, 23 May 2005 22:38:34 GMT
+Server: Apache/...
+Content-Type: text/html; charset=UTF-8
+Content-Length: 131
+Connection: close
+
+&lt;html&gt;...&lt;/html&gt;</pre>
+<table>
+<tr><th>Code</th><th>المعنى من الشرائح</th></tr>
+<tr><td>200 OK</td><td>نجح الطلب، والكائن المطلوب موجود في الرسالة</td></tr>
+<tr><td>301 Moved Permanently</td><td>المورد انتقل وموقعه الجديد في Location header</td></tr>
+<tr><td>400 Bad Request</td><td>الخادم لم يفهم رسالة الطلب</td></tr>
+<tr><td>404 Not Found</td><td>المستند المطلوب غير موجود على الخادم</td></tr>
+<tr><td>505 HTTP Version Not Supported</td><td>إصدار HTTP غير مدعوم</td></tr>
+</table>
+</section>
+
+<section id="cookies">
+<h2 class="sec">7️⃣ Cookies, Web Cache, HTTPS — الحالة، السرعة، والحماية أثناء النقل</h2>
+
+<h3>لماذا نحتاج Cookies؟</h3>
+<div class="card lesson"><p>HTTP بطبيعته <b>Stateless</b>: كل طلب مستقل. الخادم لا يتذكر تلقائياً من أنت بين طلب وآخر. لذلك تستخدم المواقع Cookies لتعريف المستخدم أو الجلسة.</p></div>
+<div class="flow">
+<div class="step"><div class="num">1</div><b>Login</b><span>المستخدم يسجل الدخول.</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">2</div><b>Session ID</b><span>الخادم ينشئ معرف جلسة.</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">3</div><b>Cookie</b><span>المتصفح يخزنها ويرسلها مع الطلبات.</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">4</div><b>State</b><span>الخادم يعرف أن هذا الطلب من نفس المستخدم.</span></div>
+</div>
+
+<h3>ماذا يمكن أن تقدم Cookies؟</h3>
+<div class="grid c3">
+<div class="mini">Authorization / Authentication state</div>
+<div class="mini">Shopping carts</div>
+<div class="mini">Recommendations</div>
+<div class="mini">User session tracking</div>
+<div class="mini">Preferences</div>
+<div class="mini">مخاطر خصوصية إذا أسيء استخدامها</div>
+</div>
+<div class="card danger"><h4>Session Hijacking</h4><p>إذا سُرق Session Cookie، قد يستطيع المهاجم تقليد جلسة المستخدم. لذلك HTTPS، وخصائص مثل HttpOnly/Secure/SameSite، وتسجيل الخروج، وإدارة الجلسات مهمة جداً.</p></div>
+
+<h3>Web Cache / Proxy Server</h3>
+<div class="card"><p>الكاش يعمل كعميل وخادم: يطلب المحتوى من الخادم الأصلي، ثم يخزنه ليقدمه بسرعة لطلبات لاحقة. الفائدة: تقليل زمن الاستجابة والضغط على الخادم.</p></div>
+<div class="grid c3">
+<div class="mini"><b>Client-side cache</b><br>المتصفح وHTTP Cache Headers.</div>
+<div class="mini"><b>DNS cache</b><br>خوادم DNS تحفظ نتائج مؤقتاً.</div>
+<div class="mini"><b>Web/CDN cache</b><br>CDNs وHTTP Cache Headers.</div>
+<div class="mini"><b>Database cache</b><br>Database cache وbuffers.</div>
+</div>
+
+<h3>HTTP vs HTTPS</h3>
+<table>
+<tr><th>النقطة</th><th>HTTP</th><th>HTTPS</th></tr>
+<tr><td>البداية في URL</td><td><span class="en">http://</span></td><td><span class="en">https://</span></td></tr>
+<tr><td>المنفذ الافتراضي</td><td>80</td><td>443</td></tr>
+<tr><td>الأمان</td><td>غير آمن؛ البيانات تنتقل Plaintext</td><td>آمن نسبياً؛ البيانات مشفرة أثناء النقل</td></tr>
+<tr><td>الشهادة</td><td>لا يحتاج SSL Certificate</td><td>يحتاج Certificate</td></tr>
+<tr><td>السرعة</td><td>أسرع عادةً لعدم وجود تشفير</td><td>أبطأ قليلاً بسبب التشفير، لكن هو المفضل أمنياً</td></tr>
+<tr><td>الثقة</td><td>المستخدم أقل ثقة</td><td>يزيد ثقة المستخدم ويحسن الأمان</td></tr>
+</table>
+<div class="card exam"><h4>مهم جداً</h4><p>HTTPS يحمي البيانات أثناء انتقالها من التنصت والتلاعب بدرجة كبيرة، لكنه لا يمنع SQL Injection أو XSS إذا كان التطبيق نفسه ضعيفاً. لذلك لا تقل في الاختبار: “HTTPS يحل كل مشاكل الويب”.</p></div>
+</section>
+
+<section id="security">
+<h2 class="sec">8️⃣ ملف 4+5: Web Security — من أين يأتي الخطر؟</h2>
+<div class="card lesson"><p>الملف الرابع يبدأ بفكرة مهمة: انتهينا من التشفير، لكن مفاهيم مثل Authentication وIntegrity وMan-in-the-Middle ستظل مهمة. أمن الويب لا يلغي التشفير؛ يبني فوقه طبقات تخص التطبيق والمنطق والبيانات.</p></div>
+
+<h3>Web Application Overview</h3>
+<div class="card"><p>العنوان مثل <span class="mono">subdomain.mysite.com/folder/page?id=5</span> قد يؤدي إلى: طلب GET، تنفيذ منطق في التطبيق، استعلام Database، ثم HTML/JS/CSS/Image يعود للمتصفح. كل جزء من هذه الرحلة قد يكون نقطة هجوم.</p></div>
+
+<h3>خطوات الهجوم في الشرائح</h3>
+<div class="ladder">
+<div><b>Gather intelligence</b>: جمع معلومات مثل Port scans، أخطاء التطبيق، تسريبات البنية التحتية.</div>
+<div><b>Match information with known defects</b>: مطابقة المعلومات مع عيوب معروفة في OS/Web Server versions وغيرها.</div>
+<div><b>Attack weak spots</b>: مهاجمة نقاط الضعف مثل مشاكل Input Validation من Path handling إلى SQL statements.</div>
+</div>
+
+<h3>Canonical Web Architecture ونقاط الهجوم</h3>
+<pre class="diagram">Browser ⇄ Reverse Proxy ⇄ Web Server ⇄ Web Application ⇄ DB
+   │             │              │              │             │
+ Cookies       SSL end       files/path     authz/input    queries</pre>
+<table>
+<tr><th>Attack Point في الشرائح</th><th>الفكرة</th><th>الدفاع</th></tr>
+<tr><td>Steal cookie content</td><td>سرقة محتوى الكوكيز/الجلسة</td><td>HTTPS + HttpOnly + Secure + SameSite + إدارة جلسات</td></tr>
+<tr><td>Direct user to bogus servers</td><td>توجيه المستخدم لخوادم زائفة</td><td>تحقق TLS، HSTS، توعية المستخدم</td></tr>
+<tr><td>Hijack user session</td><td>اختطاف جلسة المستخدم أو اتصال DB</td><td>حماية الجلسة، تشفير، إعادة توليد Session ID</td></tr>
+<tr><td>Crack proxy where SSL ends</td><td>استهداف المكان الذي تنتهي فيه جلسة SSL</td><td>تقوية reverse proxy والإعدادات</td></tr>
+<tr><td>Admin interface</td><td>كسر مكونات الويب عبر واجهة الإدارة</td><td>عدم كشفها، MFA، IP allowlist، تحديثات</td></tr>
+<tr><td>Known web server bugs</td><td>استغلال أخطاء خادم الويب في الملفات والمسارات</td><td>تحديثات وتصحيح إعدادات</td></tr>
+<tr><td>Downgrade authentication</td><td>خفض مستوى المصادقة</td><td>فرض سياسات قوية وعدم قبول طرق ضعيفة</td></tr>
+<tr><td>Authorization bugs</td><td>الحصول على وصول غير قانوني/تصعيد امتيازات</td><td>تحقق تفويض مركزي على الخادم</td></tr>
+<tr><td>Fake input</td><td>استخدام إدخال مزيف لتجاوز التحكم</td><td>Input validation وContextual output encoding</td></tr>
+</table>
+
+<h3>ما الذي يجعل الهجمات سهلة؟</h3>
+<div class="grid c2">
+<div class="mini danger"><b>إدارة وتهيئة كسولة</b><br>واجهات Admin غير محمية، إعداد SSL ضعيف، إظهار أخطاء داخلية، مصادقة سيئة، نسيان التحديثات.</div>
+<div class="mini danger"><b>برمجيات سيئة</b><br>Buffer overflows، أخطاء input validation، تطبيق تشفير سيئ، أخطاء تفسير المسار، تخزين بيانات مهمة في Cookies بتشفير ضعيف ودون replay protection.</div>
+</div>
+
+<h3>Gathering Intelligence: scanning and probing</h3>
+<div class="card exam"><p>الشرائح تذكر أدوات مثل Nmap كوسيلة فحص للبنية: ما المنافذ المفتوحة؟ ما الخدمات؟ ما الإصدارات؟ ما بنية الشبكة؟ هذه مرحلة معلومات، وليست الهجوم النهائي نفسه.</p></div>
+
+<h3>Web Security by Threat Model</h3>
+<table>
+<tr><th>نموذج التهديد</th><th>أمثلة من الشرائح</th><th>كيف تفهمه؟</th></tr>
+<tr><td>Malicious Client Attacking Server</td><td>SQL Injection، File System Traversal، Broken Access Control</td><td>عميل يرسل طلبات خبيثة للخادم</td></tr>
+<tr><td>Malicious Server Attacking Client</td><td>Clickjacking، Phishing</td><td>خادم/موقع يحاول خداع المتصفح أو المستخدم</td></tr>
+<tr><td>Malicious User Attacking Other Users</td><td>XSS، CSRF، Remote Script Inclusion</td><td>مستخدم يستغل التطبيق لضرب مستخدمين آخرين</td></tr>
+<tr><td>Malicious Server in Mashup</td><td>Clickjacking، Information Stealing</td><td>تطبيق مركّب من أكثر من مصدر وفيه طرف غير موثوق</td></tr>
+<tr><td>Malicious User in Multi-Server Application</td><td>SSO: login as someone else، Multi-party payment: buy things for free</td><td>استغلال علاقات بين عدة خدمات/خوادم</td></tr>
+</table>
+</section>
+
+<section id="injection">
+<h2 class="sec">9️⃣ Injection Flaws — قلب المادة الأمنية</h2>
+<div class="quote">تعريف الشرائح/OWASP: تحدث ثغرات الحقن عندما يرسل التطبيق بيانات غير موثوقة إلى Interpreter. أي أن البيانات تتحول إلى تعليمات.</div>
+
+<h3>ما هو Interpreter؟</h3>
+<div class="grid c3">
+<div class="mini"><b>SQL Interpreter</b><br>قاعدة البيانات تفسر SQL.</div>
+<div class="mini"><b>Shell / OS</b><br>نظام التشغيل يفسر الأوامر.</div>
+<div class="mini"><b>Browser</b><br>المتصفح يفسر HTML/JavaScript.</div>
+</div>
+<div class="card lesson"><p>إذا أخذت إدخال المستخدم وركبته مباشرة داخل SQL أو أمر نظام أو HTML، فأنت تجعل المستخدم يكتب جزءاً من “البرنامج”. هنا يبدأ الحقن.</p></div>
+
+<h3>أنواع حقن في الشرائح</h3>
+<table>
+<tr><th>النوع</th><th>ماذا يحدث؟</th><th>التأثير</th></tr>
+<tr><td>OS Command Injection</td><td>معلمة خبيثة تغيّر أمر نظام التشغيل أو تضيف أمراً آخر</td><td>تنفيذ أوامر، قراءة ملفات، وقد يصل الأمر إلى سيطرة خطيرة</td></tr>
+<tr><td>SQL Injection</td><td>إدخال المستخدم يغيّر استعلام قاعدة البيانات</td><td>قراءة/تعديل/حذف بيانات أو تجاوز تسجيل الدخول</td></tr>
+<tr><td>XSS</td><td>إدخال المستخدم يُعرض كـ JavaScript/HTML في متصفح ضحية</td><td>سرقة جلسات، تنفيذ أفعال باسم المستخدم، تصيد داخل الصفحة</td></tr>
+</table>
+
+<h3>مثال Command Injection من الشرائح — الفهم الآمن</h3>
+<div class="card story"><p>الشرائح تعرض صفحة “Ping for FREE” تأخذ IP من المستخدم ثم تستخدمه في أمر نظام. الخطأ: إدخال المستخدم يُدمج في أمر Shell دون تحقق كافٍ. لو أضاف المستخدم رموزاً خاصة، قد لا يبقى الإدخال مجرد IP، بل يصبح جزءاً من أمر جديد.</p></div>
+<div class="grid c2">
+<div class="card danger"><h4>الكود الخطر من حيث الفكرة</h4><p>أخذ <span class="mono">ip</span> من الطلب ثم تمريره مباشرة إلى <span class="mono">shell_exec</span>. المشكلة ليست ping نفسه؛ المشكلة هي الثقة بالإدخال.</p></div>
+<div class="card life"><h4>الإصلاح في الشرائح</h4><p>التحقق أن الإدخال IP صالح باستخدام <span class="mono">filter_var(..., FILTER_VALIDATE_IP)</span> واستخدام <span class="mono">escapeshellarg</span> عند الحاجة. والأفضل عموماً تقليل أو تجنب استدعاء Shell عندما يمكن استخدام مكتبة آمنة.</p></div>
+</div>
+<div class="card exam"><h4>عبارة امتحانية جاهزة</h4><p>Command Injection يحدث عندما ينتقل إدخال المستخدم غير الموثوق إلى مفسر أوامر النظام. الدفاع: Validate allowlist، استخدام APIs آمنة بدلاً من Shell، escaping مناسب، وأقل صلاحيات.</p></div>
+</section>
+
+<section id="sqli">
+<h2 class="sec">🔟 SQL Injection — عندما يتحول رقم المستخدم إلى أمر قاعدة بيانات</h2>
+<div class="card lesson"><p>SQL Injection من أهم أجزاء الملفات. الفكرة: التطبيق يبني استعلام SQL باستخدام إدخال المستخدم. إذا لم يفصل بين “البيانات” و“الكود”، يستطيع الإدخال تغيير معنى الاستعلام.</p></div>
+
+<h3>قبل SQLi: SQL Primer سريع</h3>
+<table>
+<tr><th>المفهوم</th><th>معناه</th></tr>
+<tr><td>Table</td><td>جدول يحتوي صفوفاً وأعمدة</td></tr>
+<tr><td>Column</td><td>حقل مثل user_id أو username</td></tr>
+<tr><td>Row</td><td>سجل واحد داخل الجدول</td></tr>
+<tr><td>Schema</td><td>مجموعة جداول وعلاقاتها</td></tr>
+<tr><td>SELECT</td><td>استعلام قراءة بيانات</td></tr>
+<tr><td>WHERE</td><td>شرط يحدد أي صفوف تُرجع</td></tr>
+<tr><td>JOIN</td><td>ربط جداول عبر علاقة</td></tr>
+</table>
+
+<h3>الفكرة الأساسية</h3>
+<div class="flow">
+<div class="step"><div class="num">1</div><b>طلب عادي</b><span>/user.php?id=5</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">2</div><b>استعلام</b><span>SELECT ... WHERE uid = 5</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">3</div><b>إدخال خبيث</b><span>id لا يعود رقماً فقط</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">4</div><b>SQL يتغير</b><span>الشرط يصبح أوسع أو مختلفاً</span></div>
+</div>
+<div class="card danger"><p>في الشرائح يظهر مثال مثل جعل الشرط دائماً صحيحاً عبر تعبير منطقي. الفكرة الامتحانية ليست حفظ الرمز، بل فهم أن الشرط في WHERE تم تغييره بإدخال المستخدم.</p></div>
+
+<h3>Tautologies</h3>
+<div class="card term"><p><b>Tautology</b> تعبير منطقي صحيح دائماً. في SQL Injection قد يستخدم المهاجم شرطاً دائماً صحيحاً لتجاوز شرط المستخدم المحدد.</p></div>
+
+<h3>Reversing Table Layout — استنتاج شكل الجدول</h3>
+<table>
+<tr><th>الطريقة في الشرائح</th><th>الفكرة</th><th>لماذا خطيرة؟</th></tr>
+<tr><td>Probing number of columns</td><td>استخدام فكرة ORDER BY لمعرفة عدد الأعمدة</td><td>يساعد في بناء استعلام UNION متوافق</td></tr>
+<tr><td>Probing column names</td><td>أسماء أعمدة خاطئة تسبب أخطاء</td><td>رسائل الخطأ قد تكشف تفاصيل داخلية</td></tr>
+<tr><td>UNION</td><td>دمج نتيجة استعلام آخر مع الاستعلام الأصلي</td><td>قد يسمح بسحب بيانات من جداول أخرى إذا لم توجد حماية</td></tr>
+<tr><td>Error Messages</td><td>تسريب نتيجة الأخطاء للمستخدم</td><td>ممارسة أمنية سيئة؛ تكشف DB/schema/query</td></tr>
+</table>
+
+<h3>Blind SQL Injection</h3>
+<div class="card"><p>الشرائح تعرف <b>Blind SQL Injection</b> كنوع يهاجم خادماً لا يعيد نتائج الاستعلام مباشرة؛ قد يعيد صفحة خطأ عامة أو لا شيء. لذلك يعتمد المهاجم على مؤشرات غير مباشرة مثل اختلاف الرد أو التأخير الزمني.</p></div>
+<div class="grid c2">
+<div class="mini"><b>SQLi عادي</b><br>النتيجة أو الخطأ يظهر بوضوح.</div>
+<div class="mini"><b>Blind SQLi</b><br>لا تظهر البيانات مباشرة؛ تستنتج من سلوك الخادم.</div>
+</div>
+
+<h3>الدفاع الصحيح: Parameterized Queries with Bound Parameters</h3>
+<div class="card life"><p>أفضل فهم للدفاع: لا تركّب SQL كنص واحد فيه إدخال المستخدم. استخدم <b>Prepared Statements / Parameterized Queries</b> بحيث تبقى SQL كوداً، ويبقى إدخال المستخدم بيانات فقط، مهما احتوى من رموز.</p></div>
+<table>
+<tr><th>دفاع</th><th>لماذا؟</th></tr>
+<tr><td>Parameterized Queries</td><td>تفصل الكود عن البيانات</td></tr>
+<tr><td>Input validation</td><td>مثلاً id يجب أن يكون رقماً</td></tr>
+<tr><td>Least privilege DB account</td><td>الحساب المستخدم لا يملك صلاحيات أكثر من الحاجة</td></tr>
+<tr><td>Generic error messages</td><td>لا تكشف أسماء الجداول والاستعلامات</td></tr>
+<tr><td>Logging and monitoring</td><td>رصد أنماط غير طبيعية</td></tr>
+</table>
+<div class="card story"><h4>CardSystems Attack</h4><p>الشرائح تذكر هجوم CardSystems في سياق SQL Injection ومعالجة بطاقات الائتمان. الفكرة: SQLi ليس خطأ نظرياً؛ قد يؤدي إلى تسريب مالي ضخم وضرر ثقة وسمعة.</p></div>
+</section>
+
+<section id="xss">
+<h2 class="sec">1️⃣1️⃣ XSS — عندما يستخدم المهاجم موقعك ليهاجم مستخدميك</h2>
+<div class="quote">تعريف الشرائح: XSS هو قدرة جعل موقع يعرض محتوى من المستخدم ممزوجاً بـ HTML/JavaScript ضار.</div>
+
+<h3>Basic Browser Model وDOM</h3>
+<div class="card lesson"><p>المتصفح يستقبل HTML وCSS وJavaScript، يبني Document Object Model (DOM)، ثم ينفذ السكربتات. إذا دخل سكربت من مستخدم غير موثوق وعُرض كجزء من الصفحة، المتصفح قد ينفذه كأنه من الموقع.</p></div>
+<pre class="diagram">Server response:
+HTML + CSS + JavaScript
+        │
+        ▼
+Browser parses → builds DOM → executes scripts → user sees page</pre>
+
+<h3>لماذا XSS خطير؟</h3>
+<div class="grid c3">
+<div class="mini">سرقة Session Cookie إذا لم تكن محمية</div>
+<div class="mini">تنفيذ أفعال باسم المستخدم</div>
+<div class="mini">تغيير محتوى الصفحة وخداع المستخدم</div>
+<div class="mini">تصيد داخل موقع موثوق</div>
+<div class="mini">نقل المستخدم لموقع ضار</div>
+<div class="mini">استهداف مستخدمين آخرين عبر نفس التطبيق</div>
+</div>
+
+<h3>Reflected XSS</h3>
+<div class="card term"><p><b>المشكلة:</b> الخادم يعكس إدخالاً يحتوي JavaScript إلى الرد. <b>طريقة التسليم:</b> إرسال رابط يحتوي الهجوم للضحية. إذا نقر الضحية، يُعاد الإدخال في الصفحة وينفذه المتصفح.</p></div>
+<div class="flow">
+<div class="step"><div class="num">1</div><b>رابط مُعد</b><span>يحمل إدخالاً خطيراً</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">2</div><b>الضحية تنقر</b><span>يرسل الطلب للموقع الضعيف</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">3</div><b>الخادم يعكس</b><span>يرجع الإدخال داخل الصفحة</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">4</div><b>المتصفح ينفذ</b><span>لأنه يظنه جزءاً من الموقع</span></div>
+</div>
+
+<h3>Stored XSS</h3>
+<div class="card danger"><p><b>المشكلة:</b> الخادم يخزن الإدخال المخلوط بـ JavaScript في قاعدة البيانات أو محتوى دائم. <b>طريقة التسليم:</b> أي مستخدم يزور الصفحة التي تعرض المحتوى المخزن يتعرض للخطر. لذلك Stored XSS أخطر غالباً لأنه لا يحتاج من الضحية إلا زيارة الصفحة.</p></div>
+<div class="flow">
+<div class="step"><div class="num">1</div><b>إدخال</b><span>تعليق/منشور/رسالة</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">2</div><b>تخزين</b><span>قاعدة البيانات تحفظه</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">3</div><b>عرض</b><span>يعرض لمستخدمين آخرين</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">4</div><b>تنفيذ</b><span>متصفحاتهم تنفذ السكربت</span></div>
+</div>
+
+<h3>Reflected vs Stored</h3>
+<table>
+<tr><th>المقارنة</th><th>Reflected XSS</th><th>Stored XSS</th></tr>
+<tr><td>مكان السكربت</td><td>في الطلب/الرابط ثم ينعكس في الرد</td><td>مخزن في الخادم/قاعدة البيانات</td></tr>
+<tr><td>التفاعل المطلوب</td><td>غالباً يحتاج نقر رابط</td><td>يكفي زيارة صفحة مصابة</td></tr>
+<tr><td>الخطورة</td><td>خطير</td><td>غالباً أخطر لأنه ينتشر تلقائياً بين الزوار</td></tr>
+<tr><td>الدفاع</td><td>تصفية وترميز الإخراج، CSP، حذر من الروابط</td><td>تحقق عند الإدخال + ترميز عند الإخراج + CSP + HttpOnly</td></tr>
+</table>
+
+<h3>Stealing Cookies وSession Token</h3>
+<div class="card exam"><p>الشرائح تعرض مثال سرقة cookie عبر JavaScript. الفكرة الامتحانية: إذا كان JavaScript يستطيع قراءة Session Cookie، يمكن استخدامه لاختطاف الجلسة. دفاعات مثل <b>HttpOnly</b> تمنع JavaScript من قراءة الكوكي، و<b>Secure</b> يمنع إرسالها عبر HTTP غير مشفر، وHTTPS يحمي النقل.</p></div>
+
+<h3>HTML URL Encoding</h3>
+<table>
+<tr><th>الحرف</th><th>ترميزه</th><th>لماذا مهم؟</th></tr>
+<tr><td><span class="mono">&lt;</span></td><td>%3C</td><td>قد يُستخدم لإخفاء HTML/Script داخل URL</td></tr>
+<tr><td><span class="mono">&gt;</span></td><td>%3E</td><td>إغلاق وسوم HTML</td></tr>
+<tr><td><span class="mono">&amp;</span></td><td>%26</td><td>فصل/دمج معلمات</td></tr>
+<tr><td><span class="mono">;</span></td><td>%3B</td><td>رمز خاص في سياقات متعددة</td></tr>
+<tr><td><span class="mono">?</span></td><td>%3F</td><td>بداية Query String</td></tr>
+</table>
+</section>
+
+<section id="sanitize">
+<h2 class="sec">1️⃣2️⃣ Sanitization — لماذا التنظيف ليس سهلاً؟</h2>
+<div class="quote">الشرائح تقول بوضوح: Sanitizing Is Not Easy. لا يكفي أن تحذف كلمة &lt;script&gt; وتظن أنك أمنت التطبيق.</div>
+
+<h3>لماذا الحذف البسيط يفشل؟</h3>
+<div class="grid c2">
+<div class="card danger"><h4>التشويش والتحايل</h4><p>قد يغيّر المهاجم شكل النص باستخدام ترميز URL، Unicode، أو بناء مختلف لا يحتوي الكلمة التي تبحث عنها حرفياً.</p></div>
+<div class="card danger"><h4>السياق يغير المعنى</h4><p>النص الآمن داخل HTML قد لا يكون آمناً داخل JavaScript، وما يصلح لـ SQL لا يصلح لـ HTML. لذلك نحتاج Context-Specific Sanitization.</p></div>
+</div>
+
+<h3>Frontier Sanitization — تعقيم الحدود</h3>
+<div class="card"><p>الفكرة المطروحة: عقم كل الإدخالات فوراً. لكن الشرائح تطرح سؤالاً مهماً: هل نعقم لـ SQL ثم XSS؟ أم XSS ثم SQL؟ المشكلة أن كل سياق له قواعده. لذلك التعقيم العام وحده ليس كافياً.</p></div>
+
+<h3>Second-Order SQL Injection</h3>
+<div class="card story"><p>حقن SQL من الدرجة الثانية يحدث عندما يدخل نص ضار إلى قاعدة البيانات دون أن يظهر أثره فوراً، ثم يُستخدم لاحقاً في استعلام SQL جديد داخل وظيفة أخرى، فيظهر الهجوم في وقت ومكان مختلفين.</p></div>
+<div class="flow">
+<div class="step"><div class="num">1</div><b>إدخال</b><span>يُقبل ويُخزن</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">2</div><b>تخزين</b><span>في DB كبيانات تبدو عادية</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">3</div><b>استخدام لاحق</b><span>يُركب في SQL جديد</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">4</div><b>انفجار</b><span>يحدث الحقن في وظيفة أخرى</span></div>
+</div>
+<div class="card exam"><p>العبارة الذهبية: <b>Sanitizing input once sometimes isn’t enough</b>. يجب التعامل مع البيانات المخزنة أيضاً كغير موثوقة عند استخدامها لاحقاً.</p></div>
+
+<h3>Context-Specific Sanitization</h3>
+<table>
+<tr><th>السياق</th><th>الدفاع المناسب</th><th>لماذا؟</th></tr>
+<tr><td>SQL</td><td>Parameterized queries / prepared statements</td><td>تفصل SQL عن بيانات المستخدم</td></tr>
+<tr><td>HTML body</td><td>HTML encode output</td><td>حتى لا تتحول العلامات إلى وسوم</td></tr>
+<tr><td>HTML attribute</td><td>Attribute encoding + quotes</td><td>السياق حساس للعلامات والاقتباسات</td></tr>
+<tr><td>JavaScript</td><td>تجنب إدخال غير موثوق، واستخدم JSON encoding آمن</td><td>الرموز قد تتحول إلى كود</td></tr>
+<tr><td>URL</td><td>URL encoding والتحقق من البروتوكول/المجال</td><td>لمنع الروابط الخبيثة أو كسر البنية</td></tr>
+<tr><td>Shell</td><td>تجنب Shell، أو allowlist + escaping مناسب</td><td>أي رمز خاص قد يصبح أمراً</td></tr>
+</table>
+</section>
+
+<section id="defense">
+<h2 class="sec">1️⃣3️⃣ الدفاع الشامل — كيف تفكر كمهندس أمن؟</h2>
+<div class="card lesson"><p>الدفاع ليس إجراءً واحداً. هو طبقات: تصميم آمن، تحقق إدخال، ترميز إخراج، مصادقة، تفويض، إدارة جلسات، رسائل خطأ آمنة، تحديثات، واختبارات.</p></div>
+
+<h3>خريطة دفاع حسب الثغرة</h3>
+<table>
+<tr><th>الثغرة</th><th>السبب الجذري</th><th>الدفاع الأساسي</th></tr>
+<tr><td>Command Injection</td><td>إدخال المستخدم دخل إلى Shell</td><td>تجنب shell، allowlist validation، escaping، أقل صلاحيات</td></tr>
+<tr><td>SQL Injection</td><td>إدخال المستخدم دخل إلى SQL كنص</td><td>Prepared statements، validation، أقل صلاحيات، إخفاء الأخطاء</td></tr>
+<tr><td>XSS</td><td>إدخال المستخدم عُرض كـ HTML/JS</td><td>Output encoding حسب السياق، CSP، HttpOnly، sanitization موثوق</td></tr>
+<tr><td>Session Hijacking</td><td>سرقة/توقع/تثبيت Session ID</td><td>HTTPS، Secure/HttpOnly/SameSite، تدوير الجلسة، انتهاء صلاحية</td></tr>
+<tr><td>Broken Access Control</td><td>غياب تحقق التفويض على الخادم</td><td>تحقق مركزي لكل طلب، مبدأ أقل صلاحية، اختبارات عمودية/أفقية</td></tr>
+<tr><td>Information Leakage</td><td>رسائل خطأ أو إعدادات تكشف الداخل</td><td>رسائل عامة للمستخدم، Logging داخلي، إيقاف debug في الإنتاج</td></tr>
+</table>
+
+<h3>مبدأ “لا تثق بالعميل”</h3>
+<div class="card danger"><p>أي تحقق يحدث فقط في JavaScript يمكن تجاوزه. العميل يستطيع تعديل الطلب، حذف JavaScript، تغيير parameters، أو استخدام أداة إرسال طلبات. لذلك التحقق الحقيقي يجب أن يكون على الخادم.</p></div>
+
+<h3>Checklist مصغر قبل نشر تطبيق</h3>
+<div class="two">
+<ul>
+<li>هل كل الإدخالات لها validation واضح؟</li>
+<li>هل كل مخرجات المستخدم encoded حسب السياق؟</li>
+<li>هل SQL يستخدم prepared statements؟</li>
+<li>هل رسائل الخطأ لا تكشف تفاصيل داخلية؟</li>
+<li>هل جلسات المستخدم محمية بـ HTTPS وخصائص Cookies؟</li>
+<li>هل التفويض يُفحص على الخادم لكل مورد؟</li>
+<li>هل واجهات Admin محمية وغير مكشوفة؟</li>
+<li>هل المكونات والخوادم محدثة؟</li>
+<li>هل يوجد SAST/DAST/Pen Test حسب خطورة التطبيق؟</li>
+<li>هل منطق العمل مختبر ضد الالتفاف؟</li>
+</ul>
+</div>
+</section>
+
+<section id="exam">
+<h2 class="sec">1️⃣4️⃣ طريقة حل أسئلة الاختبار بذكاء</h2>
+
+<h3>نموذج تحليل أي سيناريو</h3>
+<div class="ladder">
+<div><b>حدد الطبقة</b>: Browser؟ HTTP؟ Web Server؟ Application؟ Database؟ Cookie؟</div>
+<div><b>حدد نوع الثقة الخاطئة</b>: إدخال؟ جلسة؟ صلاحية؟ إعداد؟ رسالة خطأ؟</div>
+<div><b>حدد الهجوم</b>: SQLi؟ XSS؟ Command Injection؟ Broken Access Control؟ Session Hijacking؟</div>
+<div><b>حدد التأثير</b>: بيانات؟ جلسة؟ تنفيذ كود؟ سمعة؟ خسارة مالية؟</div>
+<div><b>حدد الدفاع</b>: validation؟ prepared statements؟ encoding؟ HTTPS؟ HttpOnly؟ authorization؟</div>
+</div>
+
+<h3>كلمات مفتاحية تقودك للإجابة</h3>
+<table>
+<tr><th>إذا رأيت في السؤال...</th><th>فكر في...</th></tr>
+<tr><td>الكود يركب إدخال المستخدم داخل SQL</td><td>SQL Injection</td></tr>
+<tr><td>النتيجة لا تظهر لكن الرد/التأخير يكشف معلومة</td><td>Blind SQL Injection</td></tr>
+<tr><td>إدخال المستخدم يُعرض كـ JavaScript في صفحة</td><td>XSS</td></tr>
+<tr><td>الرابط يحمل السكربت والخادم يعكسه</td><td>Reflected XSS</td></tr>
+<tr><td>التعليق/المنشور يخزن سكربت ويصيب كل زائر</td><td>Stored XSS</td></tr>
+<tr><td>سرقة Session Cookie</td><td>Session Hijacking / XSS impact</td></tr>
+<tr><td>GET/POST/PUT/DELETE</td><td>HTTP Methods أو REST API</td></tr>
+<tr><td>80 و443</td><td>HTTP وHTTPS ports</td></tr>
+<tr><td>فحص التطبيق وهو يعمل</td><td>DAST</td></tr>
+<tr><td>فحص الكود دون تشغيل</td><td>SAST</td></tr>
+<tr><td>اختبار يدوي للتطبيقات الحرجة</td><td>Penetration Test</td></tr>
+<tr><td>ثلاث طبقات: واجهة، تطبيق، بيانات</td><td>3-tier Architecture</td></tr>
+</table>
+
+<h3>قوالب إجابات مقالية</h3>
+<div class="card exam"><h4>اشرح SQL Injection وطرق الحماية</h4><p>SQL Injection يحدث عندما يستخدم التطبيق إدخالاً غير موثوق لبناء استعلام SQL، فيستطيع الإدخال تغيير معنى الاستعلام. تأثيره قد يكون قراءة أو تعديل بيانات أو تجاوز صلاحيات. الحماية تكون باستخدام parameterized queries، التحقق من الإدخال، أقل صلاحيات لقاعدة البيانات، وعدم إظهار أخطاء تفصيلية.</p></div>
+<div class="card exam"><h4>فرّق بين Reflected وStored XSS</h4><p>Reflected XSS يأتي غالباً من رابط يحتوي إدخالاً ضاراً يعكسه الخادم في الرد، ويحتاج الضحية للنقر. Stored XSS يُخزن في الخادم مثل تعليق أو منشور ويصيب كل من يزور الصفحة، لذلك غالباً أخطر. الدفاع: ترميز الإخراج حسب السياق، sanitization موثوق، CSP، وحماية cookies.</p></div>
+<div class="card exam"><h4>اشرح 3-tier Architecture</h4><p>تقسم تطبيق الويب إلى Presentation/Client layer للواجهة، Business/Application layer لمنطق الأعمال، وData Access layer للتعامل مع البيانات. فائدتها الفصل بين المسؤوليات وسهولة التحديث، وأمنياً تمنع العميل من التعامل المباشر مع قاعدة البيانات.</p></div>
+</section>
+
+<section id="flash">
+<h2 class="sec">🃏 بطاقات مراجعة قلّابة <small>اضغط البطاقة لتظهر الإجابة</small></h2>
+<div class="flashgrid">
+<div class="fc"><div class="flip"><div class="front">ما الفكرة الكبرى لأمن تطبيقات الويب؟</div><div class="back">حماية رحلة الطلب من المتصفح إلى الخادم والتطبيق وقاعدة البيانات، خصوصاً من إدخال غير موثوق.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">الفرق بين SAST وDAST؟</div><div class="back">SAST يفحص الكود دون تشغيل. DAST يفحص التطبيق وهو يعمل من الخارج.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">متى يكون Penetration Test مناسباً؟</div><div class="back">للتطبيقات الحرجة أو التي تخضع لتغييرات كبيرة، لأنه يدوي ويغطي منطق الأعمال وسيناريوهات متقدمة.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">ما طبقات 3-tier Architecture؟</div><div class="back">Presentation/Client، Business/Application، Data Access.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">GET وPOST: الفرق الأساسي؟</div><div class="back">GET يرسل البيانات في URL غالباً للقراءة. POST يرسلها في body للنماذج والإرسال.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">لماذا نحتاج Cookies؟</div><div class="back">لأن HTTP stateless؛ الكوكيز تساعد الخادم على تذكر الجلسة/المستخدم بين الطلبات.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">HTTP vs HTTPS؟</div><div class="back">HTTP غير مشفر عادة على 80. HTTPS مشفر عبر TLS ويستخدم غالباً 443، لكنه لا يصلح عيوب التطبيق وحده.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">تعريف Injection؟</div><div class="back">إرسال بيانات غير موثوقة إلى Interpreter فيتعامل معها كتعليمات.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">أفضل دفاع ضد SQL Injection؟</div><div class="back">Parameterized Queries / Prepared Statements مع validation وأقل صلاحيات.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">Reflected vs Stored XSS؟</div><div class="back">Reflected عبر رابط ينعكس في الرد. Stored يُخزن في الخادم ويصيب الزوار.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">لماذا Sanitization ليست سهلة؟</div><div class="back">لأن السياق مهم، والمهاجم قد يستخدم encoding/Unicode/طرق التفاف. لا يكفي حذف كلمة script.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">Second-order SQLi؟</div><div class="back">إدخال ضار يُخزن أولاً ثم يُستخدم لاحقاً في استعلام آخر فيسبب الحقن.</div></div></div>
+</div>
+</section>
+
+<section id="quiz">
+<h2 class="sec">🧪 اختبار فهم تفاعلي</h2>
+
+<div class="q" data-a="b"><b>1) اختبار يفحص الكود المصدري دون تشغيل التطبيق غالباً يسمى:</b>
+<label class="opt"><input type="radio" name="q1" value="a"> DAST</label>
+<label class="opt"><input type="radio" name="q1" value="b"> SAST</label>
+<label class="opt"><input type="radio" name="q1" value="c"> CDN</label><div class="exp">SAST = Static Application Security Test.</div></div>
+
+<div class="q" data-a="a"><b>2) اختبار يفحص التطبيق وهو يعمل من الخارج يسمى:</b>
+<label class="opt"><input type="radio" name="q2" value="a"> DAST</label>
+<label class="opt"><input type="radio" name="q2" value="b"> Data Warehouse</label>
+<label class="opt"><input type="radio" name="q2" value="c"> SOAP</label><div class="exp">DAST = Dynamic Application Security Test.</div></div>
+
+<div class="q" data-a="c"><b>3) طبقات 3-tier Architecture هي:</b>
+<label class="opt"><input type="radio" name="q3" value="a"> DNS, CDN, Cache</label>
+<label class="opt"><input type="radio" name="q3" value="b"> GET, POST, DELETE</label>
+<label class="opt"><input type="radio" name="q3" value="c"> Presentation, Business/Application, Data Access</label><div class="exp">هذه هي الطبقات الثلاث في الشرائح.</div></div>
+
+<div class="q" data-a="b"><b>4) في REST API، الطريقة المستخدمة غالباً لاسترداد البيانات هي:</b>
+<label class="opt"><input type="radio" name="q4" value="a"> DELETE</label>
+<label class="opt"><input type="radio" name="q4" value="b"> GET</label>
+<label class="opt"><input type="radio" name="q4" value="c"> PUT</label><div class="exp">GET لاسترداد معلومات عن مورد.</div></div>
+
+<div class="q" data-a="a"><b>5) HTTP بطبيعته:</b>
+<label class="opt"><input type="radio" name="q5" value="a"> Stateless</label>
+<label class="opt"><input type="radio" name="q5" value="b"> Database</label>
+<label class="opt"><input type="radio" name="q5" value="c"> Compiler</label><div class="exp">لذلك نحتاج cookies/sessions.</div></div>
+
+<div class="q" data-a="c"><b>6) المنفذ الافتراضي لـ HTTPS هو:</b>
+<label class="opt"><input type="radio" name="q6" value="a"> 80</label>
+<label class="opt"><input type="radio" name="q6" value="b"> 21</label>
+<label class="opt"><input type="radio" name="q6" value="c"> 443</label><div class="exp">HTTP غالباً 80 وHTTPS غالباً 443.</div></div>
+
+<div class="q" data-a="b"><b>7) عندما يدخل إدخال المستخدم إلى SQL ويغير معنى الاستعلام فهذا:</b>
+<label class="opt"><input type="radio" name="q7" value="a"> CDN</label>
+<label class="opt"><input type="radio" name="q7" value="b"> SQL Injection</label>
+<label class="opt"><input type="radio" name="q7" value="c"> RASP</label><div class="exp">SQLi = حقن داخل استعلام قاعدة البيانات.</div></div>
+
+<div class="q" data-a="a"><b>8) أفضل دفاع أساسي ضد SQL Injection هو:</b>
+<label class="opt"><input type="radio" name="q8" value="a"> Parameterized Queries</label>
+<label class="opt"><input type="radio" name="q8" value="b"> زيادة حجم الصفحة</label>
+<label class="opt"><input type="radio" name="q8" value="c"> استخدام GET دائماً</label><div class="exp">Prepared statements تفصل الكود عن البيانات.</div></div>
+
+<div class="q" data-a="c"><b>9) XSS المخزن Stored XSS يعني أن السكربت:</b>
+<label class="opt"><input type="radio" name="q9" value="a"> لا يصل للخادم أبداً</label>
+<label class="opt"><input type="radio" name="q9" value="b"> موجود فقط في ذاكرة المتصفح</label>
+<label class="opt"><input type="radio" name="q9" value="c"> يُخزن في الخادم/قاعدة البيانات ثم يعرض للزوار</label><div class="exp">Stored XSS أخطر لأنه يصيب من يزور الصفحة.</div></div>
+
+<div class="q" data-a="b"><b>10) حذف كلمة &lt;script&gt; فقط يعتبر دفاعاً غير كافٍ لأن:</b>
+<label class="opt"><input type="radio" name="q10" value="a"> HTTP لا يعمل</label>
+<label class="opt"><input type="radio" name="q10" value="b"> السياقات والترميزات وطرق الالتفاف كثيرة</label>
+<label class="opt"><input type="radio" name="q10" value="c"> قواعد البيانات لا تستخدم جداول</label><div class="exp">Sanitizing is not easy؛ نحتاج دفاعاً حسب السياق.</div></div>
+
+<div class="q" data-a="a"><b>11) إذا كان المستخدم A يستطيع الوصول لبيانات المستخدم B بتغيير id في الرابط، فهذا غالباً:</b>
+<label class="opt"><input type="radio" name="q11" value="a"> Broken Access Control / Authorization</label>
+<label class="opt"><input type="radio" name="q11" value="b"> Multimedia plugin</label>
+<label class="opt"><input type="radio" name="q11" value="c"> DNS cache</label><div class="exp">المشكلة تفويض أفقي/تحكم وصول.</div></div>
+
+<div class="q" data-a="c"><b>12) Second-order SQL Injection يحدث عندما:</b>
+<label class="opt"><input type="radio" name="q12" value="a"> لا توجد قاعدة بيانات</label>
+<label class="opt"><input type="radio" name="q12" value="b"> يتم استخدام HTTPS</label>
+<label class="opt"><input type="radio" name="q12" value="c"> إدخال ضار يُخزن ثم يُستخدم لاحقاً في استعلام جديد</label><div class="exp">الهجوم يظهر في مرحلة/وظيفة لاحقة.</div></div>
+
+<button id="grade" class="badge btn">صحّح الاختبار</button>
+<div id="score" class="score"></div>
+</section>
+
+<section>
+<h2 class="sec">🎯 الخلاصة النهائية</h2>
+<div class="card life"><p>إذا أردت جملة واحدة تحفظ المادة: <b>تطبيق الويب يستقبل طلبات HTTP من عالم غير موثوق، والأمن هو منع هذه الطلبات من التحول إلى أوامر خطيرة أو وصول غير مصرح.</b> كل شيء في الملفات يدور حول هذا: معمارية، API، HTTP، Cookies، HTTPS، Injection، SQLi، XSS، Sanitization، واختبارات الأمان.</p></div>
+<p><a class="badge" href="quick-review.html">فتح النسخة المركزة للمراجعة السريعة</a></p>
+</section>
+
+<div class="footer">دليل تفاعلي مبني على ملفات Web Application Security الأربعة، مع توسع تعليمي لتثبيت الفهم مع المحافظة على مصطلحات المادة.</div>
+</div>
+<script>
+const progress=document.getElementById('progress');
+function upd(){const h=document.documentElement;const max=h.scrollHeight-h.clientHeight;progress.style.width=(max? h.scrollTop/max*100:0)+'%'}
+document.addEventListener('scroll',upd);upd();
+document.querySelectorAll('.fc').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('on')));
+document.querySelectorAll('.opt').forEach(o=>o.addEventListener('click',()=>{const input=o.querySelector('input'); if(input) input.checked=true;}));
+document.getElementById('grade').addEventListener('click',()=>{
+ let total=0,ok=0;
+ document.querySelectorAll('.q').forEach(q=>{
+  total++; const ans=q.dataset.a; const chosen=q.querySelector('input:checked');
+  q.querySelectorAll('.opt').forEach(o=>o.classList.remove('good','bad'));
+  q.querySelectorAll('.opt').forEach(o=>{if(o.querySelector('input').value===ans)o.classList.add('good')});
+  if(chosen){const lab=chosen.closest('.opt'); if(chosen.value===ans){ok++; lab.classList.add('good')} else lab.classList.add('bad')}
+  const exp=q.querySelector('.exp'); if(exp) exp.style.display='block';
+ });
+ const pct=Math.round(ok/total*100);
+ document.getElementById('score').textContent=`درجتك: ${ok}/${total} (${pct}%). ${pct>=80?'ممتاز: أنت تفهم الخريطة.':'راجع الكلمات المفتاحية والجداول ثم أعد الاختبار.'}`;
+});
+</script>
+</body>
+</html>
