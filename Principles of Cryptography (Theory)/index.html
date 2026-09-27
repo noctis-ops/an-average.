@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Principles of Cryptography — شرح الخوارزميات من الصفر</title>
+<style>
+:root{--bg:#06111f;--card:#10243d;--card2:#142d4c;--ink:#eef8ff;--muted:#b9c9de;--blue:#58b9ff;--cyan:#69f2e8;--green:#7cf2a4;--yellow:#ffd166;--orange:#ff9f4a;--red:#ff6b6b;--purple:#caa0ff;--border:rgba(255,255,255,.14);--shadow:0 18px 55px rgba(0,0,0,.35)}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 18% 0,#174b7a 0,#06111f 38%,#020710 100%);color:var(--ink);font-family:Tahoma,"Noto Sans Arabic","Noto Kufi Arabic",Arial,sans-serif;line-height:1.9}.progress{position:fixed;top:0;right:0;height:5px;background:linear-gradient(90deg,var(--cyan),var(--blue),var(--purple));width:0;z-index:99}.wrap{width:min(1240px,94vw);margin:auto}.hero{padding:58px 0 22px}.hero h1{font-size:clamp(31px,5.4vw,62px);line-height:1.22;margin:8px 0 12px}.lead{font-size:clamp(17px,2.25vw,24px);color:var(--muted);max-width:1080px}.badge,.pill{display:inline-block;border:1px solid var(--border);background:rgba(255,255,255,.07);border-radius:999px;padding:6px 12px;margin:4px;color:#eef8ff}.pill{background:rgba(105,242,232,.12);border-color:rgba(105,242,232,.3)}.nav{position:sticky;top:5px;z-index:20;background:rgba(6,17,31,.84);backdrop-filter:blur(13px);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);padding:10px;margin:16px 0 32px}.nav a{text-decoration:none;color:var(--ink);display:inline-block;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.045);margin:3px;font-size:14px}.nav a:hover{background:rgba(88,185,255,.23)}section,.sec{scroll-margin-top:95px}.sec{margin:46px 0 16px;padding:20px;border:1px solid var(--border);border-radius:24px;background:linear-gradient(135deg,rgba(88,185,255,.19),rgba(202,160,255,.12));box-shadow:var(--shadow)}h2{font-size:clamp(25px,3.2vw,39px);margin:0}h2 small{display:block;color:var(--muted);font-size:15px;margin-top:4px}h3{font-size:25px;color:var(--cyan);margin:30px 0 12px}h4{font-size:18px;color:var(--yellow);margin:0 0 8px}p{margin:8px 0}.grid{display:grid;gap:14px}.c2{grid-template-columns:repeat(2,minmax(0,1fr))}.c3{grid-template-columns:repeat(3,minmax(0,1fr))}.c4{grid-template-columns:repeat(4,minmax(0,1fr))}@media(max-width:920px){.c2,.c3,.c4{grid-template-columns:1fr}.nav{position:relative;top:0}.flow{overflow:auto}.step{min-width:220px}}.card,.mini,.lesson{background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.035));border:1px solid var(--border);border-radius:20px;padding:17px 18px;box-shadow:0 10px 34px rgba(0,0,0,.19)}.mini{border-radius:16px;padding:13px 14px}.lesson{border-right:5px solid var(--blue)}.exam{border-right:5px solid var(--yellow)}.life{border-right:5px solid var(--green)}.danger{border-right:5px solid var(--red)}.story{border-right:5px solid var(--purple)}.term{border-right:5px solid var(--cyan)}.quote{font-size:19px;background:rgba(255,209,102,.12);border:1px dashed rgba(255,209,102,.5);border-radius:18px;padding:14px 18px;color:#fff3ce}.en,.mono{direction:ltr;unicode-bidi:embed;font-family:Consolas,Monaco,monospace}.mono{background:#030912;border:1px solid var(--border);padding:1px 6px;border-radius:7px;color:#dffffc}table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:16px;overflow:hidden}th,td{border-bottom:1px solid var(--border);padding:11px 12px;vertical-align:top}th{background:rgba(88,185,255,.18)}ul,ol{padding-right:24px}.flow{display:flex;gap:10px;align-items:stretch;margin:14px 0}.step{flex:1;background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:18px;padding:13px}.num{width:34px;height:34px;border-radius:50%;display:inline-grid;place-items:center;background:var(--blue);color:#06111f;font-weight:900;margin-left:6px}.arrow{align-self:center;color:var(--cyan);font-size:28px}.mind{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:12px;align-items:stretch}.center{display:grid;place-items:center;text-align:center;padding:24px;border-radius:24px;background:linear-gradient(135deg,var(--blue),var(--purple));color:#04101b;font-weight:900;font-size:24px}.node{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:18px;padding:13px}@media(max-width:850px){.mind{grid-template-columns:1fr}.center{order:-1}}.ladder{counter-reset:x}.ladder div{position:relative;margin:8px 0;padding:12px 16px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid var(--border)}.ladder div:before{counter-increment:x;content:counter(x);display:inline-grid;place-items:center;width:30px;height:30px;background:var(--green);color:#06111f;border-radius:50%;font-weight:900;margin-left:8px}.flashgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}@media(max-width:900px){.flashgrid{grid-template-columns:1fr}}.fc{height:185px;perspective:1000px;cursor:pointer}.flip{position:relative;width:100%;height:100%;transition:.55s;transform-style:preserve-3d}.fc.on .flip{transform:rotateY(180deg)}.front,.back{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;border-radius:20px;border:1px solid var(--border);backface-visibility:hidden;box-shadow:var(--shadow)}.front{background:linear-gradient(135deg,rgba(88,185,255,.28),rgba(105,242,232,.1))}.back{background:linear-gradient(135deg,rgba(124,242,164,.23),rgba(202,160,255,.13));transform:rotateY(180deg)}details{background:rgba(255,255,255,.055);border:1px solid var(--border);border-radius:16px;padding:12px 15px;margin:10px 0}summary{cursor:pointer;color:#fff;font-weight:900}.q{background:rgba(255,255,255,.055);border:1px solid var(--border);border-radius:18px;padding:15px;margin:14px 0}.opt{display:block;margin:8px 0;padding:10px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.04);cursor:pointer}.opt:hover{background:rgba(88,185,255,.15)}.opt.good{background:rgba(124,242,164,.22);border-color:var(--green)}.opt.bad{background:rgba(255,107,107,.22);border-color:var(--red)}.exp{display:none;color:var(--muted);margin-top:8px}.btn{cursor:pointer;font-size:18px}.score{font-size:22px;font-weight:900;color:var(--green)}.footer{text-align:center;color:var(--muted);padding:35px 0 60px}.diagram{font-size:15px;background:#020812;border:1px solid var(--border);border-radius:18px;padding:14px;overflow:auto;direction:ltr;text-align:left;line-height:1.6;color:#eafaff}.lab{border:1px solid rgba(105,242,232,.32);background:rgba(105,242,232,.06);border-radius:20px;padding:16px;margin:16px 0}.lab input,.lab select,.lab textarea{width:100%;padding:10px;border-radius:12px;border:1px solid var(--border);background:#07111f;color:var(--ink);margin:5px 0;font-family:Consolas,monospace}.lab button{padding:9px 14px;border:0;border-radius:999px;background:var(--cyan);color:#06111f;font-weight:900;cursor:pointer;margin:5px}.out{white-space:pre-wrap;background:#020812;border:1px solid var(--border);border-radius:14px;padding:12px;min-height:42px;direction:ltr;text-align:left;color:#dffffc}.alpha{font-size:14px;direction:ltr;text-align:center}.alpha span{display:inline-grid;place-items:center;width:34px;height:34px;margin:2px;border:1px solid var(--border);border-radius:8px;background:rgba(255,255,255,.055)}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="wrap">
+<header class="hero">
+  <span class="badge">🔐 Principles of Cryptography (Theory)</span>
+  <span class="badge">🧮 رياضيات مبسطة جداً</span>
+  <span class="badge">🧠 من الصفر</span>
+  <span class="badge">🧪 مختبر تفاعلي</span>
+  <h1>خوارزميات التشفير من الصفر: افهم الفكرة، احسب الخطوات، وادخل الاختبار بدون خوف من الرياضيات</h1>
+  <p class="lead">أنت قلت إنك ما حضرت المحاضرات وعندك مشكلة مع الرياضيات. ممتاز. سنكسر المادة إلى لعبة بسيطة: حروف تتحول إلى أرقام، نطبق عملية، ثم نرجعها حروف. كل خوارزمية سنشرحها: الفكرة، القانون، خطوات الحل، مثال امتحاني، والأخطاء الشائعة.</p>
+</header>
+<nav class="nav">
+<a href="#how">طريقة الدراسة</a><a href="#big">الفكرة الكبرى</a><a href="#math">رياضيات بلا خوف</a><a href="#map">خريطة الخوارزميات</a><a href="#caesar">Caesar/ROT13</a><a href="#atbash">Atbash/Substitution</a><a href="#multi">Multiplicative</a><a href="#affine">Affine</a><a href="#beaufort">Before/Beaufort</a><a href="#playfair">Playfair</a><a href="#vig">Vigenère/OTP/Autokey</a><a href="#des">DES</a><a href="#rsa">RSA</a><a href="#lab">مختبر</a><a href="#exam">حل الأسئلة</a><a href="#flash">بطاقات</a><a href="#quiz">اختبار</a>
+</nav>
+
+<section id="how">
+<h2 class="sec">0️⃣ كيف ندرس مادة التشفير؟ <small>لا تبدأ بالقوانين؛ ابدأ بفكرة اللعبة</small></h2>
+<div class="grid c2">
+<div class="card lesson"><h4>مشكلتك مع الرياضيات لها حل</h4><p>لن نتعامل مع التشفير كرياضيات ثقيلة. سنتعامل معه كآلة صغيرة: تدخل حرفاً، نحوله لرقم، نطبق عملية بسيطة، ثم نرجعه حرفاً. أغلب خوارزميات المادة تعمل على الأبجدية الإنجليزية 26 حرفاً، ولذلك كلمة <b>mod 26</b> هي مفتاح الباب.</p></div>
+<div class="card exam"><h4>هدف الاختبار</h4><p>غالباً السؤال سيطلب: شفّر كلمة، فك تشفير كلمة، ابنِ جدول/مصفوفة، احسب مفتاح، أو اشرح الفرق بين خوارزميتين. لذلك كل قسم هنا يعطيك طريقة حل ثابتة تمشي عليها مهما تغيرت الكلمة.</p></div>
+</div>
+<table>
+<tr><th>المرحلة</th><th>ماذا تفعل؟</th><th>الناتج</th></tr>
+<tr><td>45 دقيقة</td><td>افهم A=0 وmod 26 والمعكوس</td><td>ستنفتح لك Caesar وMultiplicative وAffine</td></tr>
+<tr><td>90 دقيقة</td><td>تدرب على Caesar/ROT13/Atbash/Substitution</td><td>خوارزميات الإزاحة والاستبدال تصبح سهلة</td></tr>
+<tr><td>120 دقيقة</td><td>Multiplicative وAffine وVigenère وAutokey وOTP</td><td>تتقن قوانين الجمع/الضرب بالمفتاح</td></tr>
+<tr><td>90 دقيقة</td><td>Playfair خطوة خطوة</td><td>تفهم المصفوفة والأزواج</td></tr>
+<tr><td>120 دقيقة</td><td>DES وRSA</td><td>تفهم الفرق بين Symmetric وAsymmetric وتحل RSA صغير</td></tr>
+<tr><td>60 دقيقة</td><td>المختبر + البطاقات + الاختبار</td><td>مراجعة نشطة قبل الاختبار</td></tr>
+</table>
+<div class="card danger"><h4>تنبيه مهم عن اسم “Before”</h4><p>في الملف المرفوع مكتوبة الخوارزمية رقم 7 باسم <b>Before</b>. في التشفير الكلاسيكي غالباً المقصود هو <b>Beaufort Cipher</b> لأنها تأتي مع Vigenère وAutokey. سأشرحها باسم <b>Before/Beaufort</b> حتى لا تبتعد عن لفظ الملف، وإذا كان الدكتور يقصد اسماً مختلفاً سنعدله فوراً.</p></div>
+</section>
+
+<section id="big">
+<h2 class="sec">1️⃣ الفكرة الكبرى للتشفير <small>ما الذي يحدث أصلاً؟</small></h2>
+<div class="quote">التشفير هو تحويل رسالة مفهومة Plaintext إلى رسالة غير مفهومة Ciphertext باستخدام مفتاح Key، ثم يستطيع من يملك المفتاح الصحيح إرجاعها.</div>
+<div class="flow">
+<div class="step"><div class="num">1</div><b>Plaintext</b><span>الرسالة الأصلية مثل HELLO</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">2</div><b>Key</b><span>رقم أو كلمة أو جدول</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">3</div><b>Encryption</b><span>تطبيق القانون</span></div><div class="arrow">←</div>
+<div class="step"><div class="num">4</div><b>Ciphertext</b><span>الناتج المشفر</span></div>
+</div>
+<div class="grid c2">
+<div class="card term"><h4>Symmetric Encryption</h4><p>نفس المفتاح للتشفير وفك التشفير. أمثلة في قائمتك: Caesar، Vigenère، Playfair، DES.</p></div>
+<div class="card term"><h4>Asymmetric Encryption</h4><p>مفتاح عام للتشفير ومفتاح خاص للفك. المثال في قائمتك: RSA.</p></div>
+</div>
+<h3>الفكرة التي تجمع أغلب الخوارزميات الكلاسيكية</h3>
+<div class="card lesson"><p>معظم الخوارزميات الأولى في قائمتك لا تعمل على “الحروف” مباشرة. هي تحول الحرف إلى رقم: A=0, B=1, ..., Z=25. ثم تطبق عملية مثل جمع أو ضرب أو طرح. ثم تعيد الرقم إلى حرف.</p></div>
+<div class="alpha" id="alphaTable"></div>
+</section>
+
+<section id="math">
+<h2 class="sec">2️⃣ الرياضيات بلا خوف: mod 26 والمعكوس <small>هذا هو المفتاح السحري</small></h2>
+<h3>ما معنى mod؟</h3>
+<div class="card life"><p><b>mod</b> يعني “الباقي بعد القسمة”. مثل الساعة: إذا كانت الساعة 10 وأضفت 5 ساعات، لا تقول 15؛ تقول 3. لأن الساعة تلف. الأبجدية أيضاً تلف بعد Z وتعود إلى A.</p></div>
+<table>
+<tr><th>عملية</th><th>فهمها</th><th>الناتج</th></tr>
+<tr><td>29 mod 26</td><td>29 = 26 + 3</td><td>3</td></tr>
+<tr><td>-1 mod 26</td><td>ارجع خطوة قبل A فتصل Z</td><td>25</td></tr>
+<tr><td>52 mod 26</td><td>52 = 26 × 2</td><td>0</td></tr>
+</table>
+
+<h3>جدول الحروف والأرقام</h3>
+<div class="alpha">
+<span>A<br>0</span><span>B<br>1</span><span>C<br>2</span><span>D<br>3</span><span>E<br>4</span><span>F<br>5</span><span>G<br>6</span><span>H<br>7</span><span>I<br>8</span><span>J<br>9</span><span>K<br>10</span><span>L<br>11</span><span>M<br>12</span><span>N<br>13</span><span>O<br>14</span><span>P<br>15</span><span>Q<br>16</span><span>R<br>17</span><span>S<br>18</span><span>T<br>19</span><span>U<br>20</span><span>V<br>21</span><span>W<br>22</span><span>X<br>23</span><span>Y<br>24</span><span>Z<br>25</span>
+</div>
+
+<h3>المعكوس الضربي Multiplicative Inverse</h3>
+<div class="card lesson"><p>في Multiplicative وAffine نحتاج أحياناً نقسم. لكن في mod 26 لا نقسم بالطريقة العادية؛ نضرب في <b>المعكوس</b>. معكوس a هو رقم يجعلك إذا ضربته في a تحصل على 1 mod 26.</p></div>
+<table>
+<tr><th>a</th><th>المعكوس a⁻¹ mod 26</th><th>التحقق</th></tr>
+<tr><td>1</td><td>1</td><td>1×1=1</td></tr>
+<tr><td>3</td><td>9</td><td>27 mod 26 = 1</td></tr>
+<tr><td>5</td><td>21</td><td>105 mod 26 = 1</td></tr>
+<tr><td>7</td><td>15</td><td>105 mod 26 = 1</td></tr>
+<tr><td>9</td><td>3</td><td>27 mod 26 = 1</td></tr>
+<tr><td>11</td><td>19</td><td>209 mod 26 = 1</td></tr>
+<tr><td>15</td><td>7</td><td>105 mod 26 = 1</td></tr>
+<tr><td>17</td><td>23</td><td>391 mod 26 = 1</td></tr>
+<tr><td>19</td><td>11</td><td>209 mod 26 = 1</td></tr>
+<tr><td>21</td><td>5</td><td>105 mod 26 = 1</td></tr>
+<tr><td>23</td><td>17</td><td>391 mod 26 = 1</td></tr>
+<tr><td>25</td><td>25</td><td>625 mod 26 = 1</td></tr>
+</table>
+<div class="card exam"><h4>قاعدة امتحانية</h4><p>في Multiplicative وAffine يجب أن يكون المفتاح الضربي a له معكوس. يعني <span class="mono">gcd(a,26)=1</span>. إذا a = 2 أو 13 أو أي رقم يشترك مع 26، لا يصلح لأنك لن تستطيع فك التشفير بشكل صحيح.</p></div>
+</section>
+
+<section id="map">
+<h2 class="sec">3️⃣ خريطة الخوارزميات في الملف</h2>
+<div class="mind">
+<div class="node"><b>إزاحة/استبدال بسيط</b><br>Caesar, ROT13, Atbash, Simple Substitution</div>
+<div class="center">كل الخوارزميات = طريقة تغيير الحروف + مفتاح + عكس العملية</div>
+<div class="node"><b>رياضيات mod 26</b><br>Multiplicative, Affine, Vigenère, Beaufort, Autokey, OTP</div>
+<div class="node"><b>مصفوفة أحرف</b><br>Playfair يستخدم مربع 5×5 وأزواج حروف.</div>
+<div class="node"><b>تشفير حديث متماثل</b><br>DES يستخدم مفتاحاً واحداً و16 جولة Feistel.</div>
+<div class="node"><b>تشفير حديث غير متماثل</b><br>RSA يستخدم مفتاحاً عاماً وخاصاً وأعداداً أولية.</div>
+</div>
+</section>
+
+<section id="caesar">
+<h2 class="sec">4️⃣ Caesar Cipher وROT13 <small>أسهل باب للدخول</small></h2>
+<h3>Caesar Cipher</h3>
+<div class="card lesson"><p>فكرته بسيطة: كل حرف يتحرك عدداً ثابتاً من الخطوات. المفتاح k هو عدد الخطوات.</p></div>
+<table>
+<tr><th>التشفير</th><td><span class="mono">C = (P + k) mod 26</span></td></tr>
+<tr><th>فك التشفير</th><td><span class="mono">P = (C - k) mod 26</span></td></tr>
+</table>
+<div class="card story"><h4>مثال خطوة بخطوة: شفّر CAT بمفتاح k=3</h4><p>C=2 → 2+3=5 → F<br>A=0 → 0+3=3 → D<br>T=19 → 19+3=22 → W<br>إذن CAT تصبح <b>FDW</b>.</p></div>
+<div class="card exam"><h4>كيف تحل سؤال Caesar؟</h4><ol><li>حوّل كل حرف إلى رقم.</li><li>للتشفير أضف k، وللفك اطرح k.</li><li>إذا خرج الرقم فوق 25 أو تحت 0 استخدم mod 26.</li><li>حوّل الرقم إلى حرف.</li></ol></div>
+
+<h3>ROT13</h3>
+<div class="card term"><p>ROT13 هو Caesar بمفتاح 13. الجميل فيه أن التشفير وفك التشفير نفس العملية، لأن 13 + 13 = 26 فتعود لنفس الحرف.</p></div>
+<div class="grid c2"><div class="mini">A ↔ N</div><div class="mini">B ↔ O</div><div class="mini">HELLO → URYYB</div><div class="mini">URYYB → HELLO</div></div>
+</section>
+
+<section id="atbash">
+<h2 class="sec">5️⃣ Atbash وSimple Substitution <small>استبدال الحروف بدل تحريكها</small></h2>
+<h3>Atbash</h3>
+<div class="card lesson"><p>Atbash يعكس الأبجدية: A تصبح Z، B تصبح Y، C تصبح X... كأنك وضعت مرآة أمام alphabet.</p></div>
+<table><tr><th>القانون</th><td><span class="mono">C = 25 - P</span></td></tr><tr><th>مثال</th><td>A=0 → Z=25، H=7 → S=18</td></tr></table>
+<div class="card story"><h4>مثال: HELLO</h4><p>H→S، E→V، L→O، L→O، O→L. إذن HELLO تصبح <b>SVOOL</b>.</p></div>
+
+<h3>Simple Substitution</h3>
+<div class="card term"><p>في Simple Substitution لا يوجد قانون جمع أو ضرب. يوجد جدول استبدال كامل: كل حرف Plain له حرف Cipher محدد. المفتاح هنا هو ترتيب أبجدية مشفرة من 26 حرفاً دون تكرار.</p></div>
+<table>
+<tr><th>Plain alphabet</th><td class="en">ABCDEFGHIJKLMNOPQRSTUVWXYZ</td></tr>
+<tr><th>Cipher alphabet</th><td class="en">QWERTYUIOPASDFGHJKLZXCVBNM</td></tr>
+</table>
+<div class="card exam"><h4>كيف تحل؟</h4><p>للتشفير: ابحث عن الحرف في السطر العادي وخذ المقابل في السطر المشفر. للفك: اعكس البحث؛ ابحث في السطر المشفر وخذ المقابل في السطر العادي.</p></div>
+<div class="card danger"><h4>الفرق بين Caesar وSimple Substitution</h4><p>Caesar نوع خاص من substitution لأن جدول الاستبدال فيه مجرد إزاحة ثابتة. أما Simple Substitution فجدوله عشوائي وقد لا يكون له نمط حسابي.</p></div>
+</section>
+
+<section id="multi">
+<h2 class="sec">6️⃣ Multiplicative Cipher — خوارزمية الضرب</h2>
+<div class="quote">بدل أن نضيف k كما في Caesar، نضرب في مفتاح a. لكن a يجب أن يكون له معكوس mod 26.</div>
+<table>
+<tr><th>التشفير</th><td><span class="mono">C = (a × P) mod 26</span></td></tr>
+<tr><th>فك التشفير</th><td><span class="mono">P = (a⁻¹ × C) mod 26</span></td></tr>
+</table>
+
+<h3>مثال خطوة بخطوة: شفّر DOG باستخدام a=5</h3>
+<table>
+<tr><th>الحرف</th><th>P</th><th>5×P</th><th>mod 26</th><th>C</th></tr>
+<tr><td>D</td><td>3</td><td>15</td><td>15</td><td>P</td></tr>
+<tr><td>O</td><td>14</td><td>70</td><td>18</td><td>S</td></tr>
+<tr><td>G</td><td>6</td><td>30</td><td>4</td><td>E</td></tr>
+</table>
+<div class="card story"><p>إذن DOG تصبح <b>PSE</b>.</p></div>
+
+<h3>فك المثال</h3>
+<div class="card lesson"><p>معكوس 5 mod 26 هو 21. لفك PSE: P=15 → 21×15=315 → 315 mod 26 = 3 = D. وهكذا نرجع DOG.</p></div>
+<div class="card exam"><h4>سؤال مهم: لماذا لا نستخدم a=2؟</h4><p>لأن 2 ليس له معكوس mod 26. مثلاً A=0 وN=13 كلاهما عند الضرب في 2 يعطيان 0 mod 26. إذا حرفان صارا نفس الناتج، لا نستطيع فك الرسالة.</p></div>
+</section>
+
+<section id="affine">
+<h2 class="sec">7️⃣ Affine Cipher — Caesar + Multiplicative معاً</h2>
+<div class="card lesson"><p>Affine يجمع الضرب والجمع: أولاً نضرب الحرف في a، ثم نضيف b. لذلك يحتاج a صالحاً له معكوس، وb قد يكون أي رقم من 0 إلى 25.</p></div>
+<table>
+<tr><th>التشفير</th><td><span class="mono">C = (aP + b) mod 26</span></td></tr>
+<tr><th>فك التشفير</th><td><span class="mono">P = a⁻¹(C - b) mod 26</span></td></tr>
+</table>
+<div class="card story"><h4>مثال: شفّر HELLO باستخدام a=5 و b=8</h4><p>H=7 → 5×7+8=43 → 17=R<br>E=4 → 28 → 2=C<br>L=11 → 63 → 11=L<br>L → L<br>O=14 → 78 → 0=A<br>إذن HELLO تصبح <b>RCLLA</b>.</p></div>
+<div class="card exam"><h4>طريقة فك Affine</h4><ol><li>ابحث عن معكوس a.</li><li>لكل حرف Cipher: اطرح b أولاً.</li><li>اضرب الناتج في معكوس a.</li><li>استخدم mod 26 وحوّل لحرف.</li></ol></div>
+</section>
+
+<section id="beaufort">
+<h2 class="sec">8️⃣ Before/Beaufort Cipher <small>نفس عائلة Vigenère لكن بعكس الطرح</small></h2>
+<div class="card danger"><h4>ملاحظة الاسم</h4><p>كما ذكرت سابقاً: الملف يقول “Before”. سأشرح <b>Beaufort Cipher</b> لأنه الاسم المعروف في التشفير الكلاسيكي والقريب من Vigenère. إذا ظهر في اختبارك باسم Before فتعامل معه كما في هذا القسم ما لم يعطِ الدكتور قانوناً مختلفاً.</p></div>
+<div class="card lesson"><p>Beaufort يستخدم مفتاحاً نصياً مثل Vigenère، لكن القانون الأساسي فيه: <b>المفتاح ناقص النص</b> بدلاً من النص زائد المفتاح.</p></div>
+<table>
+<tr><th>التشفير</th><td><span class="mono">C = (K - P) mod 26</span></td></tr>
+<tr><th>فك التشفير</th><td><span class="mono">P = (K - C) mod 26</span></td></tr>
+</table>
+<div class="card story"><h4>مثال صغير: PLAIN = CAT، KEY = DOG</h4><p>كرر المفتاح إذا احتجنا: DOG<br>C=2, D=3 → 3-2=1 → B<br>A=0, O=14 → 14-0=14 → O<br>T=19, G=6 → 6-19=-13 mod 26 = 13 → N<br>إذن CAT تصبح <b>BON</b>.</p></div>
+<div class="card exam"><h4>لا تخلطه مع Vigenère</h4><p>Vigenère: <span class="mono">P + K</span>. Beaufort: <span class="mono">K - P</span>. هذه هي النقطة التي يضيع فيها الطلاب.</p></div>
+</section>
+
+<section id="playfair">
+<h2 class="sec">9️⃣ Playfair Cipher — مربع 5×5 وأزواج حروف</h2>
+<div class="quote">Playfair لا يشفر حرفاً حرفاً، بل يشفر زوجين زوجين. هذه أهم فكرة.</div>
+
+<h3>الفكرة العامة</h3>
+<div class="ladder">
+<div>اختر كلمة مفتاحية Key.</div>
+<div>اكتب حروف المفتاح دون تكرار في مربع 5×5.</div>
+<div>أكمل بقية الأبجدية، غالباً ندمج I وJ في خانة واحدة.</div>
+<div>نقسم النص إلى أزواج Digraphs.</div>
+<div>نطبق قواعد الصف/العمود/المستطيل.</div>
+</div>
+
+<h3>تجهيز النص</h3>
+<table>
+<tr><th>الحالة</th><th>ماذا نفعل؟</th></tr>
+<tr><td>وجود J</td><td>نحول J إلى I غالباً</td></tr>
+<tr><td>حرفان متماثلان في زوج واحد</td><td>ندخل X بينهما: BALLOON → BA LX LO ON تقريباً</td></tr>
+<tr><td>عدد الحروف فردي</td><td>نضيف X في النهاية</td></tr>
+</table>
+
+<h3>قواعد التشفير</h3>
+<table>
+<tr><th>مكان الحرفين</th><th>قاعدة التشفير</th><th>قاعدة الفك</th></tr>
+<tr><td>نفس الصف</td><td>خذ الحرف الذي على يمين كل حرف</td><td>خذ الحرف الذي على يسار كل حرف</td></tr>
+<tr><td>نفس العمود</td><td>خذ الحرف الذي تحت كل حرف</td><td>خذ الحرف الذي فوق كل حرف</td></tr>
+<tr><td>مستطيل</td><td>كل حرف يأخذ حرف نفس صفه وعمود الحرف الآخر</td><td>نفس قاعدة المستطيل</td></tr>
+</table>
+
+<div class="card story"><h4>مثال مشهور بمفتاح MONARCHY</h4><p>المربع يبدأ بحروف MONARCHY دون تكرار، ثم بقية الأبجدية مع دمج I/J. عند تشفير كلمة مثل INSTRUMENTS نحضر الأزواج ونطبق القواعد. لا تحفظ الناتج فقط؛ افهم القواعد لأن الاختبار قد يعطي مفتاحاً مختلفاً.</p></div>
+<div class="card exam"><h4>طريقة حل سؤال Playfair في الاختبار</h4><ol><li>اكتب المفتاح بدون تكرار.</li><li>أكمل المربع 5×5.</li><li>نظف النص: J→I، أزواج، X للتكرار أو الفردي.</li><li>لكل زوج: هل نفس صف؟ نفس عمود؟ مستطيل؟</li><li>طبق القاعدة بهدوء.</li></ol></div>
+</section>
+
+<section id="vig">
+<h2 class="sec">🔟 Vigenère وOne-time Pad وAutokey <small>مفاتيح نصية لا رقم واحد</small></h2>
+
+<h3>Vigenère Cipher</h3>
+<div class="card lesson"><p>Vigenère مثل Caesar لكن المفتاح يتغير من حرف إلى حرف. بدل k ثابت، نستخدم كلمة مفتاحية ونكررها فوق النص.</p></div>
+<table><tr><th>التشفير</th><td><span class="mono">C = (P + K) mod 26</span></td></tr><tr><th>فك التشفير</th><td><span class="mono">P = (C - K) mod 26</span></td></tr></table>
+<div class="card story"><h4>مثال مشهور</h4><p>Plaintext: <span class="mono">ATTACKATDAWN</span><br>Key: <span class="mono">LEMONLEMONLE</span><br>Ciphertext: <span class="mono">LXFOPVEFRNHR</span></p></div>
+<div class="card exam"><p>طريقة الحل: اكتب المفتاح مكرراً تحت الرسالة، حول الحروف لأرقام، اجمع للتشفير أو اطرح للفك.</p></div>
+
+<h3>One-time Pad</h3>
+<div class="card term"><p>One-time Pad يشبه Vigenère لكن المفتاح يجب أن يكون: عشوائياً فعلاً، بطول الرسالة، ويُستخدم مرة واحدة فقط. عند تحقق الشروط يعطي سرية مثالية نظرياً.</p></div>
+<div class="grid c3"><div class="mini">مفتاح عشوائي</div><div class="mini">طوله مثل الرسالة</div><div class="mini">لا يُعاد استخدامه أبداً</div></div>
+<div class="card danger"><h4>خطأ قاتل</h4><p>إعادة استخدام مفتاح One-time Pad مرتين تدمّر الأمان. لذلك اسمه One-time: مرة واحدة.</p></div>
+
+<h3>Autokey Cipher</h3>
+<div class="card lesson"><p>Autokey يبدأ بكلمة مفتاحية قصيرة، ثم يكمل المفتاح من نص الرسالة نفسها. لذلك لا نكرر المفتاح كما في Vigenère التقليدي.</p></div>
+<table>
+<tr><th>Plaintext</th><td class="en">ATTACKATDAWN</td></tr>
+<tr><th>Key word</th><td class="en">QUEEN</td></tr>
+<tr><th>Keystream</th><td class="en">QUEENATTACKA</td></tr>
+</table>
+<div class="card exam"><h4>كيف تفك Autokey؟</h4><p>ابدأ بالكلمة المفتاحية المعطاة. بعد أن تفك أول حروف من plaintext، استخدم plaintext الذي استخرجته لإكمال المفتاح لبقية الرسالة.</p></div>
+
+<h3>مقارنة سريعة</h3>
+<table>
+<tr><th>الخوارزمية</th><th>كيف تحصل على المفتاح لكل حرف؟</th><th>قوة/ملاحظة</th></tr>
+<tr><td>Caesar</td><td>رقم ثابت k</td><td>سهل جداً</td></tr>
+<tr><td>Vigenère</td><td>كلمة تتكرر</td><td>أقوى من Caesar لكن قابل للتحليل إذا تكرر المفتاح</td></tr>
+<tr><td>One-time Pad</td><td>مفتاح عشوائي بطول الرسالة ولا يتكرر</td><td>سرية مثالية نظرياً</td></tr>
+<tr><td>Autokey</td><td>كلمة ثم plaintext نفسه</td><td>يقلل التكرار مقارنة Vigenère</td></tr>
+<tr><td>Beaufort</td><td>كلمة مفتاحية لكن القانون K-P</td><td>لا تخلطه مع Vigenère</td></tr>
+</table>
+</section>
+
+<section id="des">
+<h2 class="sec">1️⃣1️⃣ DES — تشفير حديث متماثل بشكل مبسط</h2>
+<div class="card lesson"><p><b>DES</b> خوارزمية تشفير متماثلة Symmetric Block Cipher. يعني تستخدم نفس المفتاح للتشفير والفك، وتعمل على كتل ثابتة من البيانات لا حرفاً حرفاً مثل Caesar.</p></div>
+<div class="grid c3">
+<div class="mini"><b>Block size</b><br>64-bit block</div>
+<div class="mini"><b>Key</b><br>64-bit ظاهرياً لكن الفعال 56-bit تقريباً</div>
+<div class="mini"><b>Rounds</b><br>16 جولة Feistel</div>
+</div>
+<h3>ما معنى Feistel؟</h3>
+<div class="card life"><p>تخيل الرسالة تُقسم نصفين: يسار L ويمين R. في كل جولة: اليمين يدخل دالة مع مفتاح الجولة، الناتج يُخلط مع اليسار، ثم يتم التبديل. جمال Feistel أن نفس البناء يسمح بفك التشفير بعكس ترتيب المفاتيح.</p></div>
+<pre class="diagram">Plain block (64 bits)
+   │ Initial Permutation
+   ▼
+L0 | R0
+Round 1:  L1 = R0,  R1 = L0 XOR F(R0, K1)
+Round 2:  L2 = R1,  R2 = L1 XOR F(R1, K2)
+...
+Round 16
+   │ Final Permutation
+   ▼
+Cipher block</pre>
+<h3>داخل دالة F في DES</h3>
+<div class="flow"><div class="step"><div class="num">1</div><b>Expansion</b><span>توسيع نصف الكتلة</span></div><div class="arrow">←</div><div class="step"><div class="num">2</div><b>XOR</b><span>خلط مع Subkey</span></div><div class="arrow">←</div><div class="step"><div class="num">3</div><b>S-boxes</b><span>استبدال غير خطي</span></div><div class="arrow">←</div><div class="step"><div class="num">4</div><b>P-box</b><span>ترتيب/تبديل</span></div></div>
+<div class="card exam"><h4>كيف تجيب سؤال DES نظري؟</h4><p>قل: DES تشفير متماثل block cipher، يعمل على 64-bit block، يستخدم مفتاحاً فعالاً 56-bit، يتكون من 16 Feistel rounds، وفي كل جولة تستخدم دالة F مع subkey، وفك التشفير يتم بعكس ترتيب مفاتيح الجولات.</p></div>
+</section>
+
+<section id="rsa">
+<h2 class="sec">1️⃣2️⃣ RSA — التشفير بالمفتاح العام بدون رعب رياضيات</h2>
+<div class="quote">RSA يعتمد على فكرة أن ضرب عددين أوليين كبيرين سهل، لكن تحليل الناتج إلى العددين صعب جداً عندما تكون الأعداد كبيرة.</div>
+
+<h3>المشهد العام</h3>
+<div class="grid c2"><div class="card term"><h4>Public Key</h4><p>يُعطى للناس للتشفير أو التحقق: <span class="mono">(e, n)</span>.</p></div><div class="card term"><h4>Private Key</h4><p>يبقى سرياً لفك التشفير أو التوقيع: <span class="mono">(d, n)</span>.</p></div></div>
+
+<h3>خطوات إنشاء مفاتيح RSA</h3>
+<div class="ladder">
+<div>اختر عددين أوليين صغيرين في المثال: <span class="mono">p</span> و <span class="mono">q</span>.</div>
+<div>احسب <span class="mono">n = p × q</span>.</div>
+<div>احسب <span class="mono">φ(n) = (p-1)(q-1)</span>.</div>
+<div>اختر <span class="mono">e</span> بحيث <span class="mono">gcd(e, φ)=1</span>.</div>
+<div>احسب <span class="mono">d</span> بحيث <span class="mono">e×d mod φ = 1</span>.</div>
+<div>التشفير: <span class="mono">C = M^e mod n</span>.</div>
+<div>فك التشفير: <span class="mono">M = C^d mod n</span>.</div>
+</div>
+
+<h3>مثال امتحاني سهل</h3>
+<div class="card story"><p>اختر <span class="mono">p=3</span> و <span class="mono">q=11</span>.<br>إذن <span class="mono">n=33</span>، و <span class="mono">φ=(2)(10)=20</span>.<br>اختر <span class="mono">e=3</span> لأن gcd(3,20)=1.<br>نبحث عن d: <span class="mono">3×d mod 20 = 1</span>. نجد <span class="mono">d=7</span> لأن 21 mod 20 = 1.<br>المفتاح العام: <span class="mono">(3,33)</span>. المفتاح الخاص: <span class="mono">(7,33)</span>.</p></div>
+<div class="card story"><h4>شفّر M=4</h4><p><span class="mono">C = 4^3 mod 33 = 64 mod 33 = 31</span>. إذن النص المشفر 31.</p><h4>فك C=31</h4><p><span class="mono">M = 31^7 mod 33</span>. لأن 31 مثل -2، إذن (-2)^7 = -128. عند mod 33 تعود إلى 4. إذن الرسالة الأصلية 4.</p></div>
+
+<h3>كيف تجد d بدون خوف؟</h3>
+<div class="card lesson"><p>في أمثلة الاختبار الصغيرة، جرب مضاعفات e حتى تجد رقماً يعطي باقي 1 عند القسمة على φ. مثلاً e=3 وφ=20: 3،6،9،12،15،18،21. وصلنا 21، والباقي 1، إذن d=7 لأن 3×7=21.</p></div>
+<div class="card exam"><h4>فرق RSA عن DES</h4><p>DES متماثل: نفس المفتاح. RSA غير متماثل: مفتاح عام وخاص. DES أسرع ويستخدم للبيانات الكبيرة، RSA أثقل وغالباً يستخدم لتبادل مفاتيح أو تشفير قيم صغيرة/مفاتيح.</p></div>
+</section>
+
+<section id="lab">
+<h2 class="sec">🧪 مختبر تفاعلي للتدريب <small>جرّب بنفسك حتى تثبت الخطوات في رأسك</small></h2>
+<div class="card lesson"><p>استخدم هذا المختبر للتأكد من إجابتك بعد أن تحل بيدك. لا تعتمد عليه وحده؛ في الاختبار المطلوب غالباً خطوات الحل.</p></div>
+
+<div class="lab">
+<h3>مختبر الخوارزميات الكلاسيكية</h3>
+<div class="grid c3">
+<div><label>الخوارزمية</label><select id="alg"><option value="caesar">Caesar</option><option value="rot13">ROT13</option><option value="atbash">Atbash</option><option value="multiplicative">Multiplicative</option><option value="affine">Affine</option><option value="vigenere">Vigenère</option><option value="beaufort">Before/Beaufort</option><option value="autokey">Autokey</option><option value="playfair">Playfair</option></select></div>
+<div><label>الوضع</label><select id="mode"><option value="enc">Encrypt</option><option value="dec">Decrypt</option></select></div>
+<div><label>النص</label><input id="text" value="HELLO"></div>
+</div>
+<div class="grid c3">
+<div><label>k / a / shift</label><input id="k1" value="3"></div>
+<div><label>b في Affine</label><input id="k2" value="8"></div>
+<div><label>كلمة المفتاح</label><input id="wordkey" value="KEY"></div>
+</div>
+<button onclick="runClassic()">احسب</button>
+<div class="out" id="classicOut"></div>
+</div>
+
+<div class="lab">
+<h3>مختبر RSA الصغير</h3>
+<div class="grid c3"><div><label>p</label><input id="p" value="3"></div><div><label>q</label><input id="q" value="11"></div><div><label>e</label><input id="e" value="3"></div></div>
+<div class="grid c2"><div><label>Message M للتشفير</label><input id="m" value="4"></div><div><label>Cipher C للفك</label><input id="c" value="31"></div></div>
+<button onclick="runRSA()">احسب RSA</button>
+<div class="out" id="rsaOut"></div>
+</div>
+</section>
+
+<section id="exam">
+<h2 class="sec">1️⃣3️⃣ كيف تعرف تحل سؤال الاختبار؟ <small>خريطة قرار سريعة</small></h2>
+<h3>أول سؤال تسأله: هل الخوارزمية حرفية أم كتلية أم عددية؟</h3>
+<table>
+<tr><th>إذا السؤال فيه...</th><th>فكر في...</th><th>طريقة الحل</th></tr>
+<tr><td>إزاحة رقم ثابت</td><td>Caesar</td><td>جمع/طرح k mod 26</td></tr>
+<tr><td>ROT13</td><td>Caesar k=13</td><td>نفس العملية للتشفير والفك</td></tr>
+<tr><td>عكس الأبجدية</td><td>Atbash</td><td>C=25-P</td></tr>
+<tr><td>جدول أبجدية مشفرة</td><td>Simple Substitution</td><td>ابحث في الجدول</td></tr>
+<tr><td>ضرب في a</td><td>Multiplicative</td><td>C=aP، للفك استخدم a⁻¹</td></tr>
+<tr><td>a و b</td><td>Affine</td><td>C=aP+b، للفك P=a⁻¹(C-b)</td></tr>
+<tr><td>مفتاح كلمة متكرر</td><td>Vigenère</td><td>P+K أو C-K</td></tr>
+<tr><td>K-P</td><td>Beaufort/Before</td><td>المفتاح ناقص النص</td></tr>
+<tr><td>مربع 5×5 وأزواج</td><td>Playfair</td><td>صف/عمود/مستطيل</td></tr>
+<tr><td>مفتاح بطول الرسالة وعشوائي</td><td>One-time Pad</td><td>مثل Vigenère لكن لا يتكرر</td></tr>
+<tr><td>مفتاح ثم plaintext يكمل المفتاح</td><td>Autokey</td><td>اكتب keystream ثم اجمع/اطرح</td></tr>
+<tr><td>p و q و e و d</td><td>RSA</td><td>n, phi, inverse, powers mod n</td></tr>
+<tr><td>64-bit و16 rounds وFeistel</td><td>DES</td><td>شرح نظري للبنية</td></tr>
+</table>
+
+<h3>قوالب حل جاهزة</h3>
+<div class="card exam"><h4>قالب Caesar/Multiplicative/Affine</h4><p>أكتب جدول: الحرف، الرقم P أو C، العملية، الناتج mod 26، الحرف. لا تحل في رأسك فقط، لأن الخطوات عليها درجات.</p></div>
+<div class="card exam"><h4>قالب Vigenère/OTP/Autokey</h4><p>ضع Plaintext في سطر، Keystream في سطر، الأرقام في سطر، ثم اجمع للتشفير أو اطرح للفك. في OTP لا تكرر المفتاح، وفي Autokey أكمل من plaintext.</p></div>
+<div class="card exam"><h4>قالب Playfair</h4><p>ارسم المربع أولاً. جهز الأزواج. بجانب كل زوج اكتب حالته: same row / same column / rectangle. ثم طبق القاعدة.</p></div>
+<div class="card exam"><h4>قالب RSA</h4><p>1) n=pq. 2) φ=(p-1)(q-1). 3) تحقق gcd(e,φ)=1. 4) d هو معكوس e. 5) C=M^e mod n. 6) M=C^d mod n.</p></div>
+
+<h3>أخطاء الطلاب الشائعة</h3>
+<div class="grid c2">
+<div class="mini danger">استخدام A=1 بدل A=0 بينما أغلب أمثلة التشفير الكلاسيكي تستخدم A=0.</div>
+<div class="mini danger">نسيان mod 26 عند رقم أكبر من 25 أو سالب.</div>
+<div class="mini danger">في Affine: طرح b ثم ضرب في معكوس a، وليس العكس.</div>
+<div class="mini danger">اختيار a غير صالح في Multiplicative/Affine مثل 2 أو 13.</div>
+<div class="mini danger">خلط Vigenère مع Beaufort: الأول P+K والثاني K-P.</div>
+<div class="mini danger">في Playfair: تشفير حرف واحد بدل زوجين.</div>
+<div class="mini danger">في RSA: نسيان φ أو الخلط بين e و d.</div>
+<div class="mini danger">اعتبار DES وRSA نفس النوع؛ DES symmetric وRSA asymmetric.</div>
+</div>
+</section>
+
+<section id="flash">
+<h2 class="sec">🃏 بطاقات مراجعة قلّابة</h2>
+<div class="flashgrid">
+<div class="fc"><div class="flip"><div class="front">ما معنى mod 26؟</div><div class="back">الباقي بعد القسمة على 26؛ الأبجدية تلف بعد Z وتعود إلى A.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">قانون Caesar؟</div><div class="back">C=(P+k) mod 26، والفك P=(C-k) mod 26.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">ROT13؟</div><div class="back">Caesar بمفتاح 13، ونفس العملية تفك التشفير.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">Atbash؟</div><div class="back">عكس الأبجدية: C=25-P.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">شرط a في Multiplicative/Affine؟</div><div class="back">يجب gcd(a,26)=1 حتى يوجد معكوس.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">Affine Encryption؟</div><div class="back">C=(aP+b) mod 26.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">Affine Decryption؟</div><div class="back">P=a⁻¹(C-b) mod 26.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">Vigenère؟</div><div class="back">مفتاح كلمة يتكرر، C=P+K، والفك C-K.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">Beaufort/Before؟</div><div class="back">C=K-P، والفك P=K-C.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">Playfair؟</div><div class="back">مربع 5×5، دمج I/J، تشفير أزواج حسب صف/عمود/مستطيل.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">DES؟</div><div class="back">Symmetric block cipher: 64-bit block، 56-bit effective key، 16 Feistel rounds.</div></div></div>
+<div class="fc"><div class="flip"><div class="front">RSA خطواته؟</div><div class="back">p,q ثم n=pq ثم φ ثم اختر e ثم d inverse ثم C=M^e mod n.</div></div></div>
+</div>
+</section>
+
+<section id="quiz">
+<h2 class="sec">🧪 اختبار فهم تفاعلي</h2>
+<div class="q" data-a="b"><b>1) إذا استخدمنا A=0، فإن حرف Z يساوي:</b><label class="opt"><input type="radio" name="q1" value="a"> 26</label><label class="opt"><input type="radio" name="q1" value="b"> 25</label><label class="opt"><input type="radio" name="q1" value="c"> 24</label><div class="exp">A=0 إلى Z=25.</div></div>
+<div class="q" data-a="a"><b>2) Caesar بمفتاح 3: A تصبح:</b><label class="opt"><input type="radio" name="q2" value="a"> D</label><label class="opt"><input type="radio" name="q2" value="b"> C</label><label class="opt"><input type="radio" name="q2" value="c"> Z</label><div class="exp">0+3=3 وهو D.</div></div>
+<div class="q" data-a="c"><b>3) ROT13 هو:</b><label class="opt"><input type="radio" name="q3" value="a"> Atbash</label><label class="opt"><input type="radio" name="q3" value="b"> RSA صغير</label><label class="opt"><input type="radio" name="q3" value="c"> Caesar بمفتاح 13</label><div class="exp">ROT13 = rotate by 13.</div></div>
+<div class="q" data-a="b"><b>4) Atbash يستخدم القانون:</b><label class="opt"><input type="radio" name="q4" value="a"> C=P+K</label><label class="opt"><input type="radio" name="q4" value="b"> C=25-P</label><label class="opt"><input type="radio" name="q4" value="c"> C=P^e mod n</label><div class="exp">Atbash يعكس الأبجدية.</div></div>
+<div class="q" data-a="a"><b>5) أي قيمة a تصلح في Multiplicative mod 26؟</b><label class="opt"><input type="radio" name="q5" value="a"> 5</label><label class="opt"><input type="radio" name="q5" value="b"> 13</label><label class="opt"><input type="radio" name="q5" value="c"> 2</label><div class="exp">5 لها معكوس 21. أما 2 و13 لا يصلحان.</div></div>
+<div class="q" data-a="c"><b>6) قانون Affine للتشفير:</b><label class="opt"><input type="radio" name="q6" value="a"> C=P-k</label><label class="opt"><input type="radio" name="q6" value="b"> C=K-P</label><label class="opt"><input type="radio" name="q6" value="c"> C=(aP+b) mod 26</label><div class="exp">Affine يجمع الضرب والجمع.</div></div>
+<div class="q" data-a="b"><b>7) Vigenère يستخدم:</b><label class="opt"><input type="radio" name="q7" value="a"> مربع 5×5 فقط</label><label class="opt"><input type="radio" name="q7" value="b"> كلمة مفتاحية متكررة</label><label class="opt"><input type="radio" name="q7" value="c"> عددين أوليين p و q</label><div class="exp">Vigenère يستخدم keystream متكرر من كلمة.</div></div>
+<div class="q" data-a="a"><b>8) One-time Pad آمن نظرياً بشرط:</b><label class="opt"><input type="radio" name="q8" value="a"> مفتاح عشوائي بطول الرسالة ولا يستخدم إلا مرة</label><label class="opt"><input type="radio" name="q8" value="b"> مفتاح قصير يتكرر كثيراً</label><label class="opt"><input type="radio" name="q8" value="c"> استخدام a=2</label><div class="exp">الشروط الثلاثة هي السر.</div></div>
+<div class="q" data-a="c"><b>9) Playfair يشفر:</b><label class="opt"><input type="radio" name="q9" value="a"> أرقام فقط</label><label class="opt"><input type="radio" name="q9" value="b"> حرفاً واحداً كل مرة</label><label class="opt"><input type="radio" name="q9" value="c"> أزواج حروف</label><div class="exp">Playfair يعتمد على digraphs.</div></div>
+<div class="q" data-a="b"><b>10) DES هو:</b><label class="opt"><input type="radio" name="q10" value="a"> Asymmetric public key</label><label class="opt"><input type="radio" name="q10" value="b"> Symmetric block cipher</label><label class="opt"><input type="radio" name="q10" value="c"> Hash فقط</label><div class="exp">DES تشفير متماثل كتلي.</div></div>
+<div class="q" data-a="a"><b>11) RSA يعتمد على:</b><label class="opt"><input type="radio" name="q11" value="a"> p و q أعداد أولية ومفتاح عام/خاص</label><label class="opt"><input type="radio" name="q11" value="b"> مربع 5×5</label><label class="opt"><input type="radio" name="q11" value="c"> عكس الأبجدية</label><div class="exp">RSA غير متماثل يعتمد على الأعداد الأولية.</div></div>
+<div class="q" data-a="c"><b>12) في RSA إذا p=3 و q=11، فإن n يساوي:</b><label class="opt"><input type="radio" name="q12" value="a"> 14</label><label class="opt"><input type="radio" name="q12" value="b"> 20</label><label class="opt"><input type="radio" name="q12" value="c"> 33</label><div class="exp">n=p×q=3×11=33.</div></div>
+<button id="grade" class="badge btn">صحّح الاختبار</button>
+<div id="score" class="score"></div>
+</section>
+
+<section>
+<h2 class="sec">🎯 الخلاصة النهائية</h2>
+<div class="card life"><p>التشفير ليس وحش رياضيات. ابدأ دائماً من تحويل الحرف إلى رقم، طبق القانون، استخدم mod، ثم ارجع للحرف. الخوارزميات القديمة تختلف في القانون فقط. أما DES وRSA فافهم نوع كل واحد وبنيته العامة، ودرّب على RSA بالأرقام الصغيرة.</p></div>
+<p><a class="badge" href="quick-review.html">فتح النسخة المركزة للمراجعة السريعة</a></p>
+</section>
+<div class="footer">دليل مبني على قائمة الخوارزميات المرفوعة في Principles of Cryptography (Theory)، مع تبسيط رياضي وخطوات حل امتحانية.</div>
+</div>
+<script>
+const AL='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+function mod(n,m){return ((n%m)+m)%m}
+function clean(s){return (s||'').toUpperCase().replace(/[^A-Z]/g,'')}
+function idx(c){return AL.indexOf(c)}
+function chr(n){return AL[mod(n,26)]}
+function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b){[a,b]=[b,a%b]}return a}
+function invMod(a,m){a=mod(a,m);for(let x=1;x<m;x++)if((a*x)%m===1)return x;return null}
+function shift(text,k,dec=false){return clean(text).split('').map(c=>chr(idx(c)+(dec?-k:k))).join('')}
+function atbash(text){return clean(text).split('').map(c=>chr(25-idx(c))).join('')}
+function mult(text,a,dec=false){let inv=invMod(a,26);if(inv===null)return null;return clean(text).split('').map(c=>chr((dec?inv:a)*idx(c))).join('')}
+function affine(text,a,b,dec=false){let inv=invMod(a,26);if(inv===null)return null;return clean(text).split('').map(c=>{let x=idx(c);return chr(dec?inv*(x-b):a*x+b)}).join('')}
+function repeatKey(key,n){key=clean(key)||'A';let out='';for(let i=0;i<n;i++)out+=key[i%key.length];return out}
+function vig(text,key,dec=false){let t=clean(text), k=repeatKey(key,t.length);return t.split('').map((c,i)=>chr(idx(c)+(dec?-idx(k[i]):idx(k[i])))).join('')}
+function beaufort(text,key){let t=clean(text), k=repeatKey(key,t.length);return t.split('').map((c,i)=>chr(idx(k[i])-idx(c))).join('')}
+function autokey(text,key,dec=false){let t=clean(text), seed=clean(key)||'A', out='', ks=seed;if(!dec){ks=(seed+t).slice(0,t.length);for(let i=0;i<t.length;i++)out+=chr(idx(t[i])+idx(ks[i]));return out}else{for(let i=0;i<t.length;i++){let p=chr(idx(t[i])-idx(ks[i]));out+=p;ks+=p}return out}}
+function playfairSquare(key){let s='', seen=new Set();(clean(key)+'ABCDEFGHIKLMNOPQRSTUVWXYZ').replace(/J/g,'I').split('').forEach(c=>{if(!seen.has(c)){seen.add(c);s+=c}});return s}
+function playfairPairs(text){let t=clean(text).replace(/J/g,'I'), arr=[];for(let i=0;i<t.length;i++){let a=t[i], b=t[i+1];if(!b){arr.push(a+'X')}else if(a===b){arr.push(a+'X')}else{arr.push(a+b);i++}}return arr}
+function playfair(text,key,dec=false){let sq=playfairSquare(key), pairs=playfairPairs(text), out='';for(const pair of pairs){let a=pair[0],b=pair[1], ia=sq.indexOf(a), ib=sq.indexOf(b), ra=Math.floor(ia/5), ca=ia%5, rb=Math.floor(ib/5), cb=ib%5;if(ra===rb){out+=sq[ra*5+mod(ca+(dec?-1:1),5)]+sq[rb*5+mod(cb+(dec?-1:1),5)]}else if(ca===cb){out+=sq[mod(ra+(dec?-1:1),5)*5+ca]+sq[mod(rb+(dec?-1:1),5)*5+cb]}else{out+=sq[ra*5+cb]+sq[rb*5+ca]}}return {out,pairs,sq}}
+function runClassic(){let alg=document.getElementById('alg').value, mode=document.getElementById('mode').value, text=document.getElementById('text').value, k1=parseInt(document.getElementById('k1').value||'0',10), k2=parseInt(document.getElementById('k2').value||'0',10), key=document.getElementById('wordkey').value, dec=mode==='dec', res='', notes=[];if(alg==='caesar')res=shift(text,k1,dec);if(alg==='rot13')res=shift(text,13,false);if(alg==='atbash')res=atbash(text);if(alg==='multiplicative'){let inv=invMod(k1,26);if(inv===null){res='ERROR';notes.push('المفتاح a='+k1+' لا يصلح لأنه لا يملك معكوس mod 26. اختر من: 1,3,5,7,9,11,15,17,19,21,23,25')}else{res=mult(text,k1,dec);notes.push('a inverse = '+inv)}}if(alg==='affine'){let inv=invMod(k1,26);if(inv===null){res='ERROR';notes.push('a='+k1+' لا يصلح. يجب gcd(a,26)=1.')}else{res=affine(text,k1,k2,dec);notes.push('a inverse = '+inv+'; formula '+(dec?'P=a^-1(C-b)':'C=aP+b'))}}if(alg==='vigenere')res=vig(text,key,dec);if(alg==='beaufort'){res=beaufort(text,key);notes.push('Beaufort reciprocal: نفس العملية للتشفير والفك.')}if(alg==='autokey')res=autokey(text,key,dec);if(alg==='playfair'){let pf=playfair(text,key,dec);res=pf.out;notes.push('Square:');for(let r=0;r<5;r++)notes.push(pf.sq.slice(r*5,r*5+5).split('').join(' '));notes.push('Pairs: '+pf.pairs.join(' '))}document.getElementById('classicOut').textContent='Result: '+res+(notes.length?'\n'+notes.join('\n'):'')}
+function bigPowMod(base, exp, modn){base=BigInt(base);exp=BigInt(exp);modn=BigInt(modn);let r=1n;base%=modn;while(exp>0n){if(exp&1n)r=(r*base)%modn;base=(base*base)%modn;exp >>= 1n}return r}
+function egcd(a,b){if(b===0n)return [a,1n,0n];let [g,x1,y1]=egcd(b,a%b);return [g,y1,x1-(a/b)*y1]}
+function invBig(a,m){let [g,x]=egcd(BigInt(a),BigInt(m));if(g!==1n)return null;return ((x%BigInt(m))+BigInt(m))%BigInt(m)}
+function runRSA(){let p=BigInt(document.getElementById('p').value||'0'),q=BigInt(document.getElementById('q').value||'0'),e=BigInt(document.getElementById('e').value||'0'),m=BigInt(document.getElementById('m').value||'0'),c=BigInt(document.getElementById('c').value||'0');let n=p*q,phi=(p-1n)*(q-1n),d=invBig(e,phi), lines=[];lines.push('n = p*q = '+n);lines.push('phi = (p-1)(q-1) = '+phi);if(d===null){lines.push('لا يوجد d لأن e لا يملك معكوساً mod phi. غيّر e.')}else{lines.push('d = e^-1 mod phi = '+d);lines.push('Public key = ('+e+', '+n+')');lines.push('Private key = ('+d+', '+n+')');lines.push('Encrypt: C = M^e mod n = '+bigPowMod(m,e,n));lines.push('Decrypt: M = C^d mod n = '+bigPowMod(c,d,n));}document.getElementById('rsaOut').textContent=lines.join('\n')}
+const progress=document.getElementById('progress');function upd(){const h=document.documentElement,max=h.scrollHeight-h.clientHeight;progress.style.width=(max?h.scrollTop/max*100:0)+'%'}document.addEventListener('scroll',upd);upd();document.querySelectorAll('.fc').forEach(c=>c.addEventListener('click',()=>c.classList.toggle('on')));document.querySelectorAll('.opt').forEach(o=>o.addEventListener('click',()=>{const input=o.querySelector('input');if(input)input.checked=true;}));document.getElementById('grade').addEventListener('click',()=>{let total=0,ok=0;document.querySelectorAll('.q').forEach(q=>{total++;const ans=q.dataset.a,chosen=q.querySelector('input:checked');q.querySelectorAll('.opt').forEach(o=>o.classList.remove('good','bad'));q.querySelectorAll('.opt').forEach(o=>{if(o.querySelector('input').value===ans)o.classList.add('good')});if(chosen){const lab=chosen.closest('.opt');if(chosen.value===ans){ok++;lab.classList.add('good')}else lab.classList.add('bad')}const exp=q.querySelector('.exp');if(exp)exp.style.display='block'});let pct=Math.round(ok/total*100);document.getElementById('score').textContent=`درجتك: ${ok}/${total} (${pct}%). ${pct>=80?'ممتاز — انتقل للتدريب اليدوي على أمثلة.':'راجع القوانين وجدول القرار ثم أعد الاختبار.'}`});
+runClassic();runRSA();
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>مراجعة سريعة — Principles of Cryptography</title><style>:root{--bg:#07111f;--ink:#eef8ff;--muted:#b9c9de;--card:#10243d;--cyan:#69f2e8;--blue:#58b9ff;--yellow:#ffd166;--red:#ff6b6b;--green:#7cf2a4;--border:rgba(255,255,255,.14)}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#174b7a,#07111f 45%,#020710);color:var(--ink);font-family:Tahoma,"Noto Sans Arabic",Arial,sans-serif;line-height:1.85}.wrap{width:min(1150px,94vw);margin:auto;padding:34px 0 60px}h1{font-size:clamp(30px,5vw,54px);line-height:1.2}h2{margin-top:35px;padding:14px 18px;border-radius:18px;background:linear-gradient(135deg,rgba(88,185,255,.2),rgba(105,242,232,.1));border:1px solid var(--border)}h3{color:var(--cyan)}.card,.mini{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:18px;padding:15px;margin:12px 0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}@media(max-width:850px){.grid{grid-template-columns:1fr}}table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.045);border:1px solid var(--border);border-radius:15px;overflow:hidden}th,td{padding:10px;border-bottom:1px solid var(--border);vertical-align:top}th{background:rgba(88,185,255,.18)}.en{direction:ltr;unicode-bidi:embed;font-family:Consolas,monospace}.mono{direction:ltr;unicode-bidi:embed;font-family:Consolas,monospace;background:#020812;border:1px solid var(--border);border-radius:7px;padding:1px 6px}.warn{border-right:5px solid var(--red)}.ok{border-right:5px solid var(--green)}.exam{border-right:5px solid var(--yellow)}a{color:var(--cyan)}</style></head><body><div class="wrap">
+<h1>مراجعة سريعة — مبادئ التشفير والخوارزميات</h1>
+<div class="card exam"><b>القاعدة الذهبية:</b> حوّل الحرف إلى رقم A=0..Z=25، طبق القانون، استخدم mod 26، ثم ارجع للحرف.</div>
+<p><a href="index.html">العودة للشرح العميق</a></p>
+
+<h2>1) جدول الحروف</h2>
+<div class="card en">A=0 B=1 C=2 D=3 E=4 F=5 G=6 H=7 I=8 J=9 K=10 L=11 M=12 N=13 O=14 P=15 Q=16 R=17 S=18 T=19 U=20 V=21 W=22 X=23 Y=24 Z=25</div>
+<div class="card">mod 26 = الباقي بعد القسمة على 26. مثال: 29 mod 26 = 3، و -1 mod 26 = 25.</div>
+
+<h2>2) المعكوسات المهمة mod 26</h2>
+<table><tr><th>a</th><td>1</td><td>3</td><td>5</td><td>7</td><td>9</td><td>11</td><td>15</td><td>17</td><td>19</td><td>21</td><td>23</td><td>25</td></tr><tr><th>a⁻¹</th><td>1</td><td>9</td><td>21</td><td>15</td><td>3</td><td>19</td><td>7</td><td>23</td><td>11</td><td>5</td><td>17</td><td>25</td></tr></table>
+<div class="card warn">إذا a ليست في هذا الجدول غالباً لا تصلح لـ Multiplicative/Affine لأن gcd(a,26) ≠ 1.</div>
+
+<h2>3) القوانين السريعة</h2>
+<table><tr><th>الخوارزمية</th><th>التشفير</th><th>الفك</th><th>ملاحظة</th></tr>
+<tr><td>Caesar</td><td class="mono">C=(P+k) mod 26</td><td class="mono">P=(C-k) mod 26</td><td>إزاحة ثابتة</td></tr>
+<tr><td>ROT13</td><td class="mono">k=13</td><td>نفس العملية</td><td>A↔N</td></tr>
+<tr><td>Atbash</td><td class="mono">C=25-P</td><td>نفس العملية</td><td>عكس الأبجدية</td></tr>
+<tr><td>Simple Substitution</td><td>جدول استبدال</td><td>اعكس الجدول</td><td>لا يوجد قانون حسابي ثابت</td></tr>
+<tr><td>Multiplicative</td><td class="mono">C=aP mod 26</td><td class="mono">P=a⁻¹C mod 26</td><td>a يجب له معكوس</td></tr>
+<tr><td>Affine</td><td class="mono">C=(aP+b) mod 26</td><td class="mono">P=a⁻¹(C-b) mod 26</td><td>اطرح b ثم اضرب بالمعكوس</td></tr>
+<tr><td>Vigenère</td><td class="mono">C=P+K</td><td class="mono">P=C-K</td><td>كلمة مفتاحية تتكرر</td></tr>
+<tr><td>Before/Beaufort</td><td class="mono">C=K-P</td><td class="mono">P=K-C</td><td>لا تخلطه مع Vigenère</td></tr>
+<tr><td>One-time Pad</td><td>مثل Vigenère</td><td>طرح المفتاح</td><td>مفتاح عشوائي بطول الرسالة ويستخدم مرة واحدة</td></tr>
+<tr><td>Autokey</td><td>مفتاح ثم plaintext</td><td>استخرج plaintext لتكمل المفتاح</td><td>لا يكرر الكلمة فقط</td></tr></table>
+
+<h2>4) Playfair بسرعة</h2>
+<ol><li>اكتب المفتاح دون تكرار في مربع 5×5.</li><li>أكمل الأبجدية مع دمج I/J.</li><li>قسم النص إلى أزواج.</li><li>إذا تكرر حرفان في زوج، أدخل X.</li><li>إذا بقي حرف وحيد، أضف X.</li><li>نفس الصف: يمين للتشفير، يسار للفك.</li><li>نفس العمود: تحت للتشفير، فوق للفك.</li><li>مستطيل: كل حرف يأخذ حرف نفس صفه وعمود الآخر.</li></ol>
+
+<h2>5) DES بسرعة</h2>
+<div class="grid"><div class="mini">Symmetric Block Cipher</div><div class="mini">Block size = 64-bit</div><div class="mini">Effective key = 56-bit</div><div class="mini">16 Feistel rounds</div><div class="mini">F function: Expansion, XOR, S-boxes, P-box</div><div class="mini">الفك بعكس ترتيب subkeys</div></div>
+
+<h2>6) RSA بسرعة</h2>
+<ol><li>اختر p و q أوليين.</li><li><span class="mono">n=pq</span></li><li><span class="mono">φ=(p-1)(q-1)</span></li><li>اختر e بحيث <span class="mono">gcd(e,φ)=1</span></li><li>ابحث عن d بحيث <span class="mono">ed mod φ = 1</span></li><li>Public key = <span class="mono">(e,n)</span></li><li>Private key = <span class="mono">(d,n)</span></li><li>Encrypt: <span class="mono">C=M^e mod n</span></li><li>Decrypt: <span class="mono">M=C^d mod n</span></li></ol>
+<div class="card ok">مثال: p=3,q=11 → n=33, φ=20. إذا e=3 فإن d=7 لأن 3×7=21 و 21 mod 20=1.</div>
+
+<h2>7) كيف تعرف الخوارزمية من السؤال؟</h2>
+<table><tr><th>كلمة في السؤال</th><th>الخوارزمية</th></tr><tr><td>shift / k ثابت</td><td>Caesar</td></tr><tr><td>13</td><td>ROT13</td></tr><tr><td>reverse alphabet</td><td>Atbash</td></tr><tr><td>substitution table</td><td>Simple Substitution</td></tr><tr><td>aP</td><td>Multiplicative</td></tr><tr><td>aP+b</td><td>Affine</td></tr><tr><td>keyword repeated</td><td>Vigenère</td></tr><tr><td>K-P</td><td>Before/Beaufort</td></tr><tr><td>5×5 / digraphs</td><td>Playfair</td></tr><tr><td>random key same length</td><td>One-time Pad</td></tr><tr><td>keyword + plaintext</td><td>Autokey</td></tr><tr><td>Feistel / 16 rounds / 64-bit</td><td>DES</td></tr><tr><td>p,q,e,d,n,phi</td><td>RSA</td></tr></table>
+
+<h2>8) أخطاء تجنبها</h2>
+<div class="grid"><div class="mini warn">لا تستخدم A=1 إلا إذا الدكتور قال ذلك صراحة.</div><div class="mini warn">لا تنسَ mod 26 للأرقام السالبة.</div><div class="mini warn">في Affine فك التشفير: C-b ثم اضرب في a⁻¹.</div><div class="mini warn">لا تختار a=2 أو 13 في Multiplicative/Affine.</div><div class="mini warn">لا تخلط Vigenère مع Beaufort.</div><div class="mini warn">Playfair يشفر أزواجاً لا حروفاً مفردة.</div></div>
+</div></body></html>
