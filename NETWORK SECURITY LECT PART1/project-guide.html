@@ -1,0 +1,113 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>دليل مشروع أمن الشبكات العملي</title><style>:root{--bg:#07111f;--ink:#eef8ff;--muted:#b9c9de;--card:#10243d;--cyan:#69f2e8;--blue:#58b9ff;--yellow:#ffd166;--red:#ff6b6b;--green:#7cf2a4;--border:rgba(255,255,255,.14)}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#174b7a,#07111f 45%,#020710);color:var(--ink);font-family:Tahoma,"Noto Sans Arabic",Arial,sans-serif;line-height:1.85}.wrap{width:min(1180px,94vw);margin:auto;padding:34px 0 60px}h1{font-size:clamp(30px,5vw,54px);line-height:1.2}h2{margin-top:35px;padding:14px 18px;border-radius:18px;background:linear-gradient(135deg,rgba(88,185,255,.2),rgba(105,242,232,.1));border:1px solid var(--border)}h3{color:var(--cyan)}.card,.mini{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:18px;padding:15px;margin:12px 0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}@media(max-width:850px){.grid{grid-template-columns:1fr}}table{width:100%;border-collapse:collapse;background:rgba(255,255,255,.045);border:1px solid var(--border);border-radius:15px;overflow:hidden}th,td{padding:10px;border-bottom:1px solid var(--border);vertical-align:top}th{background:rgba(88,185,255,.18)}.mono{direction:ltr;unicode-bidi:embed;font-family:Consolas,monospace;background:#020812;border:1px solid var(--border);border-radius:7px;padding:1px 6px}.warn{border-right:5px solid var(--red)}.ok{border-right:5px solid var(--green)}.exam{border-right:5px solid var(--yellow)}a{color:var(--cyan)}pre{direction:ltr;text-align:left;background:#020812;border:1px solid var(--border);border-radius:14px;padding:12px;overflow:auto;color:#dffffc}</style></head><body><div class="wrap">
+<h1>دليل مشروع أمن الشبكات العملي — نسخة فردية واقعية</h1>
+<div class="card exam"><b>الخلاصة الصريحة:</b> المشروع الكامل كما هو مكتوب يحتاج تحميلات كبيرة إذا لم تكن عندك مسبقاً: pfSense ISO، وربما Windows Server لـ NPS، وPacket Tracer، وربما Suricata packages. لكن يمكن إنجاز نسخة فردية مقبولة بأقل خسارة بيانات إذا استخدمت الموجود عندك، واستخدمت بدائل خفيفة، ووثقت في التقرير أنك نفذته وحدك ضمن الإمكانات.</div>
+<p><a href="index.html">العودة للشرح النظري</a></p>
+
+<h2>1) ما المطلوب فعلياً من ملف المشروع؟</h2>
+<table><tr><th>القسم</th><th>المطلوب</th><th>أين تنفذه؟</th></tr><tr><td>Network Design</td><td>شرح Firewall/Switch/Routers/Radius/NTP/Syslog/Clients + IP plan</td><td>تقرير فقط + رسم</td></tr><tr><td>pfSense</td><td>LAN/WAN، مستخدم باسمك admin، قواعد منع ICMP وHTTPS، logs، hardening</td><td>VMware</td></tr><tr><td>Routers</td><td>كلمات مرور للمنافذ، hostname باسمك، connectivity، login blocking/delay، logs، SSH، CLI Views/Super View، users privileges</td><td>Cisco Packet Tracer</td></tr><tr><td>Port Security/NTP</td><td>Port security على Router/Switch 2، Router 3 كـ NTP server ومزامنة switches/servers</td><td>Packet Tracer</td></tr><tr><td>Radius</td><td>NPS على Windows Server وربطه بالسويتش لـ AAA</td><td>الأصل: Windows Server. البديل: Packet Tracer AAA أو FreeRADIUS</td></tr><tr><td>Syslog</td><td>جمع logs من الراوتر والفايروول والسيرفرات والعملاء واستخراج 3 أحداث</td><td>Packet Tracer Server أو Linux rsyslog</td></tr><tr><td>Suricata</td><td>IDS/IPS server، rules، alerts، custom rule</td><td>Linux VM/Kali إذا متوفر أو تثبيت خفيف</td></tr><tr><td>Analysis</td><td>Nmap scan، Wireshark capture، ربط النتائج بسياسات firewall</td><td>Kali/Wireshark</td></tr></table>
+
+<h2>2) هل يمكن إنجازه بدون استهلاك بيانات كبير؟</h2>
+<table><tr><th>العنصر</th><th>إذا غير موجود عندك</th><th>حكم البيانات</th><th>حل عملي</th></tr><tr><td>VMware Workstation</td><td>عندك موجود</td><td>لا مشكلة</td><td>استخدمه</td></tr><tr><td>Kali Linux VM</td><td>عندك موجود</td><td>لا مشكلة</td><td>استخدمه كـ Client/Nmap/Wireshark وربما Suricata/Syslog</td></tr><tr><td>pfSense ISO</td><td>قد تحتاج تنزيل</td><td>متوسط/كبير نسبياً</td><td>إن لم يكن عندك، خذه من زميل/فلاش. هو أهم شيء في VMware.</td></tr><tr><td>Windows Server ISO لـ NPS</td><td>غير موجود غالباً</td><td>كبير جداً عدة GB</td><td>لا أنصح بتنزيله ببياناتك. استخدم Packet Tracer Server AAA أو FreeRADIUS واذكر كبديل فردي.</td></tr><tr><td>Cisco Packet Tracer</td><td>إن لم يكن مثبتاً</td><td>متوسط</td><td>خذه من زميل. مطلوب جداً لقسم الراوترات.</td></tr><tr><td>Suricata</td><td>إذا غير مثبت</td><td>صغير/متوسط حسب repositories</td><td>إن أمكن apt install suricata. وإلا استخدم Wireshark + Snort/IDS في PT كبديل موثق.</td></tr></table>
+<div class="card ok"><b>قراري لك:</b> لا تنزل Windows Server من الإنترنت الآن. إذا الوقت غداً، ركز على: Packet Tracer routers + pfSense إن كان ISO متوفر + تقرير قوي + لقطات شاشة. استخدم Kali الموجود عندك لـ Nmap/Wireshark. Radius/NPS وSuricata إذا ما قدرت تحملها، اعمل بديل ووضّح للدكتور أنك نفذت فردياً وبموارد محدودة.</div>
+
+<h2>3) Minimal Viable Project — نسخة فردية قابلة للتسليم</h2>
+<ol><li>ارسم التوبولوجي كما في الملف، وضع IP plan خاص بك.</li><li>نفذ جزء Cisco Packet Tracer كاملاً لأنه لا يحتاج تحميلات كبيرة إذا البرنامج موجود.</li><li>نفذ pfSense إذا ISO متوفر؛ لو غير متوفر، ضع تصميم وقواعد screenshots من Packet Tracer ACL كبديل جزئي واذكر السبب.</li><li>استخدم Kali كـ Client 2 لتشغيل Nmap وWireshark داخل lab.</li><li>استخدم Packet Tracer Server كـ AAA/Syslog/NTP بدل Windows Server إذا الوقت/البيانات لا تسمح.</li><li>اعمل Suricata فقط إذا مثبت أو يمكن تثبيته بسرعة؛ وإلا قدم Wireshark captures وتحليل IDS concept.</li></ol>
+
+<h2>4) IP Plan مقترح لا تنسخه من زملائك</h2>
+<table><tr><th>Segment</th><th>Network</th><th>أجهزة</th></tr><tr><td>WAN</td><td>10.10.10.0/24</td><td>Client1 = 10.10.10.10، pfSense WAN = 10.10.10.1</td></tr><tr><td>LAN</td><td>192.168.50.0/24</td><td>pfSense LAN = 192.168.50.1، Client2 = .20، Client3 = .30</td></tr><tr><td>Servers</td><td>192.168.50.0/24</td><td>Radius .10، Syslog .11، Suricata .12، NTP .13 إن كان VM</td></tr><tr><td>Packet Tracer R1-LAN</td><td>192.168.1.0/24</td><td>R1 .1، Client1 .10</td></tr><tr><td>Packet Tracer R2-LAN</td><td>192.168.2.0/24</td><td>R2 .1، Client2 .10</td></tr><tr><td>Packet Tracer R3-LAN</td><td>192.168.3.0/24</td><td>R3 .1، Client3 .10</td></tr><tr><td>R1-R2</td><td>10.0.12.0/30</td><td>R1 .1، R2 .2</td></tr><tr><td>R2-R3</td><td>10.0.23.0/30</td><td>R2 .1، R3 .2</td></tr></table>
+
+<h2>5) أوامر Cisco Packet Tracer الأساسية</h2>
+<h3>Hostname + passwords + SSH</h3><pre>enable
+conf t
+hostname YOURNAME-R1
+enable secret StrongEnable123
+service password-encryption
+banner motd # Unauthorized access prohibited #
+username admin privilege 15 secret Admin12345
+ip domain-name lab.local
+crypto key generate rsa modulus 1024
+ip ssh version 2
+line console 0
+ password Console123
+ login
+line vty 0 4
+ login local
+ transport input ssh
+ exec-timeout 5 0
+end
+wr</pre>
+<h3>حماية محاولات الدخول وتسجيل النجاح والفشل</h3><pre>conf t
+login block-for 60 attempts 3 within 30
+login delay 2
+login on-success log
+login on-failure log
+service timestamps log datetime msec
+logging host 192.168.50.11
+logging trap informational
+end</pre>
+<h3>NTP على Router 3 ثم العملاء</h3><pre>! On R3
+conf t
+clock set 10:00:00 30 Sep 2026
+ntp master 3
+end
+
+! On R1/R2/Switches
+conf t
+ntp server 10.0.23.2
+end
+show ntp status</pre>
+<h3>CLI Views مثال</h3><pre>enable view
+conf t
+parser view SECURITY
+ secret SecView123
+ commands exec include show
+ commands exec include configure terminal
+ commands configure include aaa
+ commands configure include username
+parser view WAN
+ secret WanView123
+ commands exec include show ip route
+ commands configure include interface
+ commands configure include ip route
+parser view OPS
+ secret OpsView123
+ commands exec include show running-config
+parser view SUPER superview
+ secret Super123
+ view SECURITY
+ view WAN
+ view OPS
+end</pre>
+<h3>Port Security على switch</h3><pre>conf t
+interface fa0/1
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 1
+ switchport port-security mac-address sticky
+ switchport port-security violation shutdown
+end
+show port-security interface fa0/1</pre>
+
+<h2>6) pfSense مختصر</h2>
+<ol><li>أنشئ VM pfSense بواجهتين: WAN وLAN.</li><li>WAN على شبكة Client1، LAN على شبكة السويتش الداخلي.</li><li>من Web GUI: System → User Manager → Add user باسمك واجعله admin.</li><li>Firewall → Rules → WAN: أضف rule block ICMP من Client1 إلى Client2.</li><li>Firewall → Rules → WAN: أضف rule block TCP 443 من Client1 إلى This Firewall/WAN address.</li><li>اختبر ping وhttps ثم افتح Status → System Logs → Firewall.</li><li>Hardening: غيّر كلمة admin، عطّل الخدمات غير الضرورية، فعّل HTTPS للواجهة، لا تسمح للإدارة من WAN إلا للحاجة.</li></ol>
+
+<h2>7) Nmap وWireshark</h2>
+<h3>Nmap من Kali/Client2</h3><pre>nmap -sV 192.168.50.10
+nmap -Pn -p 1-1000 192.168.50.10</pre>
+<p>اكتب في التقرير: المنافذ المفتوحة، الخدمة، هل يجب أن تكون مفتوحة؟ وكيف تمنعها firewall policies؟</p>
+<h3>Wireshark</h3><ol><li>ابدأ capture على واجهة Client1 أو Client2.</li><li>نفذ ping أو HTTP test.</li><li>سجل: Protocol، Source، Destination، هل البيانات encrypted؟</li><li>اربط النتيجة: إذا ICMP blocked ستشاهد محاولات أو لا ترى reply.</li></ol>
+
+<h2>8) Suricata إذا أمكن</h2>
+<pre>sudo apt update
+sudo apt install suricata
+sudo suricata -i eth0
+sudo tail -f /var/log/suricata/fast.log</pre>
+<p>Custom rule مثال دفاعي للكشف عن ICMP داخل lab:</p><pre>alert icmp any any -> any any (msg:"LAB ICMP detected"; sid:1000001; rev:1;)</pre>
+<div class="card warn">إذا لم تستطع تثبيت Suricata بسبب الإنترنت، لا تضيع اليوم كله. وثق في التقرير أنك نفذت تحليل Wireshark/Nmap وقدمت تصميم IDS/IPS ومكان وضع Suricata وقاعدة custom rule كمقترح.</div>
+
+<h2>9) قالب تقرير جاهز</h2>
+<ol><li>Cover page: اسمك، المادة، التاريخ.</li><li>Topology diagram + IP addressing table.</li><li>شرح وظيفة كل مكون.</li><li>pfSense configuration screenshots: interfaces، user، rules، logs.</li><li>Packet Tracer screenshots: routers connectivity، SSH، login block، syslog، NTP، port security، CLI views.</li><li>AAA/RADIUS: لقطة إعداد أو بديل Packet Tracer/FreeRADIUS مع شرح.</li><li>Syslog: ثلاث أحداث أمنية.</li><li>Suricata/Wireshark/Nmap: نتائج وتحليل.</li><li>Potential attacks: scanning، spoofing، password attacks، DoS، malware.</li><li>Recommendations: strong passwords، SSH only، ACLs، firewall least privilege، logging، NTP، IDS/IPS tuning، backups.</li><li>Limitations: نفذت المشروع فردياً وبموارد محدودة، لذلك استخدمت بدائل حيث يتطلب الأصل Windows Server أو تحميلات كبيرة.</li></ol>
+
+<h2>10) ماذا تقول للدكتور لو ناقشك؟</h2>
+<div class="card ok"><p>“الدكتور، نفذت المشروع بشكل فردي لأن ظروفي لم تسمح بفريق. التزمت بالتوبولوجي والفكرة الأمنية: Firewall rules، Router hardening، AAA، NTP، Syslog، IDS/IPS analysis، Nmap/Wireshark. في جزء Windows NPS/Suricata إذا لم تسمح الموارد، وثقت البديل وشرحت كيف سيتم تطبيقه في بيئة كاملة.”</p></div>
+</div></body></html>
